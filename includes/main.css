@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body.login-page {
+    background-image: url('background.jpg');
+    background-size: 100% 125%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+
+p{
+    font-size: 20px;
+    font-weight: 450;
+    color: white;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 90vh;
+}
+
+.box {
+    background-color: rgba(249, 153, 8, 0.75);
+    display: flex;
+    flex-direction: column;
+    padding: 20px 20px;
+    border-radius: 20px;
+    box-shadow: 0 0 32px 8px rgba(0, 0, 0, 0.5),
+                0 32px 64px -48px rgba(0, 0, 0, 0.5);
+}
+
+.form-box{
+    width: 450px;
+    margin: 0px 10px;
+}
+
+
+.form-box header{
+    font-size: 25px;
+    font-weight: 600;
+    color: white;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.form-box form .field{
+    display: flex;
+    margin-bottom: 10px;
+    flex-direction: column;
+}
+
+.form-box form .input input{
+    height: 40px;
+    width: 100%;
+    font-size: 15px;
+    padding: 0 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    outline: none;
+}
+
+.btn{
+    height: 35px;
+    background-color:#A0CE90;
+    border: 0;
+    border-radius: 5px;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all .3s;
+    margin-top: 10px;
+    padding: 0px 10px;
+}
+.btn:hover{
+    opacity: 0.82;
+}
+.submit{
+    width: 100%;
+}
+
+.sidebar ul li a, ul.submenu li a {
+    color: #aeb2b7;
+    display: block;
+    overflow: hidden;
+    position: relative;
+    white-space: nowrap;
+    text-decoration: none;
+    text-align: left;
+}
+
+.navbar {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Set height to 100% of viewport height */
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    background-color: white;
+    width: 260px;
+}
+
+.logo {
+    font-size: 18px;
+    font-weight: 450;
+    padding: 20px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Align items with space between */
+    height: 100%; /* Set height to 100% of parent's height */
+}
+
+.sidebar ul {
+    list-style: none;
+    margin-left: 20px;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: black;
+    display: block;
+    padding: 15px 10px;
+    transition: all 0.2s ease;
+    border-radius:10px; /* Added to curve corners */
+}
+
+.sidebar ul li a:hover {
+    background-color: rgba(245, 150, 7, 0.37); /* Changed background color to #F59607 with 37% opacity */
+    border-radius: 10px; /* Added to curve corners more when hovering */
+}
+
+.sidebar ul li a i {
+    margin-right: 5px;
+}
+
+.sidebar ul li:last-child { /* Select the last list item */
+    margin-top: 150px; /* Push it to the bottom */
+    margin-bottom: 10px; /* Add some margin at the bottom */
+}
+
+.top-nav {
+    background-color:#F59607 ;
+    width: 100vw;
+    height: 70px;
+}
