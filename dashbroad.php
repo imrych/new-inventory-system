@@ -23,6 +23,16 @@
         </div>
     </div>
 
+    <div class="dashboard_content">
+        <div class="boxes">
+
+            <div class="card">
+                <i class="fas fa-user"></i>
+                <div class="first_text_total">No. of users</div>
+                <div class="text_total">
+                    100 Users</div>
+            </div>
+
 </div>
 
 </body>
