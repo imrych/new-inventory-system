@@ -1,0 +1,210 @@
+.top-nav {
+    background-color:#F59607 ;
+    width: 85vw;
+    height: 70px;
+    margin-left: 260px;
+    display: flex;
+    gap: 55%;
+    align-items: center;
+    flex-direction: row;
+
+}
+
+h1 {
+    font-size: 28px;
+    font-weight: 400;
+    color: #FAFAFA;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    margin-left: 15px;
+    padding: 15px;
+}
+
+.date {
+    font-size: 12px;
+    font-weight: 450;
+    color: #FAFAFA;
+    margin-bottom: 15px;
+    text-align: center;
+}
+.username {
+    font-size: 12px;
+    font-weight: 450;
+    color: #000000;
+    margin-bottom: 15px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.username:hover {
+    color: #FAFAFA;
+}
+
+.dropbtn {
+    color: black;
+    font-size: 13px;
+    cursor: pointer;
+  }
+
+  .dropdown {
+    position: relative;
+    display: inline-block;
+    gap: 5px;
+  }
+
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 10px;
+    font-size: 14px;
+  }
+
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+
+  .dropdown-content a:hover {
+    background-color: #f1f1f1;
+    border-radius: 10px;
+
+}
+
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+
+  .dropdown:hover .dropbtn {
+    color: orange;
+  }
+
+.boxes{
+    width: 100%;
+    height: auto;
+    display: flex;
+    gap:80px;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 70px;
+    margin-left: 120px;
+}
+
+.card {
+    width: 13%;
+    height: 100%;
+    background: #FFFFFF;
+    box-shadow: 1px 0 2px 2px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.text-total {
+    font-size: 150px;
+}
+.first_text_total {
+    color: #87837E;
+}
+.user_and_date {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    gap: 15px;
+}
+
+.table_names {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-top: 30px;
+    margin-left: 320px;
+    gap: 30px;
+}
+
+.first_table {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 1px 0 2px 2px rgba(0, 0, 0, 0.2);
+}
+.second_table {
+    width: 100%;
+    background: #FFFFFF;
+    border-radius: 10px;
+    box-shadow: 1px 0 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+.third_table {
+    width: 100%;
+    background: #FFFFFF;
+    border-radius: 10px;
+    box-shadow: 1px 0 2px 2px rgba(0, 0, 0, 0.2);
+}
+h2 {
+    font-size: 20px;
+    font-weight: 500;
+    color: #000000;
+    margin-top: 20px;
+}
+
+td, th, first_table, second_table{
+    padding: 8px;
+    border: 1px solid lightgray;;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+th {
+    background-color: #f2af4a;
+    color: rgb(0, 0, 0);
+    font-size: 16px;
+    font-weight: 100px;
+}
+
+td {
+    background-color: #f9f9f9;
+    color: rgb(0, 0, 0);
+    font-size: 13px;
+}
+
+
+.first_part_content {
+    flex-direction: column;
+    gap: 15px;
+    display: flex;
+}
+
+.second_part_content {
+    flex-direction: column;
+    gap: 15px;
+    display: flex;
+}
+.third_part_content {
+    flex-direction: column;
+    gap: 15px;
+    display: flex;
+}
+.border-top-left {
+    border-top-left-radius: 10px;
+}
+
+.border-top-right {
+    border-top-right-radius: 10px;
+}
+
+.border-bottom-right {
+    border-bottom-right-radius: 10px;
+}
+
+.border-bottom-left {
+    border-bottom-left-radius: 10px;
+}
