@@ -24,13 +24,17 @@
                 </li>
 
                 <li>
-                    <div class="dropdown-btn"><i class="fa-solid fa-user-plus"></i>User's Management</a>
+                    <div class="dropdown-btn">
+                        <div class="user_container">
+                            <i class="fa-solid fa-user-plus"></i>User's Management
+                        </div>
                         <div class="dropdown_container">
-                            <a href="#" class="sub-item">Manage Group</a>
-                            <a href="#" class="sub-item">Manage User</a>
+                            <a href="#" class="dropdown_item">Manage Group</a>
+                            <a href="#" class="dropdown_item">Manage User</a>
                         </div>
                     </div>
                 </li>
+
                 <li>
                     <a href="#"><i class="fas fa-ship"></i>
                         Supplier
@@ -65,6 +69,23 @@
 
         </div>
     </div>
+
+    <script>
+        var dropdown = document.getElementsByClassName("dropdown-btn");
+        var i;
+
+        for (i = 0; i < dropdown.length; i++) {
+            dropdown[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var dropdownContent = this.nextElementSibling;
+                if (dropdownContent.style.display === "block") {
+                    dropdownContent.style.display = "none";
+                } else {
+                    dropdownContent.style.display = "block";
+                }
+            });
+        }
+    </script>
 
 </body>
 
