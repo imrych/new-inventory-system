@@ -24,17 +24,13 @@
                 </li>
 
                 <li>
-                    <div class="item"><a class="sub-btn"><i class="fa-solid fa-user-plus"></i>User's Management</a>
-                        <div class="dropdown_user">
+                    <div class="dropdown-btn"><i class="fa-solid fa-user-plus"></i>User's Management</a>
+                        <div class="dropdown_container">
                             <a href="#" class="sub-item">Manage Group</a>
                             <a href="#" class="sub-item">Manage User</a>
                         </div>
                     </div>
                 </li>
-
-
-
-
                 <li>
                     <a href="#"><i class="fas fa-ship"></i>
                         Supplier
