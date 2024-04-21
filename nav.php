@@ -14,19 +14,6 @@
 </head>
 
 <body>
-<div class=" top-nav">
-        <h1>Dashboard</h1>
-        <div class=user_and_date>
-            <div class="dropdown">
-                <div class="username">Avril Abelarde</div>
-                <div class="dropdown-content">
-                    <a href="#">Profile</a>
-                    <a href="#">Settings</a>
-                </div>
-            </div>
-            <div class="date">April 14, 2024</div>
-        </div>
-    </div>
 
     <div class="navbar">
         <div class="logo">Ping-Ping's Fruit Dealer</div>
@@ -43,8 +30,8 @@
                         <i class="fa-solid fa-user-plus"></i>
                         User's Management</a>
                     <div class="dropdown-container">
-                        <a class="item" href="manageuser.php">Manage user</a>
-                        <a class="item" href="#">Manage group</a>
+                        <a class="item" href="managegroup.php">Manage Group</a>
+                        <a class="item" href="manageuser.php">Manage Users</a>
 </div>
                     </li>
 
