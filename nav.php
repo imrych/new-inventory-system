@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,9 +11,7 @@
     <link rel="stylesheet" href="includes/dashboard.css">
     <title>Home</title>
 </head>
-
 <body>
-
     <div class="navbar">
         <div class="logo">Ping-Ping's Fruit Dealer</div>
         <div class="sidebar">
@@ -26,37 +23,35 @@
                 </li>
 
                 <li>
-                    <a class="user-container">
-                        <i class="fa-solid fa-user-plus"></i>
-                        User's Management</a>
-                    <div class="dropdown-container">
-                        <a class="item" href="managegroup.php">Manage Group</a>
-                        <a class="item" href="manageuser.php">Manage Users</a>
-</div>
-                    </li>
-
+                    <div class="item"><a class="sub-btn"><i class="fa-solid fa-user-plus"></i>User's Management</a>
+                        <div class="dropdown_user">
+                            <a href="#" class="sub-item">Manage Group</a>
+                            <a href="#" class="sub-item">Manage User</a>
+                        </div>
+                    </div>
+                </li>
                 <li>
-                    <a href="supplier.php"><i class="fas fa-ship"></i>
+                    <a href="#"><i class="fas fa-ship"></i>
                         Supplier
                     </a>
                 </li>
                 <li>
-                    <a href="order.php"><i class="fas fa-truck"></i>
+                    <a href="#"><i class="fas fa-truck"></i>
                         Order
                     </a>
                 </li>
                 <li>
-                    <a href="customers.php"><i class="fas fa-users"></i>
+                    <a href="#"><i class="fas fa-users"></i>
                         Customers
                     </a>
                 </li>
                 <li>
-                    <a href="products.php"><i class="fas fa-box"></i>
+                    <a href="#"><i class="fas fa-box"></i>
                         Products
                     </a>
                 </li>
                 <li>
-                    <a href="sales.php"><i class="fas fa-chart-line"></i>
+                    <a href="#"><i class="fas fa-chart-line"></i>
                         <span>Sales</span>
                     </a>
                 </li>
@@ -69,23 +64,5 @@
 
         </div>
     </div>
-
-<script>
-    var dropdown = document.getElementsByClassName("user-container");
-var i;
-
-for (i = 0; i < dropdown.length; i++) {
-  dropdown[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var dropdownContent = this.nextElementSibling;
-    if (dropdownContent.style.display === "block") {
-      dropdownContent.style.display = "none";
-    } else {
-      dropdownContent.style.display = "block";
-    }
-  });
-}
-</script>
 </body>
-
 </html>
