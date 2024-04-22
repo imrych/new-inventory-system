@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="includes/main.css">
-    <link rel="stylesheet" href="includes/dashboard.css">
+    <link rel="stylesheet" href="includes/managegroup.css">
     <title>Manage Group</title>
 </head>
 
@@ -26,6 +26,10 @@
         </div>
     </div>
 
+<button>
+    Add New Group
+</button>
+
     <div class="table_names">
         <div class="first_part_content">
             <h2>Groups</h2>
@@ -38,21 +42,26 @@
                     <th class="border-top-right">Actions</th>
                 </tr>
                 <tr>
-                    <td>Apple</td>
-                    <td>3</td>
-                    <td>118</td>
+                    <td>1</td>
+                    <td>Admin</td>
+                    <td>1</td>
+                    <td><buton>Active</button></td>
+                    <td>Y/N</td>
 
                 </tr>
                 <tr>
                     <td>Banana</td>
                     <td>1</td>
                     <td>115</td>
+                    <td>Active</td>
+                    <td>Y/N</td>
                 </tr>
                 <tr>
                     <td class="border-bottom-left">Mango</td>
                     <td>1</td>
-                    <td class="border-bottom-right">111</td>
-
+                    <td>111</td>
+                    <td>Active</td>
+                    <td class="border-bottom-right">Y/N</td>
                 </tr>
             </table>
         </div>

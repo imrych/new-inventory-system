@@ -131,6 +131,7 @@ p{
     padding: 15px 10px;
     transition: all 0.2s ease;
     border-radius:10px; /* Added to curve corners */
+    cursor: pointer;
 }
 
 .sidebar ul li a:hover {
@@ -150,5 +151,9 @@ p{
 
 .active {
     color: white;
-    background-color: gray;;
+    background-color: rgb(230, 134, 66);;
+}
+
+.newgrpbtn {
+    margin-left: 300px;
 }
