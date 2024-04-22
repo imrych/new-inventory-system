@@ -30,10 +30,10 @@
     Add New Group
 </button>
 
-    <div class="table_names">
-        <div class="first_part_content">
+    <div class="group_names">
+        <div class="group_content">
             <h2>Groups</h2>
-            <table class="first_table">
+            <table class="group_table">
                 <tr>
                     <th class="border-top-left">#</th>
                     <th>Group Name</th>

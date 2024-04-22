@@ -157,7 +157,7 @@ h2 {
 }
 
 td, th .first_table .second_table{
-    padding: 8px;
+    padding: 10px;
     border: 1px solid lightgray;;
     border-collapse: collapse;
     text-align: left;
@@ -168,12 +168,14 @@ th {
     color: rgb(0, 0, 0);
     font-size: 16px;
     font-weight: 100px;
+    padding: 10px;
 }
 
 td {
     background-color: #f9f9f9;
     color: rgb(0, 0, 0);
     font-size: 13px;
+    padding: 10px;
 }
 
 
