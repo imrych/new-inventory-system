@@ -116,7 +116,7 @@ h2 {
 }
 
 td, th .group_table {
-    padding: 10px;
+    padding: 8px;
     border: 1px solid lightgray;;
     border-collapse: collapse;
     padding-right: 140px;
@@ -159,7 +159,7 @@ td {
 }
 
 button {
-    margin-left: 1140px;
+    margin-left: 1100px;
     margin-top: 20px;
     background-color: #FFC56D;
     display: inline-block;
@@ -172,4 +172,5 @@ button {
     font-weight: 500;
     line-height: 20px;
     list-style: none;
-    padding: 6px 16px;  }
+    padding: 6px 16px;
+ }

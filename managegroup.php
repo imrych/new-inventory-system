@@ -27,7 +27,7 @@
     </div>
 
 <button>
-    Add New Group
+    <a href="addgroup.php">Add New Group</a>
 </button>
 
     <div class="group_names">
