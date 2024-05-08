@@ -13,7 +13,7 @@
 
 <body>
 <div class=" top-nav">
-        <h1>Manage Report</h1>
+        <h1>Manage Sales</h1>
         <div class=user_and_date>
             <div class="dropdown">
                 <div class="username">Avril Abelarde</div>
@@ -26,7 +26,7 @@
         </div>
     </div>
 
-    <button type="button" onclick="location.href='#'">Add Sales Report</a>
+    <button type="button" onclick="location.href='#'">Print</a>
 </button>
 
     <div class="group_names">

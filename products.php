@@ -13,7 +13,7 @@
 
 <body>
 <div class=" top-nav">
-        <h1>Products</h1>
+        <h1>Manage Products</h1>
         <div class=user_and_date>
             <div class="dropdown">
                 <div class="username">Avril Abelarde</div>

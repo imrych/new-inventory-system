@@ -159,7 +159,7 @@ td {
 }
 
 button a {
-    margin-left: 1100px;
+    margin-left: 1140px;
     margin-top: 20px;
     background-color: #FFC56D;
     display: inline-block;
@@ -171,6 +171,5 @@ button a {
     font-size: 14px;
     font-weight: 500;
     line-height: 20px;
-    list-style: none;
-    padding: 6px 16px;
- }
+        padding: 6px 16px;
+}

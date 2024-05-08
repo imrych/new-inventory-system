@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="includes/main.css">
-    <link rel="stylesheet" href="includes/managegroup.css">
+    <link rel="stylesheet" href="includes/manageuser.css">
     <title>Manage Group</title>
 </head>
 
@@ -26,7 +26,7 @@
         </div>
     </div>
 
-<button type="button" onclick="location.href='addgroup.php'">Add New Group</a>
+    <button type="button" onclick="location.href='addgroup.php'">Add New Group</a>
 </button>
 
     <div class="group_names">
