@@ -158,7 +158,7 @@ td {
     border-bottom-left-radius: 10px;
 }
 
-button {
+button a {
     margin-left: 1100px;
     margin-top: 20px;
     background-color: #FFC56D;

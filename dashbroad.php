@@ -12,7 +12,7 @@
 
 <body>
 <div class=" top-nav">
-        <h1>Manage Users</h1>
+        <h1>Dasbhboard</h1>
         <div class=user_and_date>
             <div class="dropdown">
                 <div class="username">Avril Abelarde</div>
@@ -20,10 +20,11 @@
                     <a href="#">Profile</a>
                     <a href="#">Settings</a>
                 </div>
-            </div>
+                </div>
             <div class="date">April 14, 2024</div>
         </div>
-    </div>
+</div>
+
 <div class="dashboard_content">
         <div class="boxes">
             <div class="card">
