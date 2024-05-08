@@ -28,7 +28,7 @@
         </div>
     </div>
 
-    <button type="button" onclick="location.href='#'">Add New Product</a>
+    <button type="button" onclick="location.href='addproduct.php'">Add New Product</a>
 </button>
 
     <div class="group_names">
