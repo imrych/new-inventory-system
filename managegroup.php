@@ -26,8 +26,7 @@
         </div>
     </div>
 
-<button>
-    <a href="addgroup.php">Add New Group</a>
+<button type="button" onclick="location.href='addgroup.php'">Add New Group</a>
 </button>
 
     <div class="group_names">

@@ -25,24 +25,27 @@
 
     <div class="container">
     <form action="#" class="form">
-    <h4>Add New Group</h4>
+    <h4>Add New User</h4>
         <div class="input-box">
-            <label>Group Name</label>
+            <label>Name</label>
             <input type="text" placeholder="Enter group name">
         </div>
         <div class="input-box">
-            <label>Group Level</label>
+            <label>Username</label>
             <input type="text"  placeholder="Enter group level">
         </div>
-
         <div class="input-box">
-            <label>Status</label>
+            <label>Password</label>
+            <input type="text"  placeholder="Enter group level">
+        </div>
+        <div class="input-box">
+            <label>User Role</label>
             <div class="column">
                 <div class="select-box">
                     <select>
-                    <option value="" disabled selected>Select Status</option>
-                        <option value="Active">Active</option>
-                        <option value="Inactive">Inactive</option>
+                    <option value="" disabled selected>Select Role</option>
+                        <option value="admin">Admin</option>
+                        <option value="user">User</option>
                     </select>
                 </div>
             </div>
