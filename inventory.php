@@ -28,8 +28,7 @@
         </div>
     </div>
 
-    <button type="button" onclick="location.href='addproduct.php'">Add New Product</a>
-</button>
+    <button type="button" onclick="location.href='addproduct.php'">Add New Product</a></button>
 
     <div class="group_names">
         <div class="group_content">
