@@ -1,6 +1,6 @@
 .top-nav {
     background-color: #F59607;
-    width: 100%;
+    width: auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -77,4 +77,31 @@ button {
     line-height: 20px;
     list-style: none;
     padding: 6px 16px;
+}
+
+/* supplier.css */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th,
+td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #f2f2f2;
 }
