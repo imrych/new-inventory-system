@@ -42,7 +42,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $stmt->close();
     $conn->close();
+
+
 }
+
+{
+if (isset($_GET['message'])) {
+    $message = $_GET['message'];
+    echo "<script>alert('$message');</script>";}
+}
+
 ?>
 
 <!DOCTYPE html>
