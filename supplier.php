@@ -23,21 +23,21 @@ $result = $conn->query($sql);
 </head>
 
 <body>
-    <div class="top-nav">
-        <h1>Manage Supplier</h1>
-        <div class="user-and-date">
+<div class=" top-nav">
+        <h1>Suppliers</h1>
+        <div class=user_and_date>
             <div class="dropdown">
                 <div class="username">Avril Abelarde</div>
                 <div class="dropdown-content">
                     <a href="#">Profile</a>
                     <a href="#">Settings</a>
                 </div>
-            </div>
+                </div>
             <div class="date">April 14, 2024</div>
         </div>
-    </div>
+</div>
 
-    <button type="button" onclick="location.href='addsupplier.php'">Add New Supplier</button>
+<button type="button" onclick="location.href='addsupplier.php'">Add New Supplier</button>
     
 <div class="table-container">
         <?php

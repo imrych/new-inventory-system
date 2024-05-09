@@ -65,7 +65,7 @@ h1 {
 }
 
 button {
-    margin-left: 1200px;
+    margin-left:  1200px;
     margin-top: 20px;
     margin-bottom: 20px;
     background-color: #FFC56D;
@@ -81,50 +81,3 @@ button {
     list-style: none;
     padding: 6px 16px;
  }
-
-.table-container {
-    width: 70%;
-    margin-left: 300px;
-    overflow-x: auto; 
-}
-
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    border-spacing: 0;
-}
-
-th, td {
-    padding: 10px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
-
-/* Header Styles */
-th {
-    background-color: #f2af4a;
-    color: #000;
-}
-
-/* Row Hover Effect */
-tr:hover {
-    background-color: #f2f2f2;
-}
-
-/* Border Radius */
-.border-top-left {
-    border-top-left-radius: 10px;
-}
-
-.border-top-right {
-    border-top-right-radius: 10px;
-}
-
-.border-bottom-right {
-    border-bottom-right-radius: 10px;
-}
-
-.border-bottom-left {
-    border-bottom-left-radius: 10px;
-}
