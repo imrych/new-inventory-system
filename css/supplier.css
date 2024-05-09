@@ -1,6 +1,6 @@
 .top-nav {
-    background-color: #F59607;
-    width: auto;
+    background-color:#F59607 ;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -63,8 +63,9 @@ h1 {
 }
 
 button {
-    margin-left: 1325px;
-    margin-top: 25px;
+    margin-left: 1350px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     background-color: #FFC56D;
     display: inline-block;
     appearance: none;
@@ -77,31 +78,51 @@ button {
     line-height: 20px;
     list-style: none;
     padding: 6px 16px;
+ }
+
+.table-container {
+    width: 70%;
+    margin-left: 300px;
+    overflow-x: auto; 
 }
 
-/* supplier.css */
 
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
+    border-spacing: 0;
 }
 
-th,
-td {
-    border: 1px solid #ddd;
-    padding: 8px;
+th, td {
+    padding: 10px;
     text-align: left;
+    border-bottom: 1px solid #ddd;
 }
 
+/* Header Styles */
 th {
-    background-color: #f2f2f2;
+    background-color: #f2af4a;
+    color: #000;
 }
 
-tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
-
+/* Row Hover Effect */
 tr:hover {
     background-color: #f2f2f2;
+}
+
+/* Border Radius */
+.border-top-left {
+    border-top-left-radius: 10px;
+}
+
+.border-top-right {
+    border-top-right-radius: 10px;
+}
+
+.border-bottom-right {
+    border-bottom-right-radius: 10px;
+}
+
+.border-bottom-left {
+    border-bottom-left-radius: 10px;
 }

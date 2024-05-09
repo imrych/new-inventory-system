@@ -44,38 +44,39 @@ $result = $conn->query($sql);
     </div>
 
     <button type="button" onclick="location.href='addsupplier.php'">Add New Supplier</button>
-    <?php
-    // Display data in a table
-    if ($result->num_rows > 0) {
-        echo "<table>";
-        echo "<tr><th>Supplier ID</th><th>Name</th><th>Country</th><th>Phone Number</th><th>Brand</th></tr>";
-        while ($row = $result->fetch_assoc()) {
-            echo "<tr>";
-            echo "<td>" . $row["sup_id"] . "</td>";
-            echo "<td>" . $row["sup_name"] . "</td>";
-            echo "<td>" . $row["sup_country"] . "</td>";
-            echo "<td>" . $row["sup_num"] . "</td>";
-            echo "<td>" . $row["sup_brand"] . "</td>";
-            echo "</tr>";
+    
+<div class="table-container">
+        <?php
+        // Display data in a table
+        if ($result->num_rows > 0) {
+            echo "<table>";
+            echo "<tr><th>Supplier ID</th><th>Name</th><th>Country</th><th>Phone Number</th><th>Brand</th></tr>";
+            while ($row = $result->fetch_assoc()) {
+                echo "<tr>";
+                echo "<td>" . $row["sup_id"] . "</td>";
+                echo "<td>" . $row["sup_name"] . "</td>";
+                echo "<td>" . $row["sup_country"] . "</td>";
+                echo "<td>" . $row["sup_num"] . "</td>";
+                echo "<td>" . $row["sup_brand"] . "</td>";
+                echo "</tr>";
+            }
+            echo "</table>";
+        } else {
+            echo "No suppliers found";
         }
-        echo "</table>";
-    } else {
-        echo "No suppliers found";
-    }
 
-    // Close the database connection
-    $conn->close();
+        // Close the database connection
+        $conn->close();
 
-    // Check if a message is present in the URL
-    if (isset($_GET['message'])) {
-        // Retrieve the message
-        $message = $_GET['message'];
-        // Display the message using JavaScript
-        echo "<script>alert('$message');</script>";
-    }
-    ?>
-    ?>
-
+        // Check if a message is present in the URL
+        if (isset($_GET['message'])) {
+            // Retrieve the message
+            $message = $_GET['message'];
+            // Display the message using JavaScript
+            echo "<script>alert('$message');</script>";
+        }
+        ?>
+</div>
 </body>
 
 </html>

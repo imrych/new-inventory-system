@@ -1,4 +1,5 @@
-<?php include 'nav.php';
+<?php 
+include 'nav.php';
 include 'config.php';
 
 $message = 'Succesfully Added'; // Initialize variable to store the message
