@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = $stmt->get_result();
 
     if ($result->num_rows == 1) {
-        header("Location: nav.php");
+        header("Location: dashbroad.php");
         exit();
     } else {
         echo "<script>alert('Login failed');</script>";
