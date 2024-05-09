@@ -36,7 +36,7 @@
                     </div>
                 </li>
                     <li>
-                    <a href="inventory.php"><i class="fa-regular fa-boxes-stacked" style="color: #000000;"></i>
+                    <a href="inventory.php"><i class="fa-regular fa-boxes-stacked"></i>
                         Inventory
                     </a>
                 </li>
@@ -88,7 +88,7 @@ dropdownContent.style.display = "none";
         dropdownContent.style.display = "block";
         } else {
             dropdownContent.style.display = "none";
-            }
+        }
         });
     });
 </script>
