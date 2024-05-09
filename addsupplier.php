@@ -1,8 +1,8 @@
 <?php 
 include 'nav.php';
-include 'config.php';
+include 'includes/config.php';
 
-$message = 'Succesfully Added'; // Initialize variable to store the message
+$message = 'Succesfully Added'; 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sup_name = $_POST['sup_name'];
