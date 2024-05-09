@@ -26,6 +26,6 @@
         </div>
     </div>
 <button type="button" onclick="location.href='addsupplier.php'">Add New Supplier</button>
-</body>
 
+</body>
 </html>
