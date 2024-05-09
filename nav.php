@@ -56,11 +56,6 @@
                     </a>
                 </li>
                 <li>
-                    <a href="products.php"><i class="fas fa-box"></i>
-                        Products
-                    </a>
-                </li>
-                <li>
                     <a href="sales.php"><i class="fas fa-chart-line"></i>
                         <span>Sales</span>
                     </a>
