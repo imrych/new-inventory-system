@@ -1,21 +1,15 @@
 <?php
-// Include the database configuration file
-include 'config.php';
-
-// Create a connection to the database
+ include 'nav.php';
+include 'includes/config.php';
 $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
-// Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// SQL query to fetch data from the suppliers table
 $sql = "SELECT * FROM suppliers";
 $result = $conn->query($sql);
 ?>
-
-<?php include 'nav.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
