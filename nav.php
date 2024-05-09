@@ -33,8 +33,8 @@
                     <div class="dropdown-container">
                         <a class="item" href="managegroup.php">Manage Group</a>
                         <a class="item" href="manageuser.php">Manage Users</a>
-</div>
-                    </li>
+                    </div>
+                </li>
                     <li>
                     <a href="inventory.php"><i class="fa-regular fa-boxes-stacked" style="color: #000000;"></i>
                         Inventory
@@ -76,21 +76,24 @@
     </div>
 
 <script>
-    var dropdown = document.getElementsByClassName("user-container");
-var i;
+var userContainers = document.querySelectorAll(".user-container");
 
-for (i = 0; i < dropdown.length; i++) {
-  dropdown[i].addEventListener("click", function() {
+userContainers.forEach(function(userContainer) {
+var dropdownContent = userContainer.nextElementSibling; // Get the dropdown content
+dropdownContent.style.display = "none";
+    userContainer.addEventListener("click", function(event) {
+     event.preventDefault();
     this.classList.toggle("active");
-    var dropdownContent = this.nextElementSibling;
-    if (dropdownContent.style.display === "block") {
-      dropdownContent.style.display = "none";
-    } else {
-      dropdownContent.style.display = "block";
-    }
-  });
-}
+    if (this.classList.contains("active")) {
+        dropdownContent.style.display = "block";
+        } else {
+            dropdownContent.style.display = "none";
+            }
+        });
+    });
 </script>
+
+
 </body>
 
 </html>
