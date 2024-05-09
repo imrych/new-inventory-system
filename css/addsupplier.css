@@ -119,3 +119,21 @@ h4 {
     color: #FFA318;
     margin-top: 20px;
 }
+.container {
+    position: relative;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    background: #FFF;
+    border: 1px solid #000;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+}
