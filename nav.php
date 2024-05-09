@@ -36,7 +36,7 @@
                     </div>
                 </li>
                     <li>
-                    <a href="inventory.php"><i class="fa-regular fa-boxes-stacked"></i>
+                    <a href="inventory.php"><i class="fa-solid fa-boxes-stacked"></i>
                         Inventory
                     </a>
                 </li>
