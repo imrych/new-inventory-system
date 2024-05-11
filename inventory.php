@@ -1,15 +1,13 @@
 <?php include 'nav.php'; ?>
 
-<?php include 'nav.php'; ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="includes/main.css">
-    <link rel="stylesheet" href="includes/inventory.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/inventory.css">
     <title>Manage Group</title>
 </head>
 
@@ -27,14 +25,15 @@
             <div class="date">April 14, 2024</div>
         </div>
     </div>
-
-    <button type="button" onclick="location.href='addproduct.php'">Add New Product</a>
-</button>
-
     <div class="group_names">
         <div class="group_content">
+        <div class="title_and_button">
             <h2>Inventory</h2>
+            <button type="button" onclick="location.href='addproduct.php'">Add New Product
+            </button>
+            </div>
             <table class="group_table">
+                <thead>
                 <tr>
                     <th class="border-top-left">Product ID</th>
                     <th>Brand Name</th>
@@ -46,28 +45,21 @@
                     <th>Expiration Date</th>
                     <th class="border-top-right">Supplier ID</th>
                 </tr>
+                </thead>
+                <tbody>
                 <tr>
-                    <td>1</td>
-                    <td>Admin</td>
-                    <td>1</td>
-                    <td><buton>Active</button></td>
-                    <td>Y/N</td>
+                    <td>Fuji</td>
+                    <td>Ping Ping</td>
+                    <td>Apples</td>
+                    <td>75</td>
+                    <td>1500</td>
+                    <td>35</td>
+                    <td>2024-04-08</td>
+                    <td>2024-04-08</td>
+                    <td>Supplier 1</td>
 
                 </tr>
-                <tr>
-                    <td>Banana</td>
-                    <td>1</td>
-                    <td>115</td>
-                    <td>Active</td>
-                    <td>Y/N</td>
-                </tr>
-                <tr>
-                    <td class="border-bottom-left">Mango</td>
-                    <td>1</td>
-                    <td>111</td>
-                    <td>Active</td>
-                    <td class="border-bottom-right">Y/N</td>
-                </tr>
+                </tbody>
             </table>
         </div>
 

@@ -6,8 +6,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="includes/main.css">
-    <link rel="stylesheet" href="includes/order.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/order.css">
     <title>Manage Group</title>
 </head>
 
@@ -25,44 +25,32 @@
             <div class="date">April 14, 2024</div>
         </div>
     </div>
-
-    <button type="button" onclick="location.href='addorder.php'">Add Order</a>
-</button>
-
     <div class="group_names">
         <div class="group_content">
+        <div class="title_and_button">
             <h2>Orders</h2>
+            <button type="button" onclick="location.href='addorder.php'">Add New Order
+            </button>
+            </div>
             <table class="group_table">
+                <thead>
                 <tr>
-                    <th class="border-top-left">Customer ID</th>
+                    <th>Customer ID</th>
                     <th>Product</th>
                     <th>Size</th>
                     <th>Sold</th>
                     <th>Status</th>
-                    <th class="border-top-right">Date</th>
                 </tr>
+                </thead>
+                <tbody>
                 <tr>
-                    <td>1</td>
-                    <td>Admin</td>
-                    <td>1</td>
-                    <td><buton>Active</button></td>
-                    <td>Y/N</td>
-
+                    <td>Avril</td>
+                    <td>Fuji</td>
+                    <td>75</td>
+                    <td>15</td>
+                    <td>Pickup/Not</td>
                 </tr>
-                <tr>
-                    <td>Banana</td>
-                    <td>1</td>
-                    <td>115</td>
-                    <td>Active</td>
-                    <td>Y/N</td>
-                </tr>
-                <tr>
-                    <td class="border-bottom-left">Mango</td>
-                    <td>1</td>
-                    <td>111</td>
-                    <td>Active</td>
-                    <td class="border-bottom-right">Y/N</td>
-                </tr>
+                </tbody>
             </table>
         </div>
 

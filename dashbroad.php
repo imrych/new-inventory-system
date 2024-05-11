@@ -6,11 +6,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="includes/main.css">
-    <link rel="stylesheet" href="includes/dashboard.css">
+    <link rel="stylesheet" href="css/dashboard.css">
     <title>Dashboard</title>
-
 <body>
+
 <div class=" top-nav">
         <h1>Dasbhboard</h1>
         <div class=user_and_date>
@@ -29,21 +28,25 @@
         <div class="boxes">
             <div class="card">
                 <i class="fas fa-user"></i>
-                <div class="first_text_total">No. of users</div>
-                <div class="text_total">
-                    100 Users</div>
+                <div class="first_text_total">No. of users
+                </div>
+                <div class="text_total">100 Users
+                </div>
             </div>
+
             <div class="card">
                 <i class="fa fa-th-large"></i>
-                <div class="first_text_total">No. of categories</div>
-                <div class="text_total">
-                    50 Categories</div>
+                <div class="first_text_total">No. of categories
+                </div>
+                <div class="text_total">50 Categories
+                </div>
             </div>
             <div class="card">
                 <i class="fa fa-shopping-cart"></i>
-                <div class="first_text_total">No. of products</div>
-                <div class="text_total">
-                    19 Products</div>
+                <div class="first_text_total">No. of products
+                </div>
+                <div class="text_total">19 Products
+                </div>
             </div>
 
             <div class="card">
@@ -53,7 +56,7 @@
                     100 Sales</div>
             </div>
         </div>
-    </div>
+</div>
 
     <div class="table_names">
         <div class="first_part_content">

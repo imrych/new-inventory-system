@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="includes/main.css">
-    <link rel="stylesheet" href="includes/addproduct.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/addproduct.css">
     <title>Manage Group</title>
 </head>
 <body>
@@ -67,5 +68,10 @@
 </form>
 </div>
 </div>
+<script>
+        // Open .dropdown-container by default
+        document.querySelector(".dropdown-container").style.display = "block";
+
+</script>
 </body>
 </html>

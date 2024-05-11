@@ -4,13 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="includes/main.css">
-    <link rel="stylesheet" href="includes/addgroup.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="csss/addgroup.css">
     <title>Manage Group</title>
 </head>
 <body>
 <div class=" top-nav">
-        <h1>Manage Users</h1>
+        <h1>Manage Group</h1>
         <div class=user_and_date>
             <div class="dropdown">
                 <div class="username">Avril Abelarde</div>
@@ -54,5 +54,10 @@
 
 </form>
 </div>
+<script>
+        // Open .dropdown-container by default
+        document.querySelector(".dropdown-container").style.display = "block";
+
+</script>
 </body>
 </html>

@@ -6,14 +6,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="includes/main.css">
-    <link rel="stylesheet" href="includes/sales.css">
+    <link rel="stylesheet" href="css/customer.css">
     <title>Customers</title>
 </head>
 
 <body>
 <div class=" top-nav">
-        <h1>Customers</h1>
+        <h1>Manage Customer</h1>
         <div class=user_and_date>
             <div class="dropdown">
                 <div class="username">Avril Abelarde</div>

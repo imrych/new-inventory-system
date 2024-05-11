@@ -157,3 +157,5 @@ p{
 .newgrpbtn {
     margin-left: 300px;
 }
+
+@media (max-width: 768px) {}

@@ -1,13 +1,12 @@
 .top-nav {
     background-color:#F59607 ;
-    width: 80.9vw;
-    height: 70px;
+    width: auto;
+    height: 80px;
     margin-left: 260px;
     display: flex;
-    gap: 53%;
+    gap: 58%;
     align-items: center;
     flex-direction: row;
-
 }
 
 h1 {
@@ -95,71 +94,58 @@ h1 {
 }
 
 .group_names {
-    width: 100%;
     display: flex;
     flex-direction: row;
     gap: 30px;
 }
 
 .group_table {
-    width: 100%;
     height: 100%;
-    border-radius: 10px;
     box-shadow: 1px 0 2px 2px rgba(0, 0, 0, 0.2);
+    border-radius: 10px 10px 0 0;
+    overflow: hidden;
+    border-collapse: collapse;
 }
 
 h2 {
-    font-size: 20px;
+    font-size: 23px;
     font-weight: 600;
     color: #000000;
     margin-top: 20px;
 }
 
 td, th .group_table {
-    padding: 10px;
-    border: 1px solid lightgray;;
-    border-collapse: collapse;
+    padding:10px;
     text-align: left;
-    padding-right: 130px;
 
 }
+thead {
+    background-color: #FFC56D;
+    box-shadow: 1px 0 2px 2px rgba(0, 0, 0, 0.3);
+}
 th {
-    background-color: #f2af4a;
     color: rgb(0, 0, 0);
     font-size: 16px;
     font-weight: 70px;
     text-align: left;
+    padding: 10px;
+    border: 1px solid lightgray;
+    border-collapse: collapse;
 }
 td {
-    background-color: #f9f9f9;
     color: rgb(0, 0, 0);
     font-size: 13px;
+    border-collapse: collapse;
+    border: 1px solid lightgray;
 }
 .group_content {
     flex-direction: column;
-    gap: 15px;
+    gap: 10px;
     display: flex;
     margin-left: 330px;
 }
-.border-top-left {
-    border-top-left-radius: 10px;
-}
-
-.border-top-right {
-    border-top-right-radius: 10px;
-}
-
-.border-bottom-right {
-    border-bottom-right-radius: 10px;
-}
-
-.border-bottom-left {
-    border-bottom-left-radius: 10px;
-}
-
-button {
-    margin-left: 1190px;
-    margin-top: 20px;
+button{
+    margin-top: 5px;
     background-color: #FFC56D;
     display: inline-block;
     appearance: none;
@@ -169,7 +155,13 @@ button {
     cursor: pointer;
     font-size: 14px;
     font-weight: 500;
-    line-height: 20px;
-    list-style: none;
-    padding: 6px 16px;
- }
+    padding: 8px 12px;
+}
+.title_and_button {
+    display: flex;
+    flex-direction: row;
+    gap: 830px;
+    margin-top: 40px;
+
+}
+@media (max-width: 768px) {}

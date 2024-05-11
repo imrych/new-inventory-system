@@ -1,13 +1,12 @@
 .top-nav {
-    background-color:#F59607 ;
-    width: 85vw;
-    height: 70px;
+    background-color:#F59607;
+    width: auto;
+    height: 80px;
     margin-left: 260px;
     display: flex;
-    gap: 55%;
+    gap: 60%;
     align-items: center;
     flex-direction: row;
-
 }
 
 h1 {
@@ -84,6 +83,41 @@ h1 {
     color: orange;
   }
 
+.boxes{
+    height: auto;
+    display: flex;
+    gap: 90px;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 70px;
+    margin-left: 240px;
+}
+
+.card {
+    width: 15%;
+    height: 100%;
+    background: #FFFFFF;
+    box-shadow: 1px 0 2px 2px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    font-size: 17px;
+    font-weight: 2000px;;
+}
+
+.text-total {
+    display: flex;
+    flex-direction: column;
+}
+.first_text_total {
+    color: #87837E;
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    padding: 5px  0px  5px;
+
+}
 .user_and_date {
     display: flex;
     flex-direction: row;
@@ -94,53 +128,75 @@ h1 {
     gap: 15px;
 }
 
-.group_names {
-    width: 100%;
+.table_names {
     display: flex;
     flex-direction: row;
+    margin-top: 30px;
+    margin-left: 320px;
     gap: 30px;
 }
 
-.group_table {
+.first_table {
     width: 100%;
-    height: 100%;
+    border-radius: 10px;
+    box-shadow: 1px 0 2px 2px rgba(0, 0, 0, 0.2);
+}
+.second_table {
+    width: 100%;
+    background: #FFFFFF;
     border-radius: 10px;
     box-shadow: 1px 0 2px 2px rgba(0, 0, 0, 0.2);
 }
 
+.third_table {
+    width: 100%;
+    background: #FFFFFF;
+    border-radius: 10px;
+    box-shadow: 1px 0 2px 2px rgba(0, 0, 0, 0.2);
+}
 h2 {
     font-size: 20px;
-    font-weight: 600;
+    font-weight: 500;
     color: #000000;
     margin-top: 20px;
 }
 
-td, th .group_table {
+td, th .first_table .second_table{
     padding: 10px;
     border: 1px solid lightgray;;
     border-collapse: collapse;
-    padding-right: 140px;
     text-align: left;
-
 }
+
 th {
     background-color: #f2af4a;
     color: rgb(0, 0, 0);
     font-size: 16px;
-    font-weight: 70px;
+    font-weight: 100px;
     padding: 10px;
-    text-align: left;
 }
+
 td {
     background-color: #f9f9f9;
     color: rgb(0, 0, 0);
     font-size: 13px;
+    padding: 10px;
 }
-.group_content {
+.first_part_content {
     flex-direction: column;
     gap: 15px;
     display: flex;
-    margin-left: 330px;
+}
+
+.second_part_content {
+    flex-direction: column;
+    gap: 15px;
+    display: flex;
+}
+.third_part_content {
+    flex-direction: column;
+    gap: 15px;
+    display: flex;
 }
 .border-top-left {
     border-top-left-radius: 10px;
@@ -157,19 +213,3 @@ td {
 .border-bottom-left {
     border-bottom-left-radius: 10px;
 }
-
-button {
-    margin-left: 1140px;
-    margin-top: 20px;
-    background-color: #FFC56D;
-    display: inline-block;
-    appearance: none;
-    border: 1px solid rgba(27, 31, 35, 0.15);
-    border-radius: 6px;
-    box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 20px;
-    list-style: none;
-    padding: 6px 16px;  }
