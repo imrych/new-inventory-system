@@ -4,7 +4,7 @@
     height: 80px;
     margin-left: 260px;
     display: flex;
-    gap: 54.4%;
+    gap: 55%;
     align-items: center;
     flex-direction: row;
 }
@@ -65,7 +65,7 @@ h1 {
 }
 
 button {
-    margin-left: 1200px;
+    margin-left:  1200px;
     margin-top: 20px;
     margin-bottom: 20px;
     background-color: #FFC56D;
@@ -81,76 +81,3 @@ button {
     list-style: none;
     padding: 6px 16px;
  }
-
-.table-container {
-    width: 70%;
-    margin-left: 300px;
-    overflow-x: auto;
-}
-button {
-    margin-bottom: 20px;
-    background-color: #FFC56D;
-    display: inline-block;
-    appearance: none;
-    border: 1px solid rgba(27, 31, 35, 0.15);
-    border-radius: 6px;
-    box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 20px;
-    list-style: none;
-    padding: 8px 20px;
- }
-
-.table-container {
-    width: 70%;
-    margin-left: 330px;
-}
-table {
-    width: 100%;
-    border-spacing: 0;
-    overflow: hidden;
-    border-collapse: collapse;
-    border-radius: 10px 10px 0 0;
-}
-thead {
-    height: 100%;
-    box-shadow: 1px 0 2px 2px rgba(0, 0, 0, 0.2);
-    overflow: hidden;
-    border-collapse: collapse;
-    background-color: #FFC56D;
- }
-th, td {
-    padding: 10px;
-    text-align: left;
-}
-td {
-    color: rgb(0, 0, 0);
-    font-size: 13px;
-    border-collapse: collapse;
-    border: 1px solid lightgray;
-}
-/* Header Styles */
-th {
-    color: rgb(0, 0, 0);
-    font-size: 16px;
-    font-weight: 70px;
-    padding: 10px;
-    text-align: left;
-    border-collapse: collapse;
-}
-
-/* Row Hover Effect */
-tbody:hover {
-    background-color: #f2f2f2;
-}
-
-.title_and_button {
-    display: flex;
-    flex-direction: row;
-    gap: 685px;
-    margin-top: 40px;
-
-}
-@media (max-width: 768px) {}

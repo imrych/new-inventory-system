@@ -1,5 +1,4 @@
 <?php include 'nav.php'; ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,9 +11,9 @@
 </head>
 
 <body>
-<div class=" top-nav">
-        <h1>Manage Products</h1>
-        <div class=user_and_date>
+    <div class="top-nav">
+        <h1>Add New Customers</h1>
+        <div class="user-and-date">
             <div class="dropdown">
                 <div class="username">Avril Abelarde</div>
                 <div class="dropdown-content">
@@ -25,6 +24,3 @@
             <div class="date">April 14, 2024</div>
         </div>
     </div>
-</div>
-</body>
-</html>

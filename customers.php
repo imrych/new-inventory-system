@@ -23,7 +23,12 @@
             </div>
             <div class="date">April 14, 2024</div>
         </div>
-    </div>
+</div>
+
+<button type="button" onclick="location.href='addcustomers.php'">
+    Add New Customers
+</button>
+
 </div>
 </body>
 </html>
