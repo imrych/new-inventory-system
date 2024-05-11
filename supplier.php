@@ -23,7 +23,7 @@ $result = $conn->query($sql);
 
 <body>
 <div class=" top-nav">
-        <h1>Manage Supplier</h1>
+        <h1>Suppliers</h1>
         <div class=user_and_date>
             <div class="dropdown">
                 <div class="username">Avril Abelarde</div>

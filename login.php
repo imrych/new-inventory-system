@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = $stmt->get_result();
 
     if ($result->num_rows == 1) {
-        header("Location: nav.php");
+        header("Location: dashbroad.php");
         exit();
     } else {
         echo "<script>alert('Login failed');</script>";
@@ -42,7 +42,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $stmt->close();
     $conn->close();
+
+
 }
+
+{
+if (isset($_GET['message'])) {
+    $message = $_GET['message'];
+    echo "<script>alert('$message');</script>";}
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -53,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="includes/main.css">
+    <link rel="stylesheet" href="css/main.css">
     <title>Log-in</title>
 </head>
 <body class="login-page">
