@@ -83,7 +83,7 @@ h1 {
     color: orange;
   }
 
-.user_and_date {
+.user-and-date {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -127,6 +127,10 @@ h1 {
     border: 1px solid #ddd;
     border-radius: 10px;
     padding: 0 15px;
+}
+
+.input-box input:first-letter {
+    text-transform: uppercase;
 }
 
 button {
