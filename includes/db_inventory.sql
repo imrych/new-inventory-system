@@ -52,8 +52,7 @@ CREATE TABLE `suppliers` (
 --
 
 INSERT INTO `suppliers` (`sup_id`, `sup_name`, `sup_country`, `sup_num`, `sup_brand`) VALUES
-(1, 'Carl ', 'America', 1234567899, 'eme'),
-(2, 'Kim', 'South Korea', 2147483647, 'kiffy');
+(1, 'Carl', 'Philippines', 2147483647, 'Test 1234');
 
 -- --------------------------------------------------------
 
