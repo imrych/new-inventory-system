@@ -4,7 +4,7 @@
     height: 80px;
     margin-left: 260px;
     display: flex;
-    gap: 20%;
+    gap: 54.4%;
     align-items: center;
     flex-direction: row;
 }
@@ -83,7 +83,7 @@ h1 {
     color: orange;
   }
 
-.user-and-date {
+.user_and_date {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -93,9 +93,12 @@ h1 {
     gap: 15px;
 }
 
-button{
-    margin-left: 1250px;
-    margin-top: 20px;
+.table-container {
+    width: 70%;
+    margin-left: 300px;
+    overflow-x: auto;
+}
+button {
     margin-bottom: 20px;
     background-color: #FFC56D;
     display: inline-block;
@@ -108,60 +111,57 @@ button{
     font-weight: 500;
     line-height: 20px;
     list-style: none;
-    padding: 6px 16px;
-}
-
-.container {
-    margin: 20px auto;
-    width: 80%;
-}
+    padding: 9px 15px;
+ }
 
 .table-container {
-    margin-top: 20px;
+    width: 70%;
+    margin-left: 330px;
 }
-
-.table-container table {
+table {
     width: 100%;
+    border-spacing: 0;
+    overflow: hidden;
+    border-collapse: collapse;
+    border-radius: 10px 10px 0 0;
+}
+thead {
+    height: 100%;
+    box-shadow: 1px 0 2px 2px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    border-collapse: collapse;
+    background-color: #FFC56D;
+ }
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+td {
+    color: rgb(0, 0, 0);
+    font-size: 13px;
+    border-collapse: collapse;
+    border: 1px solid lightgray;
+}
+/* Header Styles */
+th {
+    color: rgb(0, 0, 0);
+    font-size: 16px;
+    font-weight: 70px;
+    padding: 10px;
+    text-align: left;
     border-collapse: collapse;
 }
 
-.table-container th,
-.table-container td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-}
-
-.table-container th {
+/* Row Hover Effect */
+tbody:hover {
     background-color: #f2f2f2;
 }
 
-.table-container tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
-
-.table-container tr:hover {
-    background-color: #ddd;
-}
-
-.button-container {
+.title_and_button {
     display: flex;
-    align-items: center;
-    gap: 10px;
-}
+    flex-direction: row;
+    gap: 675px;
+    margin-top: 40px;
 
-.button-container button {
-    background-color: #f2af4a;
-    border: none;
-    border-radius: 10px;
-    color: #ffffff;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: 500;
-    padding: 10px 20px;
-    outline: none;
 }
-
-.button-container button:hover {
-    background-color: #e2953e;
-}
+@media (max-width: 768px) {}
