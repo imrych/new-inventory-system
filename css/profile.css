@@ -4,7 +4,7 @@
     height: 80px;
     margin-left: 260px;
     display: flex;
-    gap: 50%;
+    gap: 62.3%;
     align-items: center;
     flex-direction: row;
 }
@@ -92,20 +92,59 @@ h1 {
     margin-right: 10px;
     gap: 15px;
 }
-button{
-    margin-left: 1250px;
+
+.two_boxes {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.first_box {
+    gap: 20px;
+    padding: 20px;
+    margin-left: 20%;
+    width: 40%;
     margin-top: 20px;
     margin-bottom: 20px;
-    background-color: #FFC56D;
-    display: inline-block;
-    appearance: none;
-    border: 1px solid rgba(27, 31, 35, 0.15);
-    border-radius: 6px;
-    box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 20px;
-    list-style: none;
-    padding: 6px 16px;
+    height: 30%;
+    background: #FFFFFF;
+    box-shadow: 1px 0 2px 2px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
 }
+
+.input-box {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.input-box label {
+    font-size: 15px;
+    font-weight: 500;
+    color: #000000;
+    margin-left: 5px;
+}
+
+.input-box input {
+    height: 50px;
+    width: 100%;
+    outline: none;
+}
+
+.second_box {
+    gap: 20px;
+    padding: 20px;
+    margin-left: 20%;
+    width: 40%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    height: 30%;
+    background: #FFFFFF;
+    box-shadow: 1px 0 2px 2px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+@media (max-width: 768px) {}

@@ -76,39 +76,59 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['id'])) {
 </head>
 <style>
 .top-nav {
-    background-color: #F59607;
+    background-color:#F59607;
+    width: auto;
     height: 80px;
+    margin-left: 260px;
     display: flex;
+    gap: 61.3%;
     align-items: center;
-    justify-content: space-between;
-    padding: 0 20px;
+    flex-direction: row;
 }
 
 h1 {
     font-size: 28px;
     font-weight: 400;
     color: #FAFAFA;
-    margin: 0;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    margin-left: 15px;
+    padding: 15px;
 }
 
 .date {
     font-size: 12px;
     font-weight: 450;
     color: #FAFAFA;
+    margin-bottom: 15px;
+    text-align: center;
 }
-
 .username {
     font-size: 12px;
     font-weight: 450;
     color: #000000;
+    margin-bottom: 15px;
+    text-align: center;
     cursor: pointer;
 }
 
-.dropdown {
-    position: relative;
+.username:hover {
+    color: #FAFAFA;
 }
 
-.dropdown-content {
+.dropbtn {
+    color: black;
+    font-size: 13px;
+    cursor: pointer;
+  }
+
+  .dropdown {
+    position: relative;
+    display: inline-block;
+    gap: 5px;
+  }
+
+  .dropdown-content {
     display: none;
     position: absolute;
     background-color: #f9f9f9;
@@ -117,37 +137,41 @@ h1 {
     z-index: 1;
     border-radius: 10px;
     font-size: 14px;
-}
+  }
 
-.dropdown-content a {
+  .dropdown-content a {
     color: black;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
-}
+  }
 
-.dropdown-content a:hover {
+  .dropdown-content a:hover {
     background-color: #f1f1f1;
     border-radius: 10px;
+
 }
 
-.dropdown:hover .dropdown-content {
+  .dropdown:hover .dropdown-content {
     display: block;
-}
+  }
 
-.dropdown:hover .dropbtn {
+  .dropdown:hover .dropbtn {
     color: orange;
-}
+  }
 
-.user-and-date {
+.user_and_date {
     display: flex;
-    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
     gap: 15px;
 }
-
 .container {
-    margin: 20px auto;
     width: 80%;
+    margin-left: 260px;
 }
 
 .form {
@@ -160,19 +184,16 @@ h1 {
     display: flex;
     flex-direction: column;
 }
-
 .input-box {
     display: flex;
     flex-direction: column;
 }
-
 .input-box label {
     color: #000000;
     font-size: 15px;
     font-weight: 500;
     margin-left: 5px;
 }
-
 .input-box input {
     border: 1px solid #ddd;
     border-radius: 10px;
@@ -181,11 +202,9 @@ h1 {
     outline: none;
     padding: 0 15px;
 }
-
 .input-box input:first-letter {
     text-transform: uppercase;
 }
-
 button {
     background: #f2af4a;
     border: none;
@@ -199,14 +218,12 @@ button {
     padding: 5px;
     width: 20%;
 }
-
 h4 {
     color: #FFA318;
     font-size: 19px;
     font-weight: 600;
     margin: 0;
 }
-
 .close-btn {
     position: absolute;
     top: 10px;
@@ -221,16 +238,9 @@ h4 {
     cursor: pointer;
     outline: none;
 }
-
 .close-btn:hover {
     background: #FFA318;
     color: #FFFFFF;
-}
-
-@media only screen and (max-width: 600px) {
-    .container {
-        width: 100%;
-    }
 }
 /* editsupplier.css */
 
@@ -238,174 +248,17 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f2f2f2;
-}
-
-.top-nav {
-    background-color: #F59607;
-    height: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 20px;
-}
-
-h1 {
-    font-size: 28px;
-    font-weight: 400;
-    color: #FAFAFA;
-    margin: 0;
-}
-
-.date {
-    font-size: 12px;
-    font-weight: 450;
-    color: #FAFAFA;
-}
-
-.username {
-    font-size: 12px;
-    font-weight: 450;
-    color: #000000;
-    cursor: pointer;
-}
-
-.dropdown {
-    position: relative;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-    border-radius: 10px;
-    font-size: 14px;
-}
-
-.dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-}
-
-.dropdown-content a:hover {
-    background-color: #f1f1f1;
-    border-radius: 10px;
-}
-
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
-.dropdown:hover .dropbtn {
-    color: orange;
-}
-
-.user-and-date {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.container {
-    margin: 20px auto;
-    width: 80%;
-}
-
-.form {
-    background: #FFFFFF;
-    border-radius: 10px;
-    box-shadow: 1px 0 2px 2px rgba(0, 0, 0, 0.2);
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    padding: 20px;
-}
-
-.input-box {
-    display: flex;
-    flex-direction: column;
-}
-
-.input-box label {
-    color: #000000;
-    font-size: 15px;
-    font-weight: 500;
-    margin-left: 5px;
-}
-
-.input-box input {
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    color: black;
-    height: 50px;
-    outline: none;
-    padding: 0 15px;
-}
-
-.input-box input:first-letter {
-    text-transform: uppercase;
-}
-
-button {
-    background: #f2af4a;
-    border: none;
-    border-radius: 10px;
-    color: #FFFFFF;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: 500;
-    margin-left: auto;
-    outline: none;
-    padding: 5px;
-    width: 20%;
-}
-
-h4 {
-    color: #FFA318;
-    font-size: 19px;
-    font-weight: 600;
-    margin: 0;
-}
-
-.close-btn {
-    background: #FFF;
-    border: 1px solid #000;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: bold;
-    height: 20px;
-    outline: none;
-    position: absolute;
-    right: 10px;
-    top: 10px;
-    width: 20px;
-}
-
-.close-btn:hover {
-    background: #FFA318;
-    color: #FFFFFF;
-}
-
-@media only screen and (max-width: 600px) {
-    .container {
-        width: 100%;
-    }
+    background-color: #fafafa;
 }
 </style>
 <body>
 <div class="top-nav">
     <h1>Edit Supplier</h1>
-    <div class="user-and-date">
+    <div class="user_and_date">
         <div class="dropdown">
             <div class="username">Avril Abelarde</div>
             <div class="dropdown-content">
-                <a href="#">Profile</a>
+                <a href="profile.php">Profile</a>
                 <a href="#">Settings</a>
             </div>
         </div>
