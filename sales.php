@@ -18,7 +18,7 @@
             <div class="dropdown">
                 <div class="username">Avril Abelarde</div>
                 <div class="dropdown-content">
-                    <a href="#">Profile</a>
+                    <a href="profile.php">Profile</a>
                     <a href="#">Settings</a>
                 </div>
             </div>

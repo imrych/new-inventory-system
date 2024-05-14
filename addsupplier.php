@@ -45,11 +45,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <div class="top-nav">
         <h1>Add New Supplier</h1>
-        <div class="user-and-date">
+        <div class="user_and_date">
             <div class="dropdown">
                 <div class="username">Avril Abelarde</div>
                 <div class="dropdown-content">
-                    <a href="#">Profile</a>
+                    <a href="profile.php">Profile</a>
                     <a href="#">Settings</a>
                 </div>
             </div>
