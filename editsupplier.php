@@ -81,7 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['id'])) {
     height: 80px;
     margin-left: 260px;
     display: flex;
-    gap: 61%;
+    gap: 61.3%;
     align-items: center;
     flex-direction: row;
 }
@@ -170,7 +170,6 @@ h1 {
     gap: 15px;
 }
 .container {
-    margin: 20px auto;
     width: 80%;
     margin-left: 260px;
 }
@@ -242,12 +241,6 @@ h4 {
 .close-btn:hover {
     background: #FFA318;
     color: #FFFFFF;
-}
-
-@media only screen and (max-width: 600px) {
-    .container {
-        width: 100%;
-    }
 }
 /* editsupplier.css */
 
