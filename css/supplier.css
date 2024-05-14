@@ -159,22 +159,9 @@ tbody:hover {
 
 .title_and_button {
     display: flex;
-    align-items: center;
-    gap: 10px;
-}
+    flex-direction: row;
+    gap: 675px;
+    margin-top: 40px;
 
-.button-container button {
-    background-color: #f2af4a;
-    border: none;
-    border-radius: 10px;
-    color: #ffffff;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: 500;
-    padding: 10px 20px;
-    outline: none;
 }
-
-.button-container button:hover {
-    background-color: #e2953e;
-}
+@media (max-width: 768px) {}
