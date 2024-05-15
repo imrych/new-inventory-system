@@ -1,20 +1,44 @@
-<?php include 'nav.php'; ?>
+<?php 
+include 'nav.php';
+include 'includes/config.php';
+
+// Create connection
+$conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Handle delete action
+if (isset($_GET['action']) && $_GET['action'] == 'delete' && isset($_GET['id'])) {
+    $id = intval($_GET['id']);
+    $delete_sql = "DELETE FROM inventory WHERE inventory_id = $id";
+    if ($conn->query($delete_sql) === TRUE) {
+        echo "<script>alert('Product deleted successfully'); window.location.href = 'inventory.php';</script>";
+    } else {
+        echo "Error deleting record: " . $conn->error;
+    }
+}
+
+// Fetch inventory data
+$sql = "SELECT * FROM inventory";
+$result = $conn->query($sql);
+?>
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/inventory.css">
-    <title>Manage Group</title>
+    <title>Manage Inventory</title>
 </head>
-
 <body>
-<div class=" top-nav">
+    <div class="top-nav">
         <h1>Manage Inventory</h1>
-        <div class=user_and_date>
+        <div class="user_and_date">
             <div class="dropdown">
                 <div class="username">Avril Abelarde</div>
                 <div class="dropdown-content">
@@ -27,41 +51,60 @@
     </div>
     <div class="group_names">
         <div class="group_content">
-        <div class="title_and_button">
-            <h2>Inventory</h2>
-            <button type="button" onclick="location.href='addproduct.php'">Add New Product
-            </button>
+            <div class="title_and_button">
+                <h2>Inventory</h2>
+                <button type="button" onclick="location.href='addproduct.php'">Add New Product</button>
             </div>
             <table class="group_table">
                 <thead>
-                <tr>
-                    <th class="border-top-left">Product ID</th>
-                    <th>Brand Name</th>
-                    <th>Categories</th>
-                    <th>Size</th>
-                    <th>Quantity</th>
-                    <th>Selling</th>
-                    <th>Arrive Date</th>
-                    <th>Expiration Date</th>
-                    <th class="border-top-right">Supplier ID</th>
-                </tr>
+                    <tr>
+                        <th class="border-top-left">Inventory ID</th>
+                        <th>Product Name</th>
+                        <th>Brand Name</th>
+                        <th>Categories</th>
+                        <th>Size</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th class="border-top-right">Action</th>
+                    </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>Fuji</td>
-                    <td>Ping Ping</td>
-                    <td>Apples</td>
-                    <td>75</td>
-                    <td>1500</td>
-                    <td>35</td>
-                    <td>2024-04-08</td>
-                    <td>2024-04-08</td>
-                    <td>Supplier 1</td>
-
-                </tr>
+                    <?php
+                    if ($result->num_rows > 0) {
+                        while($row = $result->fetch_assoc()) {
+                            echo "<tr>";
+                            echo "<td>" . $row["inventory_id"] . "</td>";
+                            echo "<td>" . $row["product_name"] . "</td>";
+                            echo "<td>" . $row["brand_name"] . "</td>";
+                            echo "<td>" . $row["category"] . "</td>";
+                            echo "<td>" . $row["size"] . "</td>";
+                            echo "<td>" . $row["order_quantity"] . "</td>";
+                            echo "<td>₱" . number_format($row["price"], 2) . "</td>";
+                            echo "<td>
+                            <button onclick=\"window.location.href='editproduct.php?id=" . $row["inventory_id"] . "'\" style=\"margin-right: 0px; padding: 3px 9px; font-weight: bold; border-radius: 4px; background-color: #F59607; color: #ffffff; border: none;\">
+                                <i class=\"fa-regular fa-pen-to-square\" style=\"color: #ffffff;\"></i>
+                            </button>
+                            <button onclick=\"deleteProduct(" . $row["inventory_id"] . ")\" style=\"margin-right: 0px; padding: 3px 9px; font-weight: bold; border-radius: 4px; background-color: #DC2626; color: #ffffff; border: none;\">
+                                <i class=\"fa-solid fa-xmark\" style=\"color: #ffffff;\"></i>
+                            </button>
+                            </td>";
+                            echo "</tr>";
+                        }
+                    } else {
+                        echo "<tr><td colspan='8'>No records found</td></tr>";
+                    }
+                    $conn->close();
+                    ?>
                 </tbody>
             </table>
         </div>
-
+    </div>
+    <script>
+    function deleteProduct(id) {
+        if (confirm("Are you sure you want to delete this product?")) {
+            window.location.href = 'inventory.php?action=delete&id=' + id;
+        }
+    }
+    </script>
 </body>
 </html>
