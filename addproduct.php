@@ -138,9 +138,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </div>
 
-    <div class="container">
-    <form name="productForm" action="addproduct.php" method="post" class="form" onsubmit="return validateForm()">
-    <h4>Add New Product</h4>
+<div class="container">
+<form name="productForm" action="addproduct.php" method="post" class="form" onsubmit="return validateForm()">
+<h4>Add New Product</h4>
     <div class="row1">
         <div class="input-box">
             <label>Product Name</label>
@@ -154,8 +154,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <label>Quantity</label>
             <input type="text" name="quantity" placeholder="Enter Quantity" required>
         </div>
-</div>
-<div class="row2">
+    </div>
+    <div class="row2">
         <div class="input-box">
             <label>Categories</label>
             <input type="text" name="category" placeholder="Enter categories" required>
@@ -164,8 +164,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <label>Brand Name</label>
             <input type="text" name="brand_name" placeholder="Enter Brand Name" required>
         </div>
-</div>
-<div class="row3">
+    </div>
+    <div class="row3">
         <div class="input-box">
             <label>Price</label>
             <input type="text" name="price" placeholder="Enter Price" required oninput="formatPriceInput(event)">
