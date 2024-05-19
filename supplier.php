@@ -58,7 +58,15 @@ $result = $conn->query($sql);
 // Display data in a table
 if ($result->num_rows > 0) {
     echo "<table>";
-    echo "<thead><tr><th>Supplier ID</th><th>Name</th><th>Country</th><th>Phone Number</th><th>Brand</th><th>Action</th></tr></thead>";
+    echo "<thead><tr>
+        <th>No.</th>
+        <th>Name</th>
+        <th>Country</th>
+        <th>Phone Number</th>
+        <th>Brand</th>
+        <th>Action</th>
+        </tr>
+        </thead>";
     while ($row = $result->fetch_assoc()) {
         echo "<tbody>";
         echo "<tr>";
