@@ -1,5 +1,4 @@
 <?php include 'nav.php'; ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,36 +31,54 @@
             <h2>Users</h2>
             <button type="button" onclick="location.href='adduser.php'">Add New User
             </button>
-            </div>
-            <table class="group_table">
+            </div>  
+            <table class="group_table"> 
                 <thead>
                 <tr>
                     <th class="border-top-left">#</th>
                     <th>Name</th>
                     <th>Username</th>
                     <th>User role</th>
-                    <th>Status</th>
-                    <th>Last Login</th>
+                    <th>Created</th>
                     <th class="border-top-right">Actions</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Alessandra</td>
-                    <td>Ping</td>
-                    <td>Admin</td>
-                    <td><button style="margin-right: 0px; padding: 3px 16px; font-weight: 0px; border-radius: 4px; background-color: #A0CE90; color: #ffffff; border: none;
-">Active</button></td>
-                    <td>August 22, 2021, 7:05:06 am</td>
-                    <td>                    <button style="margin-right: 0px; padding: 3px 9px ; font-weight: 0px; border-radius: 4px; background-color: #F59607; color: #ffffff; border: none;
-"><i class="fa-regular fa-pen-to-square" style="color: #ffffff;"></i>
+                    <?php 
+                    include "connection.php";
+                    $sql = "select * from manage_user";
+                    $result = $conn->query($sql);
+                    if(!$result){
+                      die("Invalid query!");
+                    }
+                    while($row=$result->fetch_assoc()){
+                        $createdDatetime = $row['Created'];
+                        $timestamp = strtotime($createdDatetime);
+                        $formattedDate = date('m/d/Y h:i A', $timestamp);
 
-</button>
-                    <button style="margin-right: 0px; padding: 3px 9px; font-weight: 0px; border-radius: 4px; background-color: #DC2626; color: #ffffff; border: none;
-"><i class="fa-solid fa-xmark" style="color: #ffffff;"></i></button></td>
+                      echo "
+                <tr>
+                    <td>$row[Id]</td>
+                    <td>$row[Name]</td>
+                    <td>$row[Username]</td>
+                    <td>$row[User_role]</td>
+                    <td>{$formattedDate}</td>
+                    <td>
+                <a href='edituser.php?updateid=$row[Id]; ?>' style='margin-right: 0px; padding: 5px 14px ; font-weight: 0px; border-radius: 4px; background-color: #F59607; color: #ffffff; border: none;
+                        '><i class='fa-regular fa-pen-to-square' style='color: #ffffff;'></i>
+                        </a>
+                    <a href='delete_user.php?id=$row[Id]; ?>' class='btn btn-danger' style='margin-right: 0px; padding: 5px 15px; border-radius: 4px; background-color: #DC2626; color: #ffffff; border: none;'>
+                <i class='fas fa-times' style='color: #ffffff;'></i>
+                     </a>
+                    </td>
                 </tr>
-                <tbody>
+                    
+                ";
+               }
+              ?>
+                </tbody>
+
+
             </table>
         </div>
         <script>

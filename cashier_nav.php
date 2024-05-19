@@ -20,40 +20,22 @@
         <div class="sidebar">
             <ul>
                 <li>
-                    <a href="dashboard.php"><i class="fa-solid fa-house"></i>
+                    <a href="dashcashier.php"><i class="fa-solid fa-house"></i>
                         Dashboard
                     </a>
                 </li>
-
                 <li>
-                    <a class="user-container" href="manageuser.php">
-                        <i class="fa-solid fa-user-pen" style="color: #000000;"></i>
-                        Manage User</a>
-                </li>
-
-
-                <li>
-                    <a href="inventory.php"><i class="fa-solid fa-boxes-stacked fa-lg" style="color: #000000;"></i>
-                        Inventory
-                    </a>
-                </li>
-                <li>
-                    <a href="supplier.php"><i class="fas fa-ship"></i>
-                        Supplier
-                    </a>
-                </li>
-                <li>
-                    <a href="order.php"><i class="fas fa-truck"></i>
-                        Order
-                    </a>
-                </li>
-                <li>
-                    <a href="customers.php"><i class="fas fa-users"></i>
+                    <a href="cashier_cus.php"><i class="fas fa-users"></i>
                         Customers
                     </a>
                 </li>
                 <li>
-                    <a href="sales.php"><i class="fas fa-chart-line"></i>
+                    <a href="cashier_order.php"><i class="fas fa-truck"></i>
+                        Order
+                    </a>
+                </li>
+                <li>
+                    <a href="cashier_sales.php"><i class="fas fa-chart-line"></i>
                         <span>Sales</span>
                     </a>
                 </li>
