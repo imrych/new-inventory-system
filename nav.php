@@ -20,7 +20,7 @@
         <div class="sidebar">
             <ul>
                 <li>
-                    <a href="dashbroad.php"><i class="fa-solid fa-house"></i>
+                    <a href="dashboard.php"><i class="fa-solid fa-house"></i>
                         Dashboard
                     </a>
                 </li>
