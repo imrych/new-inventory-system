@@ -1,55 +1,39 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+    include 'connection.php';
+    session_start();
 
-    $host = "localhost";
-    $dbusername = "root";
-    $dbpassword = "";
-    $dbname = "db_inventory";
+if (isset($_POST['login_btn'])) {
+    
+    $username_login = $_POST['username'];
+    $password_login = $_POST['password'];
+    $usertype = $_POST['user_role'];
 
-    $conn = new mysqli($host, $dbusername, $dbpassword, $dbname);
+    $query = "SELECT * FROM manage_user WHERE username = '$username_login' AND password = '$password_login' ";
+    $results = mysqli_query($conn,$query);
+    $usertype = mysqli_fetch_array($results);
 
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
 
-    $query = "SELECT * FROM users WHERE username=? AND user_pass=?";
-    $stmt = $conn->prepare($query);
-
-    if (!$stmt) {
-        die("Error preparing statement: " . $conn->error);
-    }
-
-    $bind_result = $stmt->bind_param("ss", $username, $password);
-    if (!$bind_result) {
-        die("Error binding parameters: " . $stmt->error);
-    }
-
-    $execute_result = $stmt->execute();
-    if (!$execute_result) {
-        die("Error executing statement: " . $stmt->error);
-    }
-
-    $result = $stmt->get_result();
-
-    if ($result->num_rows == 1) {
-        header("Location: dashboard.php");
+    if($usertype['User_role'] == 'Admin'){
+        $_SESSION['username'] = $username_login;    
+        header('location: dashboard.php');
         exit();
-    } else {
-        echo "<script>alert('Login failed');</script>";
+    }
+    elseif($usertype['User_role'] == 'Stock Clerk'){
+        $_SESSION['username'] = $username_login;    
+        header('location: dashcheck.php');
+        exit();
+    }
+    elseif($usertype['User_role'] == 'Cashier'){
+        $_SESSION['username'] = $username_login;    
+        header('location: dashcashier.php');
+        exit();
+    }
+    else {
+        $_SESSION['status'] = 'Username/Password is Invalid';
+        header('location: index.php');
+        exit();
     }
 
-    $stmt->close();
-    $conn->close();
-
-
-}
-
-{
-if (isset($_GET['message'])) {
-    $message = $_GET['message'];
-    echo "<script>alert('$message');</script>";}
 }
 
 ?>
@@ -69,20 +53,29 @@ if (isset($_GET['message'])) {
     <div class="container">
         <div class="box form-box">
             <header>Ping-Ping's Fruit Dealer</header>
-            <p>Log-In</p>
+
+            <?php 
+                if(isset($_SESSION['status']) && $_SESSION['status'] !='')
+            {
+                echo '<h4 style="background-color: #EE4B2B; color:white;">'. $_SESSION['status'].'</h4>';
+                unset($_SESSION['status']); 
+            }
+            
+            
+            ?>
             <form action="" method="post">
                 <div class="field input">
                     <label for="username">Username : </label>
-                    <input type="text" name="username" placeholder="username" id="username" required>
+                    <input type="text" name="username" placeholder="username" id="username" >
                 </div>
 
                 <div class="field input">
                     <label for="password">Password : </label>
-                    <input type="password" name="password" placeholder="password" id="password" required>
+                    <input type="password" name="password" placeholder="password" id="password" >
                 </div>
 
                 <div class= "field">
-                    <input type="submit" class="btn" name="submit" value="Submit" required>
+                    <input type="submit" class="btn" name="login_btn" value="Login" required>
                 </div>
             </form>
         </div>

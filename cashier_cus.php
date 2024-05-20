@@ -1,4 +1,4 @@
-<?php include 'cashier_nav.php'; ?>
+<?php include 'cashier_nav.php';?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -6,7 +6,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/customer.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/customers.css">
     <title>Customers</title>
 </head>
 
@@ -17,7 +18,7 @@
             <div class="dropdown">
                 <div class="username">Avril Abelarde</div>
                 <div class="dropdown-content">
-                    <a href="#">Profile</a>
+                    <a href="profile.php">Profile</a>
                     <a href="#">Settings</a>
                 </div>
             </div>
