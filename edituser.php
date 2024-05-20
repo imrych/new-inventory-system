@@ -1,6 +1,6 @@
 <?php 
     include 'nav.php';
-    include "connection.php";
+    include 'includes/connection.php';
 
     $Id=$_GET['updateid'];
     $q = "SELECT * FROM manage_user WHERE id='$Id'";

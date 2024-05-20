@@ -45,7 +45,7 @@
                 </thead>
                 <tbody>
                     <?php 
-                    include "connection.php";
+                    include 'includes/connection.php';
                     $sql = "select * from manage_user";
                     $result = $conn->query($sql);
                     if(!$result){
