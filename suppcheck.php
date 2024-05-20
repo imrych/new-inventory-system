@@ -38,7 +38,7 @@ $result = $conn->query($sql);
 <div class="table-container">
     <div class="title_and_button">
         <h2>Supplier</h2>
-        <button type="button" onclick="location.href='addsupplier.php'">Add New Supplier
+        <button type="button" onclick="location.href='addsuup_checker.php'">Add New Supplier
         </button>
     </div>
         <?php

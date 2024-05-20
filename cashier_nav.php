@@ -25,18 +25,19 @@
                     </a>
                 </li>
                 <li>
+                    <a href="cashier_order.php"><i class="fas fa-truck"></i>
+                        Stock Order
+                    </a>
+                </li>
+                    
+                <li>
+                    <a href="cashier_inventory.php"><i class="fa-solid fa-boxes-stacked fa-lg" style="color: #000000;"></i>
+                        Inventory
+                    </a>
+                </li>
+                <li>
                     <a href="cashier_cus.php"><i class="fas fa-users"></i>
                         Customers
-                    </a>
-                </li>
-                <li>
-                    <a href="cashier_order.php"><i class="fas fa-truck"></i>
-                        Order
-                    </a>
-                </li>
-                <li>
-                    <a href="cashier_sales.php"><i class="fas fa-chart-line"></i>
-                        <span>Sales</span>
                     </a>
                 </li>
                 <li>

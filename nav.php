@@ -44,7 +44,7 @@
                 </li>
                 <li>
                     <a href="order.php"><i class="fas fa-truck"></i>
-                        Order
+                       Stock Order
                     </a>
                 </li>
                 <li>

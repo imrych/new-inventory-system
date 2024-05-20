@@ -1,5 +1,4 @@
-<?php include 'cashier_nav.php';?>
-
+<?php include 'cashier_nav.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,14 +6,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/customers.css">
-    <title>Customers</title>
+    <link rel="stylesheet" href="css/addcustomers.css">
+    <title>Products</title>
 </head>
 
 <body>
-<div class=" top-nav">
-        <h1>Manage Customer</h1>
-        <div class=user_and_date>
+    <div class="top-nav">
+        <h1>Add New Customers</h1>
+        <div class="user_and_date">
             <div class="dropdown">
                 <div class="username">Avril Abelarde</div>
                 <div class="dropdown-content">
@@ -24,12 +23,4 @@
             </div>
             <div class="date">April 14, 2024</div>
         </div>
-</div>
-
-<button type="button" onclick="location.href='cashier_addcus.php'">
-    Add New Customers
-</button>
-
-</div>
-</body>
-</html>
+    </div>

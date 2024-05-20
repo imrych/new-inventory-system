@@ -31,6 +31,11 @@
                     </a>
                 </li>
                 <li>
+                    <a href="ordcheck.php"><i class="fas fa-truck"></i>
+                        Stock Order
+                    </a>
+                </li>
+                <li>
                     <a href="invcheck.php"><i class="fa-solid fa-boxes-stacked fa-lg" style="color: #000000;"></i>
                         Inventory
                     </a>

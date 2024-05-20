@@ -1,4 +1,4 @@
-<?php include 'cashier_nav.php'; ?>
+<?php include 'checker_nav.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +18,7 @@
             <div class="dropdown">
                 <div class="username">Avril Abelarde</div>
                 <div class="dropdown-content">
-                    <a href="#">Profile</a>
+                    <a href="profile.php">Profile</a>
                     <a href="#">Settings</a>
                 </div>
             </div>
@@ -29,7 +29,7 @@
         <div class="group_content">
         <div class="title_and_button">
             <h2>Orders</h2>
-            <button type="button" onclick="location.href='cashier_addorder.php'">Add New Order
+            <button type="button" onclick="location.href='addorder_checker.php'">Add New Order
             </button>
             </div>
             <table class="group_table">
