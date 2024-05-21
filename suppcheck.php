@@ -1,4 +1,4 @@
-<?php include 'checker/checker_nav.php';
+<?php include 'checker_nav.php';
 include 'includes/config.php';
 $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
@@ -38,7 +38,7 @@ $result = $conn->query($sql);
 <div class="table-container">
     <div class="title_and_button">
         <h2>Supplier</h2>
-        <button type="button" onclick="location.href='checker/addsuup_checker.php'">Add New Supplier
+        <button type="button" onclick="location.href='addsuup_checker.php'">Add New Supplier
         </button>
     </div>
         <?php

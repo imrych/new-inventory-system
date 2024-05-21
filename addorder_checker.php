@@ -1,4 +1,4 @@
-<?php include 'cashier/cashier_nav.php'; ?>
+<?php include 'checker_nav.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -25,17 +25,17 @@
                     </a>
                 </li>
                 <li>
-                    <a href="checker/suppcheck.php"><i class="fas fa-ship"></i>
+                    <a href="suppcheck.php"><i class="fas fa-ship"></i>
                         Supplier
                     </a>
                 </li>
                 <li>
-                    <a href="checker/ordcheck.php"><i class="fas fa-truck"></i>
+                    <a href="ordcheck.php"><i class="fas fa-truck"></i>
                         Stock Order
                     </a>
                 </li>
                 <li>
-                    <a href="checker/invcheck.php"><i class="fa-solid fa-boxes-stacked fa-lg" style="color: #000000;"></i>
+                    <a href="invcheck.php"><i class="fa-solid fa-boxes-stacked fa-lg" style="color: #000000;"></i>
                         Inventory
                     </a>
                 </li>

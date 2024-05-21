@@ -1,4 +1,4 @@
-<?php include 'checker/checker_nav.php'; ?>
+<?php include 'checker_nav.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -29,7 +29,7 @@
         <div class="group_content">
         <div class="title_and_button">
             <h2>Orders</h2>
-            <button type="button" onclick="location.href='checker/addorder_checker.php'">Add New Order
+            <button type="button" onclick="location.href='addorder_checker.php'">Add New Order
             </button>
             </div>
             <table class="group_table">

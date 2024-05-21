@@ -20,23 +20,23 @@
         <div class="sidebar">
             <ul>
                 <li>
-                    <a href="cashier/dashcashier.php"><i class="fa-solid fa-house"></i>
+                    <a href="dashcashier.php"><i class="fa-solid fa-house"></i>
                         Dashboard
                     </a>
                 </li>
                 <li>
-                    <a href="cashier/cashier_order.php"><i class="fas fa-truck"></i>
+                    <a href="cashier_order.php"><i class="fas fa-truck"></i>
                         Stock Order
                     </a>
                 </li>
                     
                 <li>
-                    <a href="cashier/cashier_inventory.php"><i class="fa-solid fa-boxes-stacked fa-lg" style="color: #000000;"></i>
+                    <a href="cashier_inventory.php"><i class="fa-solid fa-boxes-stacked fa-lg" style="color: #000000;"></i>
                         Inventory
                     </a>
                 </li>
                 <li>
-                    <a href="cashier/cashier_cus.php"><i class="fas fa-users"></i>
+                    <a href="cashier_cus.php"><i class="fas fa-users"></i>
                         Customers
                     </a>
                 </li>

@@ -1,4 +1,4 @@
-<?php include 'cashier/cashier_nav.php'; ?>
+<?php include 'cashier_nav.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -29,7 +29,7 @@
         <div class="group_content">
         <div class="title_and_button">
             <h2>Orders</h2>
-            <button type="button" onclick="location.href='cashier/cashier_addorder.php'">Add New Order
+            <button type="button" onclick="location.href='cashier_addorder.php'">Add New Order
             </button>
             </div>
             <table class="group_table">

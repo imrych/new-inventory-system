@@ -20,12 +20,12 @@ if (isset($_POST['login_btn'])) {
     }
     elseif($usertype['User_role'] == 'Stock Clerk'){
         $_SESSION['username'] = $username_login;    
-        header('location: dashcheck.php');
+        header('location:dashcheck.php');
         exit();
     }
     elseif($usertype['User_role'] == 'Cashier'){
         $_SESSION['username'] = $username_login;    
-        header('location: dashcashier.php');
+        header('location:dashcashier.php');
         exit();
     }
     else {
