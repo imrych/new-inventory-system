@@ -54,7 +54,7 @@
                     while($row=$result->fetch_assoc()){
                         $createdDatetime = $row['Created'];
                         $timestamp = strtotime($createdDatetime);
-                        $formattedDate = date('m/d/Y h:i A', $timestamp);
+                        $formattedDate = date('F j, Y', $timestamp);
 
                       echo "
                 <tr>
