@@ -9,10 +9,12 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Fetch supplier brands
+// Fetch supplier brands and defualt categories
 $suppliers_sql = "SELECT sup_brand FROM suppliers";
 $suppliers_result = $conn->query($suppliers_sql);
 
+$categories_sql = "SELECT cat_name FROM categories";
+$categories_result = $conn->query($categories_sql);
 ?>
 
 <!DOCTYPE html>
@@ -27,15 +29,11 @@ $suppliers_result = $conn->query($suppliers_sql);
 <script>
     function validateForm() {
         var productName = document.forms["productForm"]["product_name"].value.trim();
-        var brandName = document.forms["productForm"]["brand_name"].value.trim();
-        var category = document.forms["productForm"]["category"].value.trim();
         var size = document.forms["productForm"]["size"].value.trim();
         var quantity = document.forms["productForm"]["quantity"].value.trim();
         var price = document.forms["productForm"]["price"].value.trim();
 
         var productNameRegex = /^[a-zA-Z0-9\s]+$/;
-        var brandNameRegex = /^[a-zA-Z0-9\s]+$/;
-        var categoryRegex = /^[a-zA-Z\s]+$/;
         var sizeRegex = /^\d{1,3}$/;
         var quantityRegex = /^\d{1,3}$/;
         var priceRegex = /^\₱?\d{1,6}(\.\d{1,2})?$/;
@@ -48,9 +46,6 @@ $suppliers_result = $conn->query($suppliers_sql);
             alert("Brand Name can only contain letters and numbers.");
             return false;
         }
-        if (!categoryRegex.test(category)) {
-            alert("Category can only contain letters.");
-            return false;
         }
         if (!sizeRegex.test(size)) {
             alert("Size must be an integer with a maximum of 3 digits.");
@@ -66,7 +61,6 @@ $suppliers_result = $conn->query($suppliers_sql);
         }
 
         return true;
-    }
 
     function formatPriceInput(event) {
         var input = event.target;
@@ -113,10 +107,20 @@ $suppliers_result = $conn->query($suppliers_sql);
             </div>
         </div>
         <div class="row2">
-            <div class="input-box">
+        <div class="input-box select-box">
                 <label for="category">Category</label>
-                <input type="text" id="category" name="category" placeholder="Enter category" required>
-            </div>
+                <select id="category" name="category" required>
+                    <option value="" disabled selected>Select a category</option>
+                    <?php
+                    if ($categories_result->num_rows > 0) {
+                        while($row = $categories_result->fetch_assoc()) {
+                            echo "<option value='" . htmlspecialchars($row['cat_name']) . "'>" . htmlspecialchars($row['cat_name']) . "</option>";
+                        }
+                    } else {
+                        echo "<option value='' disabled>No categories available</option>";
+                    }
+                    ?>
+                </select>
             <div class="input-box select-box">
                 <label for="brand_name">Brand Name</label>
                 <select id="brand_name" name="brand_name" required>

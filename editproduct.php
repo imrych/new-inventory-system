@@ -26,6 +26,9 @@ if (isset($_GET['id'])) {
 $sql_brands = "SELECT sup_brand FROM suppliers";
 $result_brands = $conn->query($sql_brands);
 
+$categories_sql = "SELECT cat_name FROM categories";
+$categories_result = $conn->query($categories_sql);
+
 if (!$result_brands) {
     echo "Error fetching brands: " . $conn->error;
     exit; 
@@ -91,10 +94,20 @@ if (!$result_brands) {
             </div>
         </div>
         <div class="row2">
-            <div class="input-box">
-                <label>Category</label>
-                <input type="text" name="category" placeholder="Enter category" value="<?php echo htmlspecialchars($product['category']); ?>" required>
-            </div>
+        <div class="input-box select-box">
+                <label for="category">Category</label>
+                <select id="category" name="category" required>
+                    <option value="" disabled selected>Select a category</option>
+                    <?php
+                    if ($categories_result->num_rows > 0) {
+                        while($row = $categories_result->fetch_assoc()) {
+                            echo "<option value='" . htmlspecialchars($row['cat_name']) . "'>" . htmlspecialchars($row['cat_name']) . "</option>";
+                        }
+                    } else {
+                        echo "<option value='' disabled>No categories available</option>";
+                    }
+                    ?>
+                </select>
             <div class="input-box select-box">
                 <label for="brand_name">Brand Name</label>
                 <select id="brand_name" name="brand_name" required>
