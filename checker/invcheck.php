@@ -1,5 +1,5 @@
 <?php 
-include 'cashier_nav.php';
+include 'checker/checker_nav.php';
 include 'includes/config.php';
 
 $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
@@ -13,7 +13,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'delete' && isset($_GET['id']))
     $id = intval($_GET['id']);
     $delete_sql = "DELETE FROM inventory WHERE inventory_id = $id";
     if ($conn->query($delete_sql) === TRUE) {
-        echo "<script>alert('Product deleted successfully'); window.location.href = 'cashier_inventory.php';</script>";
+        echo "<script>alert('Product deleted successfully'); window.location.href = 'checker/invcheck.php';</script>";
     } else {
         echo "Error deleting record: " . $conn->error;
     }
@@ -51,7 +51,7 @@ $result = $conn->query($sql);
         <div class="group_content">
             <div class="title_and_button">
                 <h2>Inventory</h2>
-                <button type="button" onclick="location.href='cashier_addprod.php'">Add New Product</button>
+                <button type="button" onclick="location.href='checker/addprod_checker.php'">Add New Product</button>
             </div>
             <table class="group_table">
                 <thead>
@@ -79,7 +79,7 @@ $result = $conn->query($sql);
                             echo "<td>" . $row["order_quantity"] . "</td>";
                             echo "<td>₱" . number_format($row["price"], 2) . "</td>";
                             echo "<td>
-                            <button onclick=\"window.location.href='editprod_cashier.php?id=" . $row["inventory_id"] . "'\" style=\"margin-right: 0px; padding: 3px 9px; font-weight: bold; border-radius: 4px; background-color: #F59607; color: #ffffff; border: none;\">
+                            <button onclick=\"window.location.href='checker/editprod_checker.php?id=" . $row["inventory_id"] . "'\" style=\"margin-right: 0px; padding: 3px 9px; font-weight: bold; border-radius: 4px; background-color: #F59607; color: #ffffff; border: none;\">
                                 <i class=\"fa-regular fa-pen-to-square\" style=\"color: #ffffff;\"></i>
                             </button>
                             <button onclick=\"deleteProduct(" . $row["inventory_id"] . ")\" style=\"margin-right: 0px; padding: 3px 9px; font-weight: bold; border-radius: 4px; background-color: #DC2626; color: #ffffff; border: none;\">
@@ -100,7 +100,7 @@ $result = $conn->query($sql);
     <script>
     function deleteProduct(id) {
         if (confirm("Are you sure you want to delete this product?")) {
-            window.location.href = 'cashier_inventory.php?action=delete&id=' + id;
+            window.location.href = 'checker/invcheck.php?action=delete&id=' + id;
         }
     }
     </script>

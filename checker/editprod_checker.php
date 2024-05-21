@@ -1,5 +1,5 @@
 <?php
-include 'cashier_nav.php'; 
+include 'checker/checker_nav.php'; 
 include 'includes/config.php';
 
 $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
@@ -17,7 +17,7 @@ if (isset($_GET['id'])) {
     if ($result_product->num_rows > 0) {
         $product = $result_product->fetch_assoc();
     } else {
-        echo "<script>alert('Product not found'); window.location.href = 'cashier_inventory.php';</script>";
+        echo "<script>alert('Product not found'); window.location.href = 'checker/invcheck.php';</script>";
         exit;
     }
 }
@@ -74,7 +74,7 @@ if (!$result_brands) {
 </div>
 
 <div class="container">
-    <form name="productForm" action="editprod_cashier.php?id=<?php echo $product['inventory_id']; ?>" method="post" class="form" onsubmit="return validateForm()">
+    <form name="productForm" action="checker/editprod_checker.php?id=<?php echo $product['inventory_id']; ?>" method="post" class="form" onsubmit="return validateForm()">
         <input type="hidden" name="id" value="<?php echo $product['inventory_id']; ?>">
         <div class="row1">
             <div class="input-box">
@@ -156,7 +156,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 WHERE inventory_id='$id'";
 
         if ($conn->query($sql_update) === TRUE) {
-            echo "<script>alert('Product updated successfully'); window.location.href = 'cashier_inventory.php';</script>";
+            echo "<script>alert('Product updated successfully'); window.location.href = 'invcheck.php';</script>";
             exit;
         } else {
             echo "Error updating record: " . $conn->error;

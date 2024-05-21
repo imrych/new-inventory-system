@@ -1,7 +1,7 @@
 <?php
-include 'cashier_nav.php';
+include 'checker/checker_nav.php';
 include_once 'includes/config.php';
-include_once 'addprodprocess_cashier.php';
+include_once 'includes/addprodprocess_checker.php';
 
 $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
@@ -97,7 +97,7 @@ $suppliers_result = $conn->query($suppliers_sql);
 
 <div class="container">
     <h4>Add New Product</h4>
-    <form name="productForm" action="cashier_addprod.php" method="post" onsubmit="return validateForm()">
+    <form name="productForm" action="checker/addprod_checker.php" method="post" onsubmit="return validateForm()">
         <div class="row1">
             <div class="input-box">
                 <label for="product_name">Product Name</label>

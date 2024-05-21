@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($stmt->execute()) {
             // Success message to display on inventory.php
-            echo "<script>alert('Successfully added product to the system'); window.location.href = 'cashier_inventory.php';</script>";
+            echo "<script>alert('Successfully added product to the system'); window.location.href = 'cashier/cashier_inventory.php';</script>";
             exit;
         } else {
             echo "Error: " . $sql . "<br>" . $conn->error;

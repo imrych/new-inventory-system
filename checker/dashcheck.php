@@ -1,5 +1,5 @@
 <?php 
-    include "checker_nav.php";
+    include "checker/checker_nav.php";
 ?>
 
 <!DOCTYPE html>

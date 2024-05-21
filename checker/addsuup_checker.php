@@ -1,5 +1,5 @@
 <?php
-include 'checker_nav.php';
+include 'checker/checker_nav.php';
 include 'includes/config.php';
 
 $message = '';
@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($stmt->execute()) {
             $message = "Supplier successfully added to the database!";
-            header("Location: suppcheck.php?message=$message");
+            header("Location: checker/suppcheck.php?message=$message");
             exit();
         } else {
             $message = "Error adding supplier: " . $conn->error;
