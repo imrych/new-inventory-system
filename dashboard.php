@@ -11,7 +11,7 @@
 <body>
 
 <div class=" top-nav">
-        <h1>Dasbhboard</h1>
+        <h1>Dashboard</h1>
         <div class=user_and_date>
             <div class="dropdown">
                 <div class="username">Avril Abelarde</div>
