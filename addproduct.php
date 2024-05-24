@@ -23,6 +23,7 @@ $categories_result = $conn->query($categories_sql);
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/dashboard.css">
 <link rel="stylesheet" href="css/addproduct.css">
 <title>Add Product</title>
 
@@ -88,10 +89,9 @@ $categories_result = $conn->query($categories_sql);
         <div class="date"><?php echo date('F j, Y'); ?></div>
     </div>
 </div>
-
 <div class="container">
-    <h4>Add New Product</h4>
     <form name="productForm" action="addproduct.php" method="post" onsubmit="return validateForm()">
+    <h4>Add New Product</h4>
         <div class="row1">
             <div class="input-box">
                 <label for="product_name">Product Name</label>
@@ -121,6 +121,7 @@ $categories_result = $conn->query($categories_sql);
                     }
                     ?>
                 </select>
+            </div>
             <div class="input-box select-box">
                 <label for="brand_name">Brand Name</label>
                 <select id="brand_name" name="brand_name" required>
