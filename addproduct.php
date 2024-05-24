@@ -22,7 +22,6 @@ $categories_result = $conn->query($categories_sql);
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="css/main.css">
 <link rel="stylesheet" href="css/dashboard.css">
 <link rel="stylesheet" href="css/addproduct.css">
 <title>Add Product</title>
@@ -101,15 +100,17 @@ $categories_result = $conn->query($categories_sql);
                 <label for="size">Size</label>
                 <input type="text" id="size" name="size" placeholder="Enter size" required>
             </div>
-            <div class="input-box">
+        </div>
+        <div class="row2">
+        <div class="input-box">
                 <label for="quantity">Quantity</label>
                 <input type="text" id="quantity" name="quantity" placeholder="Enter Quantity" required>
             </div>
-        </div>
-        <div class="row2">
-        <div class="input-box select-box">
+            <div class="input-box">
                 <label for="category">Category</label>
-                <select id="category" name="category" required>
+                    <div class="column">
+                        <div class="select-box">
+                    <select id="category" name="category" required>
                     <option value="" disabled selected>Select a category</option>
                     <?php
                     if ($categories_result->num_rows > 0) {
@@ -121,10 +122,20 @@ $categories_result = $conn->query($categories_sql);
                     }
                     ?>
                 </select>
+                        </div>
+                    </div>
             </div>
-            <div class="input-box select-box">
+        </div>
+        <div class="row3">
+        <div class="input-box">
+                <label for="price">Price</label>
+                <input type="text" id="price" name="price" placeholder="Enter Price" required oninput="formatPriceInput(event)">
+            </div>
+        <div class="input-box">
                 <label for="brand_name">Brand Name</label>
-                <select id="brand_name" name="brand_name" required>
+                <div class="column">
+                    <div class="select-box">
+                    <select id="brand_name" name="brand_name" required>
                     <option value="" disabled selected>Select a brand</option>
                     <?php
                     if ($suppliers_result->num_rows > 0) {
@@ -136,12 +147,8 @@ $categories_result = $conn->query($categories_sql);
                     }
                     ?>
                 </select>
-            </div>
-        </div>
-        <div class="row3">
-            <div class="input-box">
-                <label for="price">Price</label>
-                <input type="text" id="price" name="price" placeholder="Enter Price" required oninput="formatPriceInput(event)">
+                </div>
+                </div>
             </div>
         </div>
         <button type="submit">Submit</button>
