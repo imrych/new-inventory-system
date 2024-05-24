@@ -1,12 +1,12 @@
 <?php include 'nav.php'; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/dashboard.css">
-    <link rel="stylesheet" href="css/addproduct.css">
+    <link rel="stylesheet" href="css/addorder.css">
     <title>Manage Group</title>
 </head>
 <body>
@@ -54,8 +54,8 @@
                 <div class="select-box">
                     <select>
                     <option value="" disabled selected>Select Staus</option>
-                        <option value="Active">Active</option>
-                        <option value="Inactive">Inactive</option>
+                        <option value="Pick Up">Pickup</option>
+                        <option value="Not Yet">Not yet</option>
                     </select>
                 </div>
             </div>
