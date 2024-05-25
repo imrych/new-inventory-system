@@ -1,6 +1,7 @@
 <?php 
-    include 'nav.php';
-    include "includes/connection.php";
+include 'topnav.php';
+include 'nav.php';
+include "includes/connection.php";
     
 
     if(isset($_POST['submit'])){
@@ -37,23 +38,7 @@
     <link rel="stylesheet" href="css/addgroup.css">
     <title>Manage Group</title>
 </head>
-<body>
-<div class=" top-nav">
-        <h1>Manage Users</h1>
-        <div class=user_and_date>
-            <div class="dropdown">
-                <div class="username">Avril Abelarde</div>
-                <div class="dropdown-content">
-                    <a href="profile.php">Profile</a>
-                    <a href="#">Settings</a>
-                </div>
-            </div>
-            <div class="date">April 14, 2024</div>
-        </div>
-    </div>
-
-
-        
+<body>   
     <div class="container">
     <form action="" method = "post" class="form">
     <h4>Add New User</h4>

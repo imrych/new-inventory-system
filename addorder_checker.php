@@ -1,4 +1,5 @@
-<?php include 'checker_nav.php'; ?>
+<?php include 'checker_nav.php';
+include 'topnav.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,20 +11,6 @@
     <title>Manage Group</title>
 </head>
 <body>
-<div class=" top-nav">
-        <h1>Add Order</h1>
-        <div class=user_and_date>
-            <div class="dropdown">
-                <div class="username">Avril Abelarde</div>
-                <div class="dropdown-content">
-                    <a href="profile.php">Profile</a>
-                    <a href="#">Settings</a>
-                </div>
-            </div>
-            <div class="date">April 14, 2024</div>
-        </div>
-    </div>
-
     <div class="container">
     <form action="#" class="form">
     <h4>Add New Order</h4>

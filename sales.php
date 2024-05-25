@@ -1,4 +1,5 @@
-<?php include 'nav.php'; ?>
+<?php include 'nav.php';
+include 'topnav.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -12,20 +13,6 @@
 </head>
 
 <body>
-<div class=" top-nav">
-        <h1>Manage Sales</h1>
-        <div class=user_and_date>
-            <div class="dropdown">
-                <div class="username">Avril Abelarde</div>
-                <div class="dropdown-content">
-                    <a href="profile.php">Profile</a>
-                    <a href="#">Settings</a>
-                </div>
-            </div>
-            <div class="date">April 14, 2024</div>
-        </div>
-    </div>
-
     <div class="group_names">
         <div class="group_content">
         <div class="title_and_button">

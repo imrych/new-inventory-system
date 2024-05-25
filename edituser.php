@@ -1,6 +1,7 @@
 <?php 
-    include 'nav.php';
-    include 'includes/connection.php';
+include 'topnav.php';
+include 'nav.php';
+include 'includes/connection.php';
 
     $Id=$_GET['updateid'];
     $q = "SELECT * FROM manage_user WHERE id='$Id'";
@@ -42,23 +43,7 @@
     <title>Manage Group</title>
 </head>
 <body>
-<div class=" top-nav">
-        <h1>Manage Users</h1>
-        <div class=user_and_date>
-            <div class="dropdown">
-                <div class="username">Avril Abelarde</div>
-                <div class="dropdown-content">
-                    <a href="#">Profile</a>
-                    <a href="#">Settings</a>
-                </div>
-            </div>
-            <div class="date">April 14, 2024</div>
-        </div>
-    </div>
-
-
-        
-    <div class="container">
+<div class="container">
     <form action="" method = "post" class="form">
     <h4>Edit User</h4>
         <div class="input-box">

@@ -1,0 +1,37 @@
+.top-nav {
+    background-color:#F59607;
+    width: auto;
+    height: 80px;
+    margin-left: 260px;
+    display: flex;
+    gap: 61.7%;
+    align-items: center;
+    flex-direction: row;
+}
+
+h1 {
+    font-size: 28px;
+    font-weight: 400;
+    color: #FAFAFA;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    margin-left: 15px;
+    padding: 15px;
+}
+
+.date {
+    font-size: 12px;
+    font-weight: 450;
+    color: #FAFAFA;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.username {
+    font-size: 12px;
+    font-weight: 450;
+    color: #FAFAFA;
+    margin-bottom: 15px;
+    text-align: center;
+}
+

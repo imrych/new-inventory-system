@@ -1,4 +1,5 @@
 <?php
+include 'topnav.php';
 include 'nav.php';
 include 'includes/config.php';
 
@@ -75,100 +76,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['id'])) {
     <title>Edit Supplier</title>
 </head>
 <style>
-.top-nav {
-    background-color:#F59607;
-    width: auto;
-    height: 80px;
-    margin-left: 260px;
-    display: flex;
-    gap: 61.3%;
-    align-items: center;
-    flex-direction: row;
-}
-
-h1 {
-    font-size: 28px;
-    font-weight: 400;
-    color: #FAFAFA;
-    margin-bottom: 20px;
-    margin-top: 20px;
-    margin-left: 15px;
-    padding: 15px;
-}
-
-.date {
-    font-size: 12px;
-    font-weight: 450;
-    color: #FAFAFA;
-    margin-bottom: 15px;
-    text-align: center;
-}
-.username {
-    font-size: 12px;
-    font-weight: 450;
-    color: #000000;
-    margin-bottom: 15px;
-    text-align: center;
-    cursor: pointer;
-}
-
-.username:hover {
-    color: #FAFAFA;
-}
-
-.dropbtn {
-    color: black;
-    font-size: 13px;
-    cursor: pointer;
-  }
-
-  .dropdown {
-    position: relative;
-    display: inline-block;
-    gap: 5px;
-  }
-
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-    border-radius: 10px;
-    font-size: 14px;
-  }
-
-  .dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-  }
-
-  .dropdown-content a:hover {
-    background-color: #f1f1f1;
-    border-radius: 10px;
-
-}
-
-  .dropdown:hover .dropdown-content {
-    display: block;
-  }
-
-  .dropdown:hover .dropbtn {
-    color: orange;
-  }
-
-.user_and_date {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-top: 20px;
-    margin-left: 10px;
-    margin-right: 10px;
-    gap: 15px;
-}
 .container {
     width: 80%;
     margin-left: 260px;
@@ -252,20 +159,6 @@ body {
 }
 </style>
 <body>
-<div class="top-nav">
-    <h1>Edit Supplier</h1>
-    <div class="user_and_date">
-        <div class="dropdown">
-            <div class="username">Avril Abelarde</div>
-            <div class="dropdown-content">
-                <a href="profile.php">Profile</a>
-                <a href="#">Settings</a>
-            </div>
-        </div>
-        <div class="date">April 14, 2024</div>
-    </div>
-</div>
-
 <!-- Supplier Edit Form -->
 <div class="container">
     <form name="editSupplierForm" class="form" method="POST" action="editsupplier.php?id=<?php echo $sup_id; ?>"

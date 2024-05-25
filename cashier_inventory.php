@@ -1,4 +1,5 @@
 <?php 
+include 'topnav.php';
 include 'cashier_nav.php';
 include 'includes/config.php';
 
@@ -34,75 +35,62 @@ $result = $conn->query($sql);
     <title>Manage Inventory</title>
 </head>
 <body>
-    <div class="top-nav">
-        <h1>Manage Inventory</h1>
-        <div class="user_and_date">
-            <div class="dropdown">
-                <div class="username">Avril Abelarde</div>
-                <div class="dropdown-content">
-                    <a href="profile.php">Profile</a>
-                    <a href="#">Settings</a>
-                </div>
-            </div>
-            <div class="date">April 14, 2024</div>
+<div class="group_names">
+    <div class="group_content">
+        <div class="title_and_button">
+            <h2>Inventory</h2>
+            <button type="button" onclick="location.href='cashier_addprod.php'">Add New Product</button>
         </div>
-    </div>
-    <div class="group_names">
-        <div class="group_content">
-            <div class="title_and_button">
-                <h2>Inventory</h2>
-                <button type="button" onclick="location.href='cashier_addprod.php'">Add New Product</button>
-            </div>
-            <table class="group_table">
-                <thead>
-                    <tr>
-                        <th class="border-top-left">No.</th>
-                        <th>Product Name</th>
-                        <th>Brand</th>
-                        <th>Categories</th>
-                        <th>Size</th>
-                        <th>Quantity</th>
-                        <th>Price</th>
-                        <th class="border-top-right">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    if ($result->num_rows > 0) {
-                        while($row = $result->fetch_assoc()) {
-                            echo "<tr>";
-                            echo "<td>" . $row["inventory_id"] . "</td>";
-                            echo "<td>" . $row["product_name"] . "</td>";
-                            echo "<td>" . $row["brand_name"] . "</td>";
-                            echo "<td>" . $row["category"] . "</td>";
-                            echo "<td>" . $row["size"] . "</td>";
-                            echo "<td>" . $row["order_quantity"] . "</td>";
-                            echo "<td>₱" . number_format($row["price"], 2) . "</td>";
-                            echo "<td>
-                            <button onclick=\"window.location.href='editprod_cashier.php?id=" . $row["inventory_id"] . "'\" style=\"margin-right: 0px; padding: 3px 9px; font-weight: bold; border-radius: 4px; background-color: #F59607; color: #ffffff; border: none;\">
-                                <i class=\"fa-regular fa-pen-to-square\" style=\"color: #ffffff;\"></i>
-                            </button>
-                            <button onclick=\"deleteProduct(" . $row["inventory_id"] . ")\" style=\"margin-right: 0px; padding: 3px 9px; font-weight: bold; border-radius: 4px; background-color: #DC2626; color: #ffffff; border: none;\">
-                                <i class=\"fa-solid fa-xmark\" style=\"color: #ffffff;\"></i>
-                            </button>
-                            </td>";
-                            echo "</tr>";
-                        }
-                    } else {
-                        echo "<tr><td colspan='8'>No records found</td></tr>";
+        <table class="group_table">
+            <thead>
+                <tr>
+                    <th class="border-top-left">No.</th>
+                    <th>Product Name</th>
+                    <th>Brand</th>
+                    <th>Categories</th>
+                    <th>Size</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th class="border-top-right">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                if ($result->num_rows > 0) {
+                    while($row = $result->fetch_assoc()) {
+                        echo "<tr>";
+                        echo "<td>" . $row["inventory_id"] . "</td>";
+                        echo "<td>" . $row["product_name"] . "</td>";
+                        echo "<td>" . $row["brand_name"] . "</td>";
+                        echo "<td>" . $row["category"] . "</td>";
+                        echo "<td>" . $row["size"] . "</td>";
+                        echo "<td>" . $row["order_quantity"] . "</td>";
+                        echo "<td>₱" . number_format($row["price"], 2) . "</td>";
+                        echo "<td>
+                        <button onclick=\"window.location.href='editprod_cashier.php?id=" . $row["inventory_id"] . "'\" style=\"margin-right: 0px; padding: 3px 9px; font-weight: bold; border-radius: 4px; background-color: #F59607; color: #ffffff; border: none;\">
+                            <i class=\"fa-regular fa-pen-to-square\" style=\"color: #ffffff;\"></i>
+                        </button>
+                        <button onclick=\"deleteProduct(" . $row["inventory_id"] . ")\" style=\"margin-right: 0px; padding: 3px 9px; font-weight: bold; border-radius: 4px; background-color: #DC2626; color: #ffffff; border: none;\">
+                            <i class=\"fa-solid fa-xmark\" style=\"color: #ffffff;\"></i>
+                        </button>
+                        </td>";
+                        echo "</tr>";
                     }
-                    $conn->close();
-                    ?>
-                </tbody>
-            </table>
-        </div>
+                } else {
+                    echo "<tr><td colspan='8'>No records found</td></tr>";
+                }
+                $conn->close();
+                ?>
+            </tbody>
+        </table>
     </div>
-    <script>
-    function deleteProduct(id) {
-        if (confirm("Are you sure you want to delete this product?")) {
-            window.location.href = 'cashier_inventory.php?action=delete&id=' + id;
-        }
+</div>
+<script>
+function deleteProduct(id) {
+    if (confirm("Are you sure you want to delete this product?")) {
+        window.location.href = 'cashier_inventory.php?action=delete&id=' + id;
     }
-    </script>
+}
+</script>
 </body>
 </html>

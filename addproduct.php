@@ -1,4 +1,5 @@
 <?php
+include 'topnav.php';
 include 'nav.php';
 include_once 'includes/config.php';
 include_once 'includes/process_addproduct.php';
@@ -75,19 +76,6 @@ $categories_result = $conn->query($categories_sql);
 </head>
 
 <body>
-<div class="top-nav">
-    <h1>Add Product</h1>
-    <div class="user_and_date">
-        <div class="dropdown">
-            <div class="username">Avril Abelarde</div>
-            <div class="dropdown-content">
-                <a href="profile.php">Profile</a>
-                <a href="#">Settings</a>
-            </div>
-        </div>
-        <div class="date"><?php echo date('F j, Y'); ?></div>
-    </div>
-</div>
 <div class="container">
     <form name="productForm" action="addproduct.php" method="post" onsubmit="return validateForm()">
     <h4>Add New Product</h4>

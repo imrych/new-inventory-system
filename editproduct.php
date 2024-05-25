@@ -1,4 +1,5 @@
 <?php
+include 'topnav.php';
 include 'nav.php'; 
 include 'includes/config.php';
 
@@ -62,20 +63,6 @@ if (!$result_brands) {
     </script>
 </head>
 <body>
-<div class="top-nav">
-    <h1>Edit Product</h1>
-    <div class="user_and_date">
-        <div class="dropdown">
-            <div class="username">Avril Abelarde</div>
-            <div class="dropdown-content">
-                <a href="profile.php">Profile</a>
-                <a href="#">Settings</a>
-            </div>
-        </div>
-        <div class="date"><?php echo date('F j, Y'); ?></div>
-    </div>
-</div>
-
 <div class="container">
     <form name="productForm" action="editproduct.php?id=<?php echo $product['inventory_id']; ?>" method="post" class="form" onsubmit="return validateForm()">
         <input type="hidden" name="id" value="<?php echo $product['inventory_id']; ?>">

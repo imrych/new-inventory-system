@@ -1,4 +1,5 @@
 <?php
+include 'topnav.php';
 include 'nav.php';
 include 'includes/config.php';
 $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
@@ -35,20 +36,6 @@ $result = $conn->query($sql);
 </head>
 
 <body>
-<div class="top-nav">
-    <h1>Manage Supplier</h1>
-    <div class="user_and_date">
-        <div class="dropdown">
-            <div class="username">Avril Abelarde</div>
-            <div class="dropdown-content">
-                <a href="profile.php">Profile</a>
-                <a href="#">Settings</a>
-            </div>
-        </div>
-        <div class="date">April 14, 2024</div>
-    </div>
-</div>
-
 <div class="table-container">
     <div class="title_and_button">
         <h2>Suppliers</h2>
