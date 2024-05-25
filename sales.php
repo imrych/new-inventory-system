@@ -28,7 +28,7 @@ include 'topnav.php'; ?>
                     <th>Size</th>
                     <th>Quantity</th>
                     <th>Total Sale</th>
-                    <th>Arrive Date</th>
+                    <th>Date</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -38,7 +38,7 @@ include 'topnav.php'; ?>
                     <td>75</td>
                     <td>15</td>
                     <td>22,150</td>
-                    <td>2024-04-08</td>
+                    <td>04-08-2024</td>
                 </tr>
                 </tbody>
             </table>
