@@ -47,8 +47,11 @@
     display: flex;
     flex-direction: row;
     margin-top: 30px;
-    margin-left: 370px;
+    margin-left: 320px;
     gap: 30px;
+    margin-right: 70px;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .first_table {
