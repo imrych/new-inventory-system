@@ -1,12 +1,8 @@
 <?php
-session_start(); // Start the session
+session_start(); 
 
-// Assuming these session variables are set when the user logs in
 $user_role = $_SESSION['user_role'] ?? 'Guest';
 $name = $_SESSION['name'] ?? 'Guest User';
-
-// Get the current date and time
-$current_datetime = date('F j, Y h:i A');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,8 +18,25 @@ $current_datetime = date('F j, Y h:i A');
         <h1 class="user-role"><?php echo htmlspecialchars($user_role); ?></h1>
         <div class="user-and-date">
             <div class="username"><?php echo htmlspecialchars($name); ?></div>
-            <div class="date"><?php echo $current_datetime; ?></div>
+            <div class="date" id="current-datetime"></div>
         </div>
     </div>
+
+    <script>
+        function updateDateTime() {
+            const now = new Date();
+            const formattedDate = now.toLocaleDateString('en-US', {
+                year: 'numeric', month: 'long', day: 'numeric'
+            });
+            const formattedTime = now.toLocaleTimeString('en-US', {
+                hour: '2-digit', minute: '2-digit',
+                hour12: true
+            });
+            document.getElementById('current-datetime').textContent = `${formattedDate} ${formattedTime}`;
+        }
+
+        setInterval(updateDateTime, 60000); // Update the time every minute
+        updateDateTime();  
+    </script>
 </body>
 </html>
