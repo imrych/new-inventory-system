@@ -1,5 +1,4 @@
 <?php
-include 'topnav.php';
 include 'nav.php'; 
 include 'includes/config.php';
 
@@ -43,7 +42,6 @@ if (!$result_brands) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Product</title>
-    <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/dashboard.css">
     <link rel="stylesheet" href="css/addproduct.css">
     <script>
@@ -63,9 +61,24 @@ if (!$result_brands) {
     </script>
 </head>
 <body>
+<div class="top-nav">
+    <h1>Edit Product</h1>
+    <div class="user_and_date">
+        <div class="dropdown">
+            <div class="username">Avril Abelarde</div>
+            <div class="dropdown-content">
+                <a href="profile.php">Profile</a>
+                <a href="#">Settings</a>
+            </div>
+        </div>
+        <div class="date"><?php echo date('F j, Y'); ?></div>
+    </div>
+</div>
+
 <div class="container">
     <form name="productForm" action="editproduct.php?id=<?php echo $product['inventory_id']; ?>" method="post" class="form" onsubmit="return validateForm()">
         <input type="hidden" name="id" value="<?php echo $product['inventory_id']; ?>">
+        <h4>Add New Product</h4>
         <div class="row1">
             <div class="input-box">
                 <label>Product Name</label>
@@ -75,14 +88,17 @@ if (!$result_brands) {
                 <label>Size</label>
                 <input type="text" name="size" placeholder="Enter size" value="<?php echo intval($product['size']); ?>" required>
             </div>
-            <div class="input-box">
+        </div>
+        <div class="row2">
+        <div class="input-box">
                 <label>Quantity</label>
                 <input type="text" name="quantity" placeholder="Enter Quantity" value="<?php echo intval($product['order_quantity']); ?>" required>
             </div>
-        </div>
-        <div class="row2">
+
         <div class="input-box select-box">
                 <label for="category">Category</label>
+                <div class="column">
+                        <div class="select-box">
                 <select id="category" name="category" required>
                     <option value="" disabled selected>Select a category</option>
                     <?php
@@ -95,8 +111,20 @@ if (!$result_brands) {
                     }
                     ?>
                 </select>
+                </div>
+                    </div>
+            </div>
+        </div>
+        <div class="row3">
+            <div class="input-box">
+                <label>Price</label>
+                <input type="text" name="price" placeholder="Enter Price" value="<?php echo '₱' . number_format($product['price'], 2); ?>" required oninput="formatPriceInput(event)">
+            </div>
+
             <div class="input-box select-box">
                 <label for="brand_name">Brand Name</label>
+                <div class="column">
+            <div class="select-box">
                 <select id="brand_name" name="brand_name" required>
                     <option value="" disabled>Select a brand</option>
                     <?php
@@ -113,16 +141,11 @@ if (!$result_brands) {
                 </select>
             </div>
         </div>
-        <div class="row3">
-            <div class="input-box">
-                <label>Price</label>
-                <input type="text" name="price" placeholder="Enter Price" value="<?php echo '₱' . number_format($product['price'], 2); ?>" required oninput="formatPriceInput(event)">
-            </div>
-        </div>
+                </div>
+                </div>
         <button type="submit">Submit</button>
     </form>
 </div>
-
 </body>
 </html>
 
