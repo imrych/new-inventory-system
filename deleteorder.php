@@ -13,7 +13,7 @@ if (isset($_GET['id'])) {
     $order_id = intval($_GET['id']);
     
     // Prepare DELETE query
-    $sql = "DELETE FROM order WHERE order_id = ?";
+    $sql = "DELETE FROM `order` WHERE order_id = ?";
     $stmt = $conn->prepare($sql);
     
     if ($stmt) {
