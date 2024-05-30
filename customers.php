@@ -11,7 +11,6 @@ if ($conn->connect_error) {
 
 $sql = "SELECT * FROM customers";
 $result = $conn->query($sql);
-
 ?>
 
 <!DOCTYPE html>
