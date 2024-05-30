@@ -1,7 +1,56 @@
-button{
-    margin-left: 1250px;
+.group_names {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+}
+
+.group_table {
+    height: 100%;
+    box-shadow: 1px 0 2px 2px rgba(0, 0, 0, 0.2);
+    border-radius: 10px 10px 0 0;
+    overflow: hidden;
+    border-collapse: collapse;
+}
+
+h2 {
+    font-size: 23px;
+    font-weight: 600;
+    color: #000000;
     margin-top: 20px;
-    margin-bottom: 20px;
+}
+
+td, th .group_table {
+    padding:10px;
+    text-align: left;
+
+}
+thead {
+    background-color: #FFC56D;
+    box-shadow: 1px 0 2px 2px rgba(0, 0, 0, 0.3);
+}
+th {
+    color: rgb(0, 0, 0);
+    font-size: 16px;
+    font-weight: 70px;
+    text-align: left;
+    padding: 10px;
+    border: 1px solid lightgray;
+    border-collapse: collapse;
+}
+td {
+    color: rgb(0, 0, 0);
+    font-size: 13px;
+    border-collapse: collapse;
+    border: 1px solid lightgray;
+}
+.group_content {
+    flex-direction: column;
+    gap: 10px;
+    display: flex;
+    margin-left: 330px;
+}
+button{
+    margin-top: 5px;
     background-color: #FFC56D;
     display: inline-block;
     appearance: none;
@@ -11,7 +60,13 @@ button{
     cursor: pointer;
     font-size: 14px;
     font-weight: 500;
-    line-height: 20px;
-    list-style: none;
-    padding: 6px 16px;
+    padding: 8px 12px;
 }
+.title_and_button {
+    display: flex;
+    flex-direction: row;
+    gap: 830px;
+    margin-top: 40px;
+
+}
+@media (max-width: 768px) {}

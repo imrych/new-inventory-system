@@ -1,5 +1,17 @@
-<?php include 'nav.php';
-include 'topnav.php'; ?>
+<?php 
+include 'includes/config.php';
+include 'nav.php';
+include 'topnav.php';
+
+$conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+$sql = "SELECT * FROM sales";
+$result = $conn->query($sql);
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -13,15 +25,14 @@ include 'topnav.php'; ?>
 </head>
 
 <body>
-    <div class="group_names">
-        <div class="group_content">
+<div class="group_names">
+    <div class="group_content">
         <div class="title_and_button">
             <h2>Sales</h2>
-            <button type="button" onclick="location.href='#'">Print
-            </button>
-            </div>
-            <table class="group_table">
-                <thead>
+            <button type="button" onclick="location.href='#'">Print</button>
+        </div>
+        <table class="group_table">
+            <thead>
                 <tr>
                     <th>#</th>
                     <th>Product</th>
@@ -30,19 +41,33 @@ include 'topnav.php'; ?>
                     <th>Total Sale</th>
                     <th>Date</th>
                 </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Fuji</td>
-                    <td>75</td>
-                    <td>15</td>
-                    <td>22,150</td>
-                    <td>04-08-2024</td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
+            </thead>
+            <tbody>
+                <?php
+                if ($result->num_rows > 0) {
+                    // Output data of each row
+                    while($row = $result->fetch_assoc()) {
+                        echo "<tr>";
+                        echo "<td>" . $row["id"] . "</td>";
+                        echo "<td>" . htmlspecialchars($row["product"]) . "</td>";
+                        echo "<td>" . htmlspecialchars($row["size"]) . "</td>";
+                        echo "<td>" . htmlspecialchars($row["quantity"]) . "</td>";
+                        echo "<td>" . htmlspecialchars($row["total_sale"]) . "</td>";
+                        echo "<td>" . htmlspecialchars($row["date"]) . "</td>";
+                        echo "</tr>";
+                    }
+                } else {
+                    echo "<tr><td colspan='6'>No records found</td></tr>";
+                }
+                ?>
+            </tbody>
+        </table>
+    </div>
+</div>
 
+<?php
+// Close the database connection
+$conn->close();
+?>
 </body>
 </html>

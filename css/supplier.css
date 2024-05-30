@@ -65,7 +65,7 @@ tbody:hover {
 .title_and_button {
     display: flex;
     flex-direction: row;
-    gap: 74%%;
+    gap: 74%;
     margin-top: 40px;
 
 }
