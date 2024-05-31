@@ -126,20 +126,29 @@ include 'includes/connection.php';
                     <th>Product Name</th>
                     <th>Category</th>
                 </tr>
-                
-                <tr>
-                    <td>1</td>
-                </tr>
-                <tr>
-                    <td>2</td>
 
-                </tr>
-                <tr>
-                    <td class="border-bottom-left" class="border-bottom-right">3</td>
-                </tr>
+        <?php 
+            $sql = "SELECT product_name, category FROM inventory ORDER BY inventory_id DESC LIMIT 3";
+            $result = $conn->query($sql);
+
+
+            if ($result->num_rows > 0) {
+            $counter = 1;
+            while ($row = $result->fetch_assoc()) {
+                echo '<tr>';
+                echo '<td>' . $counter . '</td>';
+                echo '<td>' . htmlspecialchars($row['product_name']) . '</td>';
+                echo '<td>' . htmlspecialchars($row['category']) . '</td>';
+                echo '</tr>';
+                $counter++;
+            }
+        } 
+                ?>
             </table> 
             
-        </div>
+        </div>      
+                
+        
 
     </div>
 </div>
