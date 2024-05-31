@@ -25,8 +25,11 @@ if ($order_id === 0) {
 }
 
 // Fetch order details
-$order_sql = "SELECT * FROM order WHERE order_id = ?";
+$order_sql = "SELECT * FROM `order` WHERE order_id = ?";
 $stmt = $conn->prepare($order_sql);
+if (!$stmt) {
+    die("Prepare failed for order SQL: " . $conn->error);
+}
 $stmt->bind_param("i", $order_id);
 $stmt->execute();
 $order_result = $stmt->get_result();
@@ -40,14 +43,23 @@ $order = $order_result->fetch_assoc();
 // Fetch inventory data
 $inventory_sql = "SELECT inventory_id, product_name FROM inventory";
 $inventory_result = $conn->query($inventory_sql);
+if (!$inventory_result) {
+    die("Query failed for inventory: " . $conn->error);
+}
 
 // Fetch categories
 $categories_sql = "SELECT cat_name FROM categories";
 $categories_result = $conn->query($categories_sql);
+if (!$categories_result) {
+    die("Query failed for categories: " . $conn->error);
+}
 
 // Fetch suppliers
 $suppliers_sql = "SELECT sup_id, sup_brand FROM suppliers";
 $suppliers_result = $conn->query($suppliers_sql);
+if (!$suppliers_result) {
+    die("Query failed for suppliers: " . $conn->error);
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $product_id = $_POST['product_id'];
@@ -58,18 +70,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $quantity = $_POST['quantity'];
     $order_date = $_POST['order_date'];
 
-    $update_sql = "UPDATE order SET product = ?, brand = ?, category = ?, size = ?, quantity = ?, order_date = ?, status = ? WHERE order_id = ?";
+    $update_sql = "UPDATE `order` SET product = ?, brand = ?, category = ?, size = ?, quantity = ?, order_date = ?, status = ? WHERE order_id = ?";
     $stmt = $conn->prepare($update_sql);
-    $stmt->bind_param("iisdiisi", $product_id, $brand_name, $cat_id, $size, $quantity, $order_date, $status, $order_id);
-
-    if ($stmt->execute()) {
-        echo "<script>alert('Order updated successfully');</script>";
-        header('location: order.php');
-        exit();
+    if (!$stmt) {
+        die("Prepare failed for update SQL: " . $conn->error);
     } else {
-        echo "Error: " . $update_sql . "<br>" . $conn->error;
+        echo "Prepare succeeded"; // Check if prepare succeeded
     }
-}
+    
+    // Bind parameters
+    if (!$stmt->bind_param("iisdiisi", $product_id, $brand_name, $cat_id, $size, $quantity, $order_date, $status, $order_id)) {
+        die("Binding parameters failed: " . $stmt->error);
+    } else {
+        echo "Binding parameters succeeded"; // Check if binding succeeded
+    }
+    
+    // Execute statement
+    if (!$stmt->execute()) {
+        die("Execution failed: " . $stmt->error);
+    } else {
+        echo "Execution succeeded"; // Check if execution succeeded
+    }
+    
 
 $conn->close();
 ?>
