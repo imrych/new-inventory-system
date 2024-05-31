@@ -36,19 +36,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $cat_id = $_POST['cat_id'];
     $size = $_POST['size'];
     $brand_name = $_POST['brand_name'];
-    $status = $_POST['status'];
     $quantity = $_POST['quantity'];
     $order_date = $_POST['order_date'];
     $staff = $_SESSION['name'];
 
-    $stmt = $conn->prepare("INSERT INTO `order` (product, brand, category, size, quantity, staff, order_date, status) 
-                            VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO `order` (product, brand, category, size, quantity, staff, order_date) 
+                            VALUES (?, ?, ?, ?, ?, ?, ?)");
 
     if (!$stmt) {
         die("Prepare failed: " . $conn->error);
     }
 
-    $stmt->bind_param("ssssisss", $product_id, $brand_name, $cat_id, $size, $quantity, $staff, $order_date, $status);
+    $stmt->bind_param("ssssiss", $product_id, $brand_name, $cat_id, $size, $quantity, $staff, $order_date);
 
     if ($stmt->execute()) {
         echo "<script>alert('Order successfully added');</script>";
@@ -140,18 +139,6 @@ $conn->close();
                 </div>
             </div>
             <div class="row3">
-                <div class="input-box">
-                    <label>Status</label>
-                    <div class="column">
-                        <div class="select-box">
-                            <select name="status" required>
-                                <option value="" disabled selected>Select Status</option>
-                                <option value="Pending">Pending</option>
-                                <option value="Delivered">Delivered</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
                 <div class="input-box">
                     <label>Quantity</label>
                     <input type="number" name="quantity" placeholder="Enter Quantity" required>
