@@ -45,15 +45,14 @@ $result = $conn->query($sql);
             <tbody>
                 <?php
                 if ($result->num_rows > 0) {
-                    // Output data of each row
                     while($row = $result->fetch_assoc()) {
                         echo "<tr>";
                         echo "<td>" . $row["id"] . "</td>";
-                        echo "<td>" . htmlspecialchars($row["product"]) . "</td>";
-                        echo "<td>" . htmlspecialchars($row["size"]) . "</td>";
-                        echo "<td>" . htmlspecialchars($row["quantity"]) . "</td>";
-                        echo "<td>" . htmlspecialchars($row["total_sale"]) . "</td>";
-                        echo "<td>" . htmlspecialchars($row["date"]) . "</td>";
+                        echo "<td>" . $row["product"]. "</td>";
+                        echo "<td>" . $row["size"] . "</td>";
+                        echo "<td>" . $row["quantity"] . "</td>";
+                        echo "<td>" . $row["total_sale"] . "</td>";
+                        echo "<td>" . $row["date"] . "</td>";
                         echo "</tr>";
                     }
                 } else {
