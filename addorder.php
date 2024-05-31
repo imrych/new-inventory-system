@@ -39,15 +39,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $quantity = $_POST['quantity'];
     $order_date = $_POST['order_date'];
     $staff = $_SESSION['name'];
+    
+    // Set the status to 'Pending'
+    $status = 'Pending';
 
-    $stmt = $conn->prepare("INSERT INTO `order` (product, brand, category, size, quantity, staff, order_date) 
-                            VALUES (?, ?, ?, ?, ?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO `order` (product, brand, category, size, quantity, staff, order_date, status) 
+                            VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
 
     if (!$stmt) {
         die("Prepare failed: " . $conn->error);
     }
 
-    $stmt->bind_param("ssssiss", $product_id, $brand_name, $cat_id, $size, $quantity, $staff, $order_date);
+    $stmt->bind_param("ssssisss", $product_id, $brand_name, $cat_id, $size, $quantity, $staff, $order_date, $status);
 
     if ($stmt->execute()) {
         echo "<script>alert('Order successfully added');</script>";
@@ -139,6 +142,7 @@ $conn->close();
                 </div>
             </div>
             <div class="row3">
+                <input type="hidden" name="status" value="Pending">
                 <div class="input-box">
                     <label>Quantity</label>
                     <input type="number" name="quantity" placeholder="Enter Quantity" required>
