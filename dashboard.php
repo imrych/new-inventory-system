@@ -30,15 +30,12 @@ include 'includes/connection.php';
 
             <div class="card">
                 <i class="fa fa-th-large"></i>
-                <div class="first_text_total">No. of categories
+                <div class="first_text_total">No. of categories</div>
+                <div class="text_total"> 9 categories
                 </div>
-                <?php   
-                    $query = "SELECT category FROM inventory"; 
-                    $results = mysqli_query($conn,$query);
-
-                    $row = mysqli_num_rows($results);  
-                    echo "$row categories";
-                ?>
+                 
+                
+              
             </div>
             <div class="card">
                 <i class="fa fa-shopping-cart"></i>
@@ -126,6 +123,8 @@ include 'includes/connection.php';
             <table class="third_table">
                 <tr>
                     <th class="border-top-left" class="border-top-right">#</th>
+                    <th>Product Name</th>
+                    <th>Category</th>
                 </tr>
                 
                 <tr>
