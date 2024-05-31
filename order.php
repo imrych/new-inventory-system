@@ -79,7 +79,35 @@ if (!$result) {
             if (confirm("Are you sure you want to delete this order?")) {
                 window.location.href = "deleteorder.php?id=" + order_id;
             }
+        }function updateStatus(order_id, status) {
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "includes/update_status.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            var response = xhr.responseText;
+            if (response === 'success') {
+                alert("Status updated successfully.");
+                // Check if the status is 'delivered', if so, trigger a notification
+                if (status === 'delivered') {
+                    notifyUser(order_id); // Call the notifyUser function
+                }
+                // Optional: Update UI as needed
+            } else {
+                alert("Failed to update status.");
+            }
         }
+    };
+    xhr.send("order_id=" + order_id + "&status=" + status);
+}
+
+// Function to notify user when order is delivered
+function notifyUser(order_id) {
+    // You can implement your notification logic here, such as showing a notification banner or sending an email.
+    // For demonstration purposes, let's just show an alert.
+    alert("Order " + order_id + " has been delivered!");
+}
+
     </script>
 </head>
 
