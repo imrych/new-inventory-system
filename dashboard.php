@@ -1,5 +1,6 @@
 <?php include 'nav.php'; 
 include 'topnav.php';
+include 'includes/connection.php';
 ?>
 
 <!DOCTYPE html>
@@ -18,23 +19,39 @@ include 'topnav.php';
                 <i class="fas fa-user"></i>
                 <div class="first_text_total">No. of users
                 </div>
-                <div class="text_total">100 Users
-                </div>
+                <?php   
+                    $query = "SELECT ID FROM manage_user ORDER BY ID "; 
+                    $query_run = mysqli_query($conn,$query);
+
+                    $row = mysqli_num_rows($query_run);  
+                    echo "$row Users";
+                ?>
             </div>
 
             <div class="card">
                 <i class="fa fa-th-large"></i>
                 <div class="first_text_total">No. of categories
                 </div>
-                <div class="text_total">50 Categories
-                </div>
+                <?php   
+                    $query = "SELECT category FROM inventory"; 
+                    $results = mysqli_query($conn,$query);
+
+                    $row = mysqli_num_rows($results);  
+                    echo "$row categories";
+                ?>
             </div>
             <div class="card">
                 <i class="fa fa-shopping-cart"></i>
                 <div class="first_text_total">No. of products
                 </div>
-                <div class="text_total">19 Products
-                </div>
+
+                <?php   
+                    $query = "SELECT inventory_id FROM inventory"; 
+                    $results = mysqli_query($conn,$query);
+
+                    $row = mysqli_num_rows($results);  
+                    echo "$row products";
+                ?>
             </div>
 
             <div class="card">
@@ -110,6 +127,7 @@ include 'topnav.php';
                 <tr>
                     <th class="border-top-left" class="border-top-right">#</th>
                 </tr>
+                
                 <tr>
                     <td>1</td>
                 </tr>
@@ -120,7 +138,8 @@ include 'topnav.php';
                 <tr>
                     <td class="border-bottom-left" class="border-bottom-right">3</td>
                 </tr>
-            </table>
+            </table> 
+            
         </div>
 
     </div>

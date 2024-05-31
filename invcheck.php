@@ -39,7 +39,7 @@ $result = $conn->query($sql);
     <div class="group_content">
         <div class="title_and_button">
             <h2>Inventory</h2>
-            <button type="button" onclick="location.href='checker/addprod_checker.php'">Add New Product</button>
+            <button type="button" onclick="location.href='addprod_checker.php'">Add New Product</button>
         </div>
         <table class="group_table">
             <thead>
