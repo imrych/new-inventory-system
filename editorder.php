@@ -1,4 +1,6 @@
 <?php
+ob_start(); // Start output buffering
+
 include 'includes/config.php';
 include 'topnav.php';
 include 'nav.php';
@@ -27,9 +29,6 @@ if ($order_id === 0) {
 // Fetch order details
 $order_sql = "SELECT * FROM `order` WHERE order_id = ?";
 $stmt = $conn->prepare($order_sql);
-if (!$stmt) {
-    die("Prepare failed for order SQL: " . $conn->error);
-}
 $stmt->bind_param("i", $order_id);
 $stmt->execute();
 $order_result = $stmt->get_result();
@@ -43,57 +42,38 @@ $order = $order_result->fetch_assoc();
 // Fetch inventory data
 $inventory_sql = "SELECT inventory_id, product_name FROM inventory";
 $inventory_result = $conn->query($inventory_sql);
-if (!$inventory_result) {
-    die("Query failed for inventory: " . $conn->error);
-}
 
 // Fetch categories
 $categories_sql = "SELECT cat_name FROM categories";
 $categories_result = $conn->query($categories_sql);
-if (!$categories_result) {
-    die("Query failed for categories: " . $conn->error);
-}
 
 // Fetch suppliers
 $suppliers_sql = "SELECT sup_id, sup_brand FROM suppliers";
 $suppliers_result = $conn->query($suppliers_sql);
-if (!$suppliers_result) {
-    die("Query failed for suppliers: " . $conn->error);
-}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $product_id = $_POST['product_id'];
     $cat_id = $_POST['cat_id'];
     $size = $_POST['size'];
     $brand_name = $_POST['brand_name'];
-    $status = $_POST['status'];
     $quantity = $_POST['quantity'];
     $order_date = $_POST['order_date'];
+    $status = 'Pending'; // Set status to Pending directly
 
     $update_sql = "UPDATE `order` SET product = ?, brand = ?, category = ?, size = ?, quantity = ?, order_date = ?, status = ? WHERE order_id = ?";
     $stmt = $conn->prepare($update_sql);
-    if (!$stmt) {
-        die("Prepare failed for update SQL: " . $conn->error);
+    $stmt->bind_param("iisdiisi", $product_id, $brand_name, $cat_id, $size, $quantity, $order_date, $status, $order_id);
+
+    if ($stmt->execute()) {
+        echo "<script>alert('Order updated successfully'); window.location.href='order.php';</script>";
+        exit();
     } else {
-        echo "Prepare succeeded"; // Check if prepare succeeded
+        echo "Error: " . $update_sql . "<br>" . $conn->error;
     }
-    
-    // Bind parameters
-    if (!$stmt->bind_param("iisdiisi", $product_id, $brand_name, $cat_id, $size, $quantity, $order_date, $status, $order_id)) {
-        die("Binding parameters failed: " . $stmt->error);
-    } else {
-        echo "Binding parameters succeeded"; // Check if binding succeeded
-    }
-    
-    // Execute statement
-    if (!$stmt->execute()) {
-        die("Execution failed: " . $stmt->error);
-    } else {
-        echo "Execution succeeded"; // Check if execution succeeded
-    }
-    
+}
 
 $conn->close();
+ob_end_flush(); // Send the buffer contents to the browser
 ?>
 
 <!DOCTYPE html>
@@ -176,24 +156,12 @@ $conn->close();
         </div>
         <div class="row3">
             <div class="input-box">
-                <label>Status</label>
-                <div class="column">
-                    <div class="select-box">
-                        <select name="status" required>
-                            <option value="" disabled>Select Status</option>
-                            <option value="Pending" <?php echo $order['status'] == 'Pending' ? 'selected' : ''; ?>>Pending</option>
-                            <option value="Delivered" <?php echo $order['status'] == 'Delivered' ? 'selected' : ''; ?>>Delivered</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="input-box">
                 <label>Quantity</label>
                 <input type="number" name="quantity" placeholder="Enter Quantity" required value="<?php echo htmlspecialchars($order['quantity']); ?>">
             </div>
             <div class="input-box">
                 <label>Order Date</label>
-                <input type="date" name="order_date" required value="<?php echo htmlspecialchars(date('Y-m-d', strtotime($order['order_date']))); ?>">
+                <input type="date" name="order_date" required value="<?php echo htmlspecialchars($order['order_date']); ?>">
             </div>
         </div>
         <button type="submit">Submit</button>
