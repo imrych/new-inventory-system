@@ -1,6 +1,14 @@
 <?php
-include 'includes/connection.php';
 session_start();
+
+// Check if a message is present in the URL
+if (isset($_GET['message'])) {
+    $message = $_GET['message'];
+    // Display the message
+    echo "<script>alert('$message');</script>";
+}
+
+include 'includes/connection.php';
 
 if (isset($_POST['login_btn'])) {
     
@@ -39,6 +47,9 @@ if (isset($_POST['login_btn'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+        <meta http-equiv="Pragma" content="no-cache">
+        <meta http-equiv="Expires" content="0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet">

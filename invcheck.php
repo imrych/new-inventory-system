@@ -88,7 +88,7 @@ $result = $conn->query($sql);
 <script>
 function deleteProduct(id) {
     if (confirm("Are you sure you want to delete this product?")) {
-        window.location.href = 'checker/invcheck.php?action=delete&id=' + id;
+        window.location.href = 'invcheck.php?action=delete&id=' + id;
     }
 }
 </script>

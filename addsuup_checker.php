@@ -11,29 +11,45 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sup_num = $_POST['sup_num'];
     $sup_brand = ucwords(strtolower($_POST['sup_brand']));
 
-        $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+    $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
 
-        $stmt = $conn->prepare("INSERT INTO suppliers (sup_name, sup_country, sup_num, sup_brand) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param("ssss", $sup_name, $sup_country, $sup_num, $sup_brand);
+    // Check if the supplier already exists
+    $check_stmt = $conn->prepare("SELECT * FROM suppliers WHERE sup_name = ? AND sup_country = ? AND sup_num = ? AND sup_brand = ?");
+    $check_stmt->bind_param("ssss", $sup_name, $sup_country, $sup_num, $sup_brand);
+    $check_stmt->execute();
+    $check_result = $check_stmt->get_result();
+    if ($check_result->num_rows > 0) {
+        // Supplier already exists, redirect back to addsupplier.php with a message
+        echo "<script>
+                alert('Supplier already exists in the database!');
+                window.location.href = 'addsupplier.php?message=exists';
+              </script>";
+        exit();
+    } else {
+        // Supplier doesn't exist, proceed with insertion
+        $insert_stmt = $conn->prepare("INSERT INTO suppliers (sup_name, sup_country, sup_num, sup_brand) VALUES (?, ?, ?, ?)");
+        $insert_stmt->bind_param("ssss", $sup_name, $sup_country, $sup_num, $sup_brand);
 
-        if ($stmt->execute()) {
+        if ($insert_stmt->execute()) {
             $message = "Supplier successfully added to the database!";
-            header("Location: suppcheck.php?message=$message");
+            header("Location: supplier.php?message=$message");
             exit();
         } else {
             $message = "Error adding supplier: " . $conn->error;
             // Log the error instead of echoing it
         }
 
-        $stmt->close();
-        $conn->close();
+        $insert_stmt->close();
     }
-?>
 
+    $check_stmt->close();
+    $conn->close();
+}
+?>
 
 
 <!DOCTYPE html>
@@ -49,8 +65,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body>
 <div class="container">
-    <form name="addSupplierForm" class="form" method="POST" onsubmit="return validateForm()" action="addsuup_checker.php">
-        <button class="close-btn" onclick="window.location.href='suppcheck.php'">&times;</button>
+    <form name="addSupplierForm" class="form" method="POST" onsubmit="return validateForm()" action="addsupplier.php">
+    <button class="close-btn" onclick="window.location.href='suppcheck.php'">&times;</button>
         <h4>Add New Supplier</h4>
         <div class="input-box">
             <label>Supplier Name</label>

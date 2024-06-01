@@ -1,8 +1,9 @@
 <?php 
     include "checker_nav.php";
     include 'topnav.php';
-?>
-
+    include 'includes/connection.php';
+    ?>
+    
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,29 +13,43 @@
     <link rel="stylesheet" href="css/dashboard.css">
     <title>Dashboard</title>
 <body>
+
 <div class="dashboard_content">
         <div class="boxes">
             <div class="card">
                 <i class="fas fa-user"></i>
                 <div class="first_text_total">No. of users
                 </div>
-                <div class="text_total">100 Users
-                </div>
+                <?php   
+                    $query = "SELECT ID FROM manage_user ORDER BY ID "; 
+                    $query_run = mysqli_query($conn,$query);
+
+                    $row = mysqli_num_rows($query_run);  
+                    echo "$row Users";
+                ?>
             </div>
 
             <div class="card">
                 <i class="fa fa-th-large"></i>
-                <div class="first_text_total">No. of categories
+                <div class="first_text_total">No. of categories</div>
+                <div class="text_total"> 9 categories
                 </div>
-                <div class="text_total">50 Categories
-                </div>
+                    
+                
+                
             </div>
             <div class="card">
                 <i class="fa fa-shopping-cart"></i>
                 <div class="first_text_total">No. of products
                 </div>
-                <div class="text_total">19 Products
-                </div>
+
+                <?php   
+                    $query = "SELECT inventory_id FROM inventory"; 
+                    $results = mysqli_query($conn,$query);
+
+                    $row = mysqli_num_rows($results);  
+                    echo "$row products";
+                ?>
             </div>
 
             <div class="card">
@@ -109,19 +124,32 @@
             <table class="third_table">
                 <tr>
                     <th class="border-top-left" class="border-top-right">#</th>
+                    <th>Product Name</th>
+                    <th>Category</th>
                 </tr>
-                <tr>
-                    <td>1</td>
-                </tr>
-                <tr>
-                    <td>2</td>
 
-                </tr>
-                <tr>
-                    <td class="border-bottom-left" class="border-bottom-right">3</td>
-                </tr>
-            </table>
-        </div>
+        <?php 
+            $sql = "SELECT product_name, category FROM inventory ORDER BY inventory_id DESC LIMIT 3";
+            $result = $conn->query($sql);
+
+
+            if ($result->num_rows > 0) {
+            $counter = 1;
+            while ($row = $result->fetch_assoc()) {
+                echo '<tr>';
+                echo '<td>' . $counter . '</td>';
+                echo '<td>' . htmlspecialchars($row['product_name']) . '</td>';
+                echo '<td>' . htmlspecialchars($row['category']) . '</td>';
+                echo '</tr>';
+                $counter++;
+            }
+        } 
+                ?>
+            </table> 
+            
+        </div>      
+                
+        
 
     </div>
 </div>
@@ -129,3 +157,4 @@
 </body>
 
 </html>
+    

@@ -1,8 +1,10 @@
 <?php
 include "includes/connection.php";
 
-if (isset($_GET['id'])) {
-    $Id = $_GET['id'];
+$response = array();
+
+if (isset($_POST['id'])) {
+    $Id = $_POST['id'];
 
     // Prepare and execute the DELETE statement
     $sql = "DELETE FROM manage_user WHERE id=?";
@@ -11,22 +13,21 @@ if (isset($_GET['id'])) {
 
     if ($stmt->execute()) {
         // Deletion successful
-        echo "<script>
-                alert('User deleted successfully');
-                window.location.href = '/new-inventory-system/manageuser.php';
-              </script>";
-        exit; // Exit after successful deletion
+        $response['success'] = true;
+        $response['message'] = "User deleted successfully";
     } else {
         // Error handling
-        echo "<script>
-                alert('Failed to delete user. Please try again.');
-                window.location.href = '/new-inventory-system/manageuser.php';
-              </script>";
-        exit; // Exit after failed deletion
+        $response['success'] = false;
+        $response['message'] = "Failed to delete user. Please try again.";
+        $response['error'] = $conn->error;
     }
 } else {
-    // Redirect if user ID is not provided
-    header('location:/new-inventory-system/manageuser.php');
-    exit;
+    // No ID provided
+    $response['success'] = false;
+    $response['message'] = "No user ID provided for deletion.";
 }
+
+// Return JSON response
+header('Content-Type: application/json');
+echo json_encode($response);
 ?>

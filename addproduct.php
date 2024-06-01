@@ -78,6 +78,7 @@ $categories_result = $conn->query($categories_sql);
 <body>
 <div class="container">
     <form name="productForm" action="addproduct.php" method="post" onsubmit="return validateForm()">
+    <button class="close-btn" onclick="window.location.href='inventory.php'">&times;</button>
     <h4>Add New Product</h4>
         <div class="row1">
             <div class="input-box">
