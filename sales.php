@@ -11,6 +11,7 @@ if ($conn->connect_error) {
 
 $sql = "SELECT * FROM sales";
 $result = $conn->query($sql);
+$total_sales = 0;
 ?>
 
 <!DOCTYPE html>
@@ -29,7 +30,9 @@ $result = $conn->query($sql);
     <div class="group_content">
         <div class="title_and_button">
             <h2>Sales</h2>
-            <button type="button" onclick="location.href='#'">Print</button>
+            <form method="post" action="generate_pdf.php" target="_blank">
+                <button type="submit">Print</button>
+            </form>
         </div>
         <table class="group_table">
             <thead>
@@ -46,13 +49,14 @@ $result = $conn->query($sql);
                 <?php
                 if ($result->num_rows > 0) {
                     while($row = $result->fetch_assoc()) {
+                        $total_sales += $row["sale_total"];
                         echo "<tr>";
-                        echo "<td>" . $row["id"] . "</td>";
-                        echo "<td>" . $row["product"]. "</td>";
-                        echo "<td>" . $row["size"] . "</td>";
-                        echo "<td>" . $row["quantity"] . "</td>";
-                        echo "<td>" . $row["total_sale"] . "</td>";
-                        echo "<td>" . $row["date"] . "</td>";
+                        echo "<td>" . $row["sales_id"] . "</td>";
+                        echo "<td>" . $row["sale_product"]. "</td>";
+                        echo "<td>" . $row["sale_size"] . "</td>";
+                        echo "<td>" . $row["sold_quantity"] . "</td>";
+                        echo "<td>" . $row["sale_total"] . "</td>";
+                        echo "<td>" . $row["sale_date"] . "</td>";
                         echo "</tr>";
                     }
                 } else {
@@ -61,6 +65,9 @@ $result = $conn->query($sql);
                 ?>
             </tbody>
         </table>
+        <div class="total_sales">
+            <strong>Total Sales: </strong>₱<?php echo number_format($total_sales, 2); ?>
+        </div>
     </div>
 </div>
 
