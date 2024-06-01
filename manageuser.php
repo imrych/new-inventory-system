@@ -12,34 +12,34 @@ include 'includes/connection.php';
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/manageuser.css">
     <title>Manage Users</title>
-<script>
-function deleteUser(userId) {
-    var confirmation = confirm("Are you sure you want to delete this user?");
-    if (confirmation) {
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "delete_user.php", true);
-        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState == 4) {
-                if (xhr.status == 200) {
-                    var response = JSON.parse(xhr.responseText);
-                    if (response.success) {
-                        alert(response.message);
-                        window.location.reload(); // Reload the page after successful deletion
+    <script>
+    function deleteUser(userId) {
+        var confirmation = confirm("Are you sure you want to delete this user?");
+        if (confirmation) {
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "delete_user.php", true);
+            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4) {
+                    if (xhr.status == 200) {
+                        var response = JSON.parse(xhr.responseText);
+                        if (response.success) {
+                            alert(response.message);
+                            window.location.reload(); // Reload the page after successful deletion
+                        } else {
+                            alert(response.message);
+                            console.error('Error: ' + response.error);
+                        }
                     } else {
-                        alert(response.message);
-                        console.error('Error: ' + response.error);
+                        alert('Failed to delete user. Please try again.');
+                        console.error('Error: ' + xhr.status);
                     }
-                } else {
-                    alert('Failed to delete user. Please try again.');
-                    console.error('Error: ' + xhr.status);
                 }
-            }
-        };
-        xhr.send("id=" + userId);
+            };
+            xhr.send("id=" + userId);
+        }
     }
-}
-</script>
+    </script>
 </head>
 
 <body>
@@ -50,7 +50,7 @@ function deleteUser(userId) {
         if(isset($_GET['success']) && $_GET['success'] == 1) {
             echo "<script>alert('Successfully added new user');</script>";
         }
-        ?>
+    ?>
         <div class="title_and_button">
             <h2>Users</h2>
             <button type="button" onclick="location.href='adduser.php'">Add New User</button>

@@ -14,19 +14,24 @@ form {
     display: flex;
     flex-direction: column;
 }
-.form :where(.input-box input, .select-box) {
-    gap: 20px;
+
+/* Updated selector */
+.form .input-box input,
+.form .input-box select {
     height: 50px;
     width: 100%;
     outline: none;
-    color: #787878;
+    color: #bebebe;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 0 15px;
 }
 
- label {
+label {
     font-size: 15px;
     font-weight: 500;
     color: #000000;
-    margin-left: 5px;;
+    margin-left: 5px;
 }
 
 .text {
@@ -65,25 +70,6 @@ h4 {
     font-weight: 600;
     color: #FFA318;
     margin-top: 20px;
-}
-
-.form :where(.input-box input, .select-box) {
-    height: 50px;
-    width: 100%;
-    outline: none;
-    color: #bebebe;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 0 15px;
-}
-
-.select-box select {
-    height: 100%;
-    width: 100%;
-    border-radius: 10px;
-    outline: none;
-    border: none;
-    color: #000000;
 }
 
 option {

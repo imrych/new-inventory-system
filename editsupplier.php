@@ -23,7 +23,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($stmt->execute()) {
         $message = "Supplier details updated successfully!";
-        header("Location: supplier.php"); // Redirect to supplier.php
+        echo "<script>
+            alert('Supplier details updated successfully!');
+            window.location.href='supplier.php';
+        </script>";
         exit();
     } else {
         $message = "Error updating supplier details: " . $conn->error;
@@ -131,6 +134,7 @@ h4 {
     font-weight: 600;
     margin: 0;
 }
+
 .close-btn {
     position: absolute;
     top: 10px;
@@ -145,11 +149,6 @@ h4 {
     cursor: pointer;
     outline: none;
 }
-.close-btn:hover {
-    background: #FFA318;
-    color: #FFFFFF;
-}
-/* editsupplier.css */
 
 body {
     font-family: Arial, sans-serif;
@@ -159,10 +158,8 @@ body {
 }
 </style>
 <body>
-<!-- Supplier Edit Form -->
 <div class="container">
-    <form name="editSupplierForm" class="form" method="POST" action="editsupplier.php?id=<?php echo $sup_id; ?>"
-        onsubmit="return validateForm()">
+    <form name="editSupplierForm" class="form" method="POST" action="editsupplier.php?id=<?php echo $sup_id; ?>" onsubmit="return validateForm()">
         <input type="hidden" name="sup_id" value="<?php echo $sup_id; ?>">
         <button class="close-btn" onclick="window.location.href='supplier.php'">&times;</button>
         <h4>Edit Supplier Details</h4>
@@ -184,16 +181,11 @@ body {
             <label>Brand</label>
             <input type="text" name="sup_brand" value="<?php echo $sup_brand; ?>" placeholder="Enter brand" required>
         </div>
-
-        <!-- Submit button for updating supplier details -->
         <button type="submit">Update</button>
     </form>
-
-    <!-- Display message after form submission -->
     <?php echo $message; ?>
 </div>
 
-<!-- JavaScript Validation -->
 <script>
     function validateForm() {
         var supName = document.forms["editSupplierForm"]["sup_name"].value;
@@ -220,5 +212,4 @@ body {
     }
 </script>
 </body>
-
 </html>

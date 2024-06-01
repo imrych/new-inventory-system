@@ -3,36 +3,30 @@ include 'nav.php';
 include 'topnav.php';
 include 'includes/connection.php';
 
-if(isset($_POST['submit'])){
-    $Name = $_POST['name'];
-    $Username = $_POST['username'];
-    $Password = $_POST['password'];
-    $User_role = $_POST['user_role'];
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $name = $_POST['name'];
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $user_role = $_POST['user_role'];
 
-    // Check if the combination of Name and Username already exists in the database
-    $check_query = "SELECT * FROM `manage_user` WHERE `name`='$Name' AND `username`='$Username'";
-    $result = mysqli_query($conn, $check_query);
+    // Using prepared statements to prevent SQL injection
+    $stmt = $conn->prepare("INSERT INTO manage_user (Name, Username, Password, User_role) VALUES (?, ?, ?, ?)");
+    $stmt->bind_param("ssss", $name, $username, $password, $user_role);
 
-    if(mysqli_num_rows($result) > 0) {
-        // If the record already exists, send back the specific error message
-        echo "This already exists in the database.";
-        exit(); // Stop further execution of the script
+    if ($stmt->execute()) {
+        echo "<script>
+            alert('User added successfully!');
+            window.location.href='manageuser.php';
+        </script>";
+        exit();
     } else {
-        // Insert the new record into the database
-        $q = "INSERT INTO `manage_user` (`name`, `username`, `password`, `user_role`) VALUES ('$Name', '$Username', '$Password', '$User_role')";
-        $query = mysqli_query($conn, $q);
-
-        if($query) {
-            // Set a session variable to indicate success
-            $_SESSION['success_message'] = "Successfully added new user!!";
-            echo "success"; // Indicate successful insertion
-            exit(); // Stop further execution of the script
-        } else {
-            echo "Error: " . mysqli_error($conn);
-            exit(); // Stop further execution of the script
-        }
+        echo "Error: " . $stmt->error;
     }
+
+    $stmt->close();
 }
+
+$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -40,39 +34,14 @@ if(isset($_POST['submit'])){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/dashboard.css">
-    <link rel="stylesheet" href="css/addgroup.css">
     <title>Add New User</title>
-
-<script>
-function addUser() {
-    var form = document.getElementById('addUserForm');
-    var formData = new FormData(form);
-    
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'adduser.php', true);
-    xhr.onload = function() {
-        if (xhr.status === 200) {
-            var response = xhr.responseText.trim();
-            if (response === 'success') {
-                alert('Successfully added new user!!');
-                window.location.reload(); // Reload the page after successful submission
-            } else {
-                alert("This already exists in the database"); // Generic error message
-            }
-        }
-    };
-    xhr.send(formData);
-}
-</script>
-
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/addgroup.css">
 </head>
-
 <body>   
 <div class="container">
-    <form id="addUserForm" class="form">
-    <button class="close-btn" onclick="window.location.href='manageuser.php'">&times;</button>
+    <form id="addUserForm" class="form" method="post" action="adduser.php">
+        <button class="close-btn" type="button" onclick="window.location.href='manageuser.php'"></button>
         <h4>Add New User</h4>
         <div class="input-box">
             <label>Name</label>
@@ -99,7 +68,7 @@ function addUser() {
                 </div>
             </div>
         </div>
-        <button type="button" onclick="addUser()" name="submit">Submit</button>
+        <button type="submit" name="submit">Submit</button>
     </form>
 </div>
 </body>

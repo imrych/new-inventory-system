@@ -118,7 +118,7 @@ $categories_result = $conn->query($categories_sql);
         <div class="row3">
         <div class="input-box">
                 <label for="price">Price</label>
-                <input type="text" id="price" name="price" placeholder="Enter Price" required oninput="formatPriceInput(event)">
+                <input type="text" id="price" name="price" placeholder=" ₱ Enter Price" required oninput="formatPriceInput(event)">
             </div>
         <div class="input-box">
                 <label for="brand_name">Brand Name</label>

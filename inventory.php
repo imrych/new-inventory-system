@@ -1,4 +1,4 @@
-<?php 
+<?php
 include 'topnav.php';
 include 'nav.php';
 include 'includes/config.php';
@@ -12,17 +12,24 @@ if ($conn->connect_error) {
 // Handle delete action
 if (isset($_GET['action']) && $_GET['action'] == 'delete' && isset($_GET['id'])) {
     $id = intval($_GET['id']);
-    $delete_sql = "DELETE FROM inventory WHERE inventory_id = $id";
-    if ($conn->query($delete_sql) === TRUE) {
+
+    // Prepare and execute delete statement
+    $delete_sql = "DELETE FROM inventory WHERE inventory_id = ?";
+    $stmt = $conn->prepare($delete_sql);
+    $stmt->bind_param("i", $id);
+
+    if ($stmt->execute()) {
         echo "<script>alert('Product deleted successfully'); window.location.href = 'inventory.php';</script>";
     } else {
-        echo "Error deleting record: " . $conn->error;
+        echo "Error deleting record: " . $stmt->error;
     }
 }
 
 // Fetch inventory data
 $sql = "SELECT * FROM inventory";
 $result = $conn->query($sql);
+
+// Display inventory table
 ?>
 
 <!DOCTYPE html>
@@ -67,13 +74,11 @@ $result = $conn->query($sql);
                         echo "<td>" . $row["order_quantity"] . "</td>";
                         echo "<td>₱" . number_format($row["price"], 2) . "</td>";
                         echo "<td>
-                        <button onclick=\"window.location.href='editproduct.php?id=" . $row["inventory_id"] . "'\" style=\"margin-right: 0px; padding: 3px 9px; font-weight: bold; border-radius: 4px; background-color: #F59607; color: #ffffff; border: none;\">
+                            <button onclick=\"window.location.href='editproduct.php?id=" . $row["inventory_id"] . "'\" style=\"margin-right: 0px; padding: 3px 9px; font-weight: bold; border-radius: 4px; background-color: #F59607; color: #ffffff; border: none;\">
                             <i class=\"fa-regular fa-pen-to-square\" style=\"color: #ffffff;\"></i>
-                        </button>
-                        <button onclick=\"deleteProduct(" . $row["inventory_id"] . ")\" style=\"margin-right: 0px; padding: 3px 9px; font-weight: bold; border-radius: 4px; background-color: #DC2626; color: #ffffff; border: none;\">
+                            <button onclick=\"deleteProduct(" . $row["inventory_id"] .  ")\" style=\"margin-right: 0px; padding: 3px 9px; font-weight: bold; border-radius: 4px; background-color: #DC2626; color: #ffffff; border: none;\">
                             <i class=\"fa-solid fa-xmark\" style=\"color: #ffffff;\"></i>
-                        </button>
-                        </td>";
+                            </td>";
                         echo "</tr>";
                     }
                 } else {
@@ -85,6 +90,7 @@ $result = $conn->query($sql);
         </table>
     </div>
 </div>
+
 <script>
 function deleteProduct(id) {
     if (confirm("Are you sure you want to delete this product?")) {
