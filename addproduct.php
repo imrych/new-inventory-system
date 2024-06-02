@@ -74,8 +74,10 @@ $categories_result = $conn->query($categories_sql);
 <body>
 <div class="container">
     <form name="productForm" action="addproduct.php" method="post" onsubmit="return validateForm()">
-    <button class="close-btn" onclick="window.location.href='inventory.php'">&times;</button>
     <h4>Add New Product</h4>
+    <button type="button" class="custom-close-btn" onclick="window.location.href='manageuser.php'">
+        <i class="fa-solid fa-xmark"></i>
+    </button>
         <div class="row1">
             <div class="input-box">
                 <label for="product_name">Product Name</label>

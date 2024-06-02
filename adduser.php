@@ -1,4 +1,4 @@
-<?php 
+<?php
 include 'nav.php';
 include 'topnav.php';
 include 'includes/connection.php';
@@ -13,20 +13,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt = $conn->prepare("INSERT INTO manage_user (Name, Username, Password, User_role) VALUES (?, ?, ?, ?)");
     $stmt->bind_param("ssss", $name, $username, $password, $user_role);
 
-    if ($stmt->execute()) {
-        echo "<script>
-            alert('User added successfully!');
-            window.location.href='manageuser.php';
-        </script>";
-        exit();
+    // Execute the statement
+    $stmt_executed = $stmt->execute();
+
+    if ($stmt_executed) {
+        // Return success message
+        $response = [
+            'success' => true,
+            'message' => 'User added successfully!'
+        ];
     } else {
-        echo "Error: " . $stmt->error;
+        // Return error message
+        $response = [
+            'success' => false,
+            'message' => 'Error adding user: ' . $stmt->error
+        ];
+        http_response_code(500); // Internal Server Error
     }
 
+    // Close statement
     $stmt->close();
-}
 
-$conn->close();
+    // Close database connection
+    $conn->close();
+
+    // Output JSON response
+    header('Content-Type: application/json');
+    echo json_encode($response);
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -37,12 +52,18 @@ $conn->close();
     <title>Add New User</title>
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/addgroup.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>   
 <div class="container">
-    <form id="addUserForm" class="form" method="post" action="adduser.php">
-        <button class="close-btn" type="button" onclick="window.location.href='manageuser.php'"></button>
-        <h4>Add New User</h4>
+    <form id="addUserForm" class="form" method="post">
+        <div class="header-container">
+            <h4>Add New User</h4>
+            <button type="button" class="custom-close-btn" onclick="window.location.href='manageuser.php'">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
         <div class="input-box">
             <label>Name</label>
             <input type="text" name="name" placeholder="Enter your name" required>
@@ -71,5 +92,31 @@ $conn->close();
         <button type="submit" name="submit">Submit</button>
     </form>
 </div>
+<script>
+$(document).ready(function() {
+    $('#addUserForm').submit(function(event) {
+        event.preventDefault(); // Prevent default form submission
+
+        $.ajax({
+            type: 'POST',
+            url: 'adduser.php',
+            data: $(this).serialize(), // Serialize form data
+            dataType: 'json',
+            success: function(response) {
+                alert(response.message); // Show success or error message
+                if (response.success) {
+                    window.location.href = 'manageuser.php'; // Redirect to manageuser.php on success
+                } else {
+                    // Handle specific error scenario if needed
+                }
+            },
+            error: function(xhr, status, error) {
+                alert('Error adding user. Please try again.'); // Show generic error message
+                console.error('Error: ' + error);
+            }
+        });
+    });
+});
+</script>
 </body>
 </html>

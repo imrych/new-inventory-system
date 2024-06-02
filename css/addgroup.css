@@ -15,13 +15,12 @@ form {
     flex-direction: column;
 }
 
-/* Updated selector */
 .form .input-box input,
 .form .input-box select {
     height: 50px;
     width: 100%;
     outline: none;
-    color: #bebebe;
+    color: black;
     border: 1px solid #ddd;
     border-radius: 10px;
     padding: 0 15px;
@@ -44,7 +43,7 @@ label {
     border-radius: 10px;
 }
 
-button {
+.button[type="submit"] {
     width: 20%;
     padding: 5px;
     background: #f2af4a;
@@ -56,6 +55,12 @@ button {
     cursor: pointer;
     border-radius: 10px;
     margin-left: 80%;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .select-box {
@@ -80,17 +85,26 @@ option {
     border: 1px solid #ddd;
 }
 
-.close-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 20px;
-    height: 20px;
-    background: #FFF;
-    border: 1px solid #000;
-    font-size: 14px;
-    font-weight: bold;
-    text-align: center;
-    cursor: pointer;
+/* Style for the custom close button */
+.custom-close-btn {
+    width: 40px;
+    height: 40px;
+    background: #f2af4a;
+    border: none;
     outline: none;
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+}
+
+/* Ensure the close button has an icon centered */
+.custom-close-btn i {
+    font-size: 14px;
+    color: #FFFFFF;
 }

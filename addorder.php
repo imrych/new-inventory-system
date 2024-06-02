@@ -88,6 +88,9 @@ $conn->close();
     <div class="container">
         <form name="orderForm" action="addorder.php" method="post" class="form" onsubmit="return validateForm()">
             <h4>Add New Order</h4>
+            <button type="button" class="custom-close-btn" onclick="window.location.href='manageuser.php'">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
             <div class="row1">
                 <div class="input-box">
                     <label>Product ID</label>

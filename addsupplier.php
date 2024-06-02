@@ -66,8 +66,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
 <div class="container">
     <form name="addSupplierForm" class="form" method="POST" onsubmit="return validateForm()" action="addsupplier.php">
-    <button class="close-btn" onclick="window.location.href='supplier.php'">&times;</button>
-        <h4>Add New Supplier</h4>
+    
+    <h4>Add New Supplier</h4>
+    <button type="button" class="custom-close-btn" onclick="window.location.href='manageuser.php'">
+        <i class="fa-solid fa-xmark"></i>
+    </button>
         <div class="input-box">
             <label>Supplier Name</label>
             <input type="text" name="sup_name" placeholder="Enter supplier name" required>
