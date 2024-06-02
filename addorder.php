@@ -78,15 +78,47 @@ $conn->close();
         function validateForm() {
             var size = document.forms["orderForm"]["size"].value;
             var quantity = document.forms["orderForm"]["quantity"].value;
-            if (isNaN(size) || size <= 0) {
-                alert("Size must be a positive number.");
-                return false;
-            }
             if (isNaN(quantity) || quantity <= 0) {
                 alert("Quantity must be a positive number.");
                 return false;
             }
             return true;
+        }
+
+        function fetchSize(productId) {
+            var sizeDropdown = document.forms["orderForm"]["size"];
+            sizeDropdown.innerHTML = ""; // Clear previous options
+
+            if (productId === "") {
+                var option = document.createElement("option");
+                option.text = "Select Size";
+                option.disabled = true;
+                option.selected = true;
+                sizeDropdown.add(option);
+                return;
+            }
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "get_size.php?product_id=" + productId, true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var sizes = JSON.parse(xhr.responseText);
+                    if (sizes.length > 0) {
+                        sizes.forEach(function(size) {
+                            var option = document.createElement("option");
+                            option.value = size;
+                            option.text = size;
+                            sizeDropdown.add(option);
+                        });
+                    } else {
+                        var option = document.createElement("option");
+                        option.text = "No sizes available";
+                        option.disabled = true;
+                        sizeDropdown.add(option);
+                    }
+                }
+            };
+            xhr.send();
         }
     </script>
 </head>
@@ -96,8 +128,8 @@ $conn->close();
             <h4>Add New Order</h4>
             <div class="row1">
                 <div class="input-box">
-                    <label>Product ID</label>
-                    <select name="product_id" required>
+                    <label>Product</label>
+                    <select name="product_id" required onchange="fetchSize(this.value)">
                         <option value="" disabled selected>Select Product</option>
                         <?php
                         if ($inventory_result->num_rows > 0) {
@@ -125,7 +157,9 @@ $conn->close();
             <div class="row2">
                 <div class="input-box">
                     <label>Size</label>
-                    <input type="number" name="size" placeholder="Enter Size" required>
+                    <select name="size" required>
+                        <option value="" disabled selected>Select Size</option>
+                    </select>
                 </div>
                 <div class="input-box">
                     <label>Brand Name</label>

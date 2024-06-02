@@ -19,6 +19,40 @@ if ($result === false) {
     die("Query failed: " . $conn->error);
 }
 
+
+// Check if order_id and status are set in the POST request
+if(isset($_POST['order_id'], $_POST['status'])) {
+    $order_id = $_POST['order_id'];
+    $status = $_POST['status'];
+
+    // Update order status in the database
+    $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    $stmt = $conn->prepare("UPDATE `order` SET status = ? WHERE order_id = ?");
+    $stmt->bind_param("si", $status, $order_id);
+    if ($stmt->execute()) {
+        if ($status === 'delivered') {
+            // Subtract quantity from inventory
+            $stmt = $conn->prepare("UPDATE inventory SET quantity = quantity - (SELECT quantity FROM `order` WHERE order_id = ?) WHERE inventory_id = (SELECT product FROM `order` WHERE order_id = ?)");
+            $stmt->bind_param("ii", $order_id, $order_id);
+            $stmt->execute();
+        }
+        echo "success";
+    } else {
+      
+        echo "failed";
+    }
+    
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
+    
+    $stmt->close();
+    $conn->close();
+}
+
 ?>
 
 <!DOCTYPE html>
