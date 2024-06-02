@@ -43,6 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Set the status to 'Pending'
     $status = 'Pending';
 
+    // Insert values into the order table
     $stmt = $conn->prepare("INSERT INTO `order` (product, brand, category, size, quantity, staff, order_date, status) 
                             VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
 
@@ -53,7 +54,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->bind_param("ssssisss", $product_id, $brand_name, $cat_id, $size, $quantity, $staff, $order_date, $status);
 
     if ($stmt->execute()) {
-        echo "<script>alert('Order successfully added');</script>";
+        $order_id = $stmt->insert_id; // Get the inserted order ID
+        echo "<script>alert('Order successfully added with ID: $order_id');</script>";
         echo "<script>window.location.href = 'order.php';</script>";
         exit();
     } else {
@@ -65,7 +67,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 $conn->close();
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -133,7 +134,7 @@ $conn->close();
                         <option value="" disabled selected>Select Product</option>
                         <?php
                         if ($inventory_result->num_rows > 0) {
-                            while($row = $inventory_result->fetch_assoc()) {
+                            while ($row = $inventory_result->fetch_assoc()) {
                                 echo "<option value='" . $row['inventory_id'] . "'>" . htmlspecialchars($row['product_name']) . "</option>";
                             }
                         }
@@ -146,7 +147,7 @@ $conn->close();
                         <option value="" disabled selected>Select Category</option>
                         <?php
                         if ($categories_result->num_rows > 0) {
-                            while($row = $categories_result->fetch_assoc()) {
+                            while ($row = $categories_result->fetch_assoc()) {
                                 echo "<option value='" . htmlspecialchars($row['cat_name']) . "'>" . htmlspecialchars($row['cat_name']) . "</option>";
                             }
                         }
@@ -167,7 +168,7 @@ $conn->close();
                         <option value="" disabled selected>Select Brand</option>
                         <?php
                         if ($suppliers_result->num_rows > 0) {
-                            while($row = $suppliers_result->fetch_assoc()) {
+                            while ($row = $suppliers_result->fetch_assoc()) {
                                 echo "<option value='" . $row['sup_id'] . "'>" . htmlspecialchars($row['sup_brand']) . "</option>";
                             }
                         }
@@ -189,7 +190,6 @@ $conn->close();
             <button type="submit">Submit</button>
         </form>
     </div>
-
     <script>
         // Open .dropdown-container by default
         document.querySelector(".dropdown-container").style.display = "block";

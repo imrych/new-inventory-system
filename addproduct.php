@@ -10,7 +10,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Fetch supplier brands and defualt categories
+// Fetch supplier brands and default categories
 $suppliers_sql = "SELECT sup_brand FROM suppliers";
 $suppliers_result = $conn->query($suppliers_sql);
 
@@ -37,16 +37,11 @@ $categories_result = $conn->query($categories_sql);
         var productNameRegex = /^[a-zA-Z0-9\s]+$/;
         var sizeRegex = /^\d{1,3}$/;
         var quantityRegex = /^\d{1,3}$/;
-        var priceRegex = /^\₱?\d{1,6}(\.\d{1,2})?$/;
+        var priceRegex = /^\₱?\d{1,6}$/;
 
         if (!productNameRegex.test(productName)) {
             alert("Product Name can only contain letters and numbers.");
             return false;
-        }
-        if (!brandNameRegex.test(brandName)) {
-            alert("Brand Name can only contain letters and numbers.");
-            return false;
-        }
         }
         if (!sizeRegex.test(size)) {
             alert("Size must be an integer with a maximum of 3 digits.");
@@ -57,17 +52,18 @@ $categories_result = $conn->query($categories_sql);
             return false;
         }
         if (!priceRegex.test(price)) {
-            alert("Price must be a number with a maximum of 6 digits and up to 2 decimal places, including a pesos sign.");
+            alert("Price must be a number with a maximum of 6 digits, including a pesos sign.");
             return false;
         }
 
         return true;
+    }
 
     function formatPriceInput(event) {
         var input = event.target;
-        var value = input.value.replace(/[^0-9.]/g, '');
+        var value = input.value.replace(/[^0-9]/g, '');
         if (value) {
-            input.value = '₱' + parseFloat(value).toFixed(2);
+            input.value = '₱' + value;
         } else {
             input.value = '';
         }
@@ -91,52 +87,52 @@ $categories_result = $conn->query($categories_sql);
             </div>
         </div>
         <div class="row2">
-        <div class="input-box">
+            <div class="input-box">
                 <label for="quantity">Quantity</label>
                 <input type="text" id="quantity" name="quantity" placeholder="Enter Quantity" required>
             </div>
             <div class="input-box">
                 <label for="category">Category</label>
-                    <div class="column">
-                        <div class="select-box">
-                    <select id="category" name="category" required>
-                    <option value="" disabled selected>Select a category</option>
-                    <?php
-                    if ($categories_result->num_rows > 0) {
-                        while($row = $categories_result->fetch_assoc()) {
-                            echo "<option value='" . htmlspecialchars($row['cat_name']) . "'>" . htmlspecialchars($row['cat_name']) . "</option>";
-                        }
-                    } else {
-                        echo "<option value='' disabled>No categories available</option>";
-                    }
-                    ?>
-                </select>
-                        </div>
+                <div class="column">
+                    <div class="select-box">
+                        <select id="category" name="category" required>
+                            <option value="" disabled selected>Select a category</option>
+                            <?php
+                            if ($categories_result->num_rows > 0) {
+                                while($row = $categories_result->fetch_assoc()) {
+                                    echo "<option value='" . htmlspecialchars($row['cat_name']) . "'>" . htmlspecialchars($row['cat_name']) . "</option>";
+                                }
+                            } else {
+                                echo "<option value='' disabled>No categories available</option>";
+                            }
+                            ?>
+                        </select>
                     </div>
+                </div>
             </div>
         </div>
         <div class="row3">
-        <div class="input-box">
+            <div class="input-box">
                 <label for="price">Price</label>
                 <input type="text" id="price" name="price" placeholder=" ₱ Enter Price" required oninput="formatPriceInput(event)">
             </div>
-        <div class="input-box">
+            <div class="input-box">
                 <label for="brand_name">Brand Name</label>
                 <div class="column">
                     <div class="select-box">
-                    <select id="brand_name" name="brand_name" required>
-                    <option value="" disabled selected>Select a brand</option>
-                    <?php
-                    if ($suppliers_result->num_rows > 0) {
-                        while($row = $suppliers_result->fetch_assoc()) {
-                            echo "<option value='" . htmlspecialchars($row['sup_brand']) . "'>" . htmlspecialchars($row['sup_brand']) . "</option>";
-                        }
-                    } else {
-                        echo "<option value='' disabled>No brands available</option>";
-                    }
-                    ?>
-                </select>
-                </div>
+                        <select id="brand_name" name="brand_name" required>
+                            <option value="" disabled selected>Select a brand</option>
+                            <?php
+                            if ($suppliers_result->num_rows > 0) {
+                                while($row = $suppliers_result->fetch_assoc()) {
+                                    echo "<option value='" . htmlspecialchars($row['sup_brand']) . "'>" . htmlspecialchars($row['sup_brand']) . "</option>";
+                                }
+                            } else {
+                                echo "<option value='' disabled>No brands available</option>";
+                            }
+                            ?>
+                        </select>
+                    </div>
                 </div>
             </div>
         </div>

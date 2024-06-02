@@ -57,12 +57,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $size = $_POST['size'];
     $brand_name = $_POST['brand_name'];
     $quantity = $_POST['quantity'];
-    $order_date = $_POST['order_date'];
     $status = 'Pending'; // Set status to Pending directly
 
-    $update_sql = "UPDATE `order` SET product = ?, brand = ?, category = ?, size = ?, quantity = ?, order_date = ?, status = ? WHERE order_id = ?";
+    $update_sql = "UPDATE `order` SET product = ?, brand = ?, category = ?, size = ?, quantity = ?, status = ? WHERE order_id = ?";
     $stmt = $conn->prepare($update_sql);
-    $stmt->bind_param("iisdiisi", $product_id, $brand_name, $cat_id, $size, $quantity, $order_date, $status, $order_id);
+    $stmt->bind_param("iisdiss", $product_id, $brand_name, $cat_id, $size, $quantity, $status, $order_id);
 
     if ($stmt->execute()) {
         echo "<script>alert('Order updated successfully'); window.location.href='order.php';</script>";
@@ -75,7 +74,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $conn->close();
 ob_end_flush(); // Send the buffer contents to the browser
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -158,10 +156,6 @@ ob_end_flush(); // Send the buffer contents to the browser
             <div class="input-box">
                 <label>Quantity</label>
                 <input type="number" name="quantity" placeholder="Enter Quantity" required value="<?php echo htmlspecialchars($order['quantity']); ?>">
-            </div>
-            <div class="input-box">
-                <label>Order Date</label>
-                <input type="date" name="order_date" required value="<?php echo htmlspecialchars($order['order_date']); ?>">
             </div>
         </div>
         <button type="submit">Submit</button>
