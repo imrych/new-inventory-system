@@ -1,11 +1,12 @@
 <?php
 include 'nav.php';
-include 'includes/config.php';
 include 'topnav.php';
+include 'includes/config.php';
 
 if (session_status() === PHP_SESSION_NONE) {
-    session_start();
+    
 }
+
 if (!isset($_SESSION['username'])) {
     header('location: index.php');
     exit();
@@ -39,34 +40,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $quantity = $_POST['quantity'];
     $order_date = $_POST['order_date'];
     $staff = $_SESSION['name'];
-    
-    // Set the status to 'Pending'
-    $status = 'Pending';
 
-    // Insert values into the order table
-    $stmt = $conn->prepare("INSERT INTO `order` (product, brand, category, size, quantity, staff, order_date, status) 
-                            VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+    $insert_sql = "INSERT INTO `order` (product, brand, category, size, quantity, staff, order_date) 
+                   VALUES ('$product_id', '$brand_name', '$cat_id', '$size', '$quantity', '$staff', '$order_date')";
 
-    if (!$stmt) {
-        die("Prepare failed: " . $conn->error);
-    }
-
-    $stmt->bind_param("ssssisss", $product_id, $brand_name, $cat_id, $size, $quantity, $staff, $order_date, $status);
-
-    if ($stmt->execute()) {
-        $order_id = $stmt->insert_id; // Get the inserted order ID
-        echo "<script>alert('Order successfully added with ID: $order_id');</script>";
-        echo "<script>window.location.href = 'order.php';</script>";
+    if ($conn->query($insert_sql) === TRUE) {
+        echo "<script>alert('Order successfully added');</script>";
+        echo "<script>
+                setTimeout(function() {
+                    window.location.href = 'order.php';
+                }, 1000); // 1000 milliseconds delay
+              </script>";
         exit();
     } else {
-        echo "Error executing query: " . $stmt->error;
+        echo "Error: " . $insert_sql . "<br>" . $conn->error;
     }
-
-    $stmt->close();
 }
 
 $conn->close();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -79,47 +72,15 @@ $conn->close();
         function validateForm() {
             var size = document.forms["orderForm"]["size"].value;
             var quantity = document.forms["orderForm"]["quantity"].value;
+            if (isNaN(size) || size <= 0) {
+                alert("Size must be a positive number.");
+                return false;
+            }
             if (isNaN(quantity) || quantity <= 0) {
                 alert("Quantity must be a positive number.");
                 return false;
             }
             return true;
-        }
-
-        function fetchSize(productId) {
-            var sizeDropdown = document.forms["orderForm"]["size"];
-            sizeDropdown.innerHTML = ""; // Clear previous options
-
-            if (productId === "") {
-                var option = document.createElement("option");
-                option.text = "Select Size";
-                option.disabled = true;
-                option.selected = true;
-                sizeDropdown.add(option);
-                return;
-            }
-
-            var xhr = new XMLHttpRequest();
-            xhr.open("GET", "get_size.php?product_id=" + productId, true);
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    var sizes = JSON.parse(xhr.responseText);
-                    if (sizes.length > 0) {
-                        sizes.forEach(function(size) {
-                            var option = document.createElement("option");
-                            option.value = size;
-                            option.text = size;
-                            sizeDropdown.add(option);
-                        });
-                    } else {
-                        var option = document.createElement("option");
-                        option.text = "No sizes available";
-                        option.disabled = true;
-                        sizeDropdown.add(option);
-                    }
-                }
-            };
-            xhr.send();
         }
     </script>
 </head>
@@ -129,12 +90,12 @@ $conn->close();
             <h4>Add New Order</h4>
             <div class="row1">
                 <div class="input-box">
-                    <label>Product</label>
-                    <select name="product_id" required onchange="fetchSize(this.value)">
+                    <label>Product ID</label>
+                    <select name="product_id" required>
                         <option value="" disabled selected>Select Product</option>
                         <?php
                         if ($inventory_result->num_rows > 0) {
-                            while ($row = $inventory_result->fetch_assoc()) {
+                            while($row = $inventory_result->fetch_assoc()) {
                                 echo "<option value='" . $row['inventory_id'] . "'>" . htmlspecialchars($row['product_name']) . "</option>";
                             }
                         }
@@ -147,7 +108,7 @@ $conn->close();
                         <option value="" disabled selected>Select Category</option>
                         <?php
                         if ($categories_result->num_rows > 0) {
-                            while ($row = $categories_result->fetch_assoc()) {
+                            while($row = $categories_result->fetch_assoc()) {
                                 echo "<option value='" . htmlspecialchars($row['cat_name']) . "'>" . htmlspecialchars($row['cat_name']) . "</option>";
                             }
                         }
@@ -158,9 +119,7 @@ $conn->close();
             <div class="row2">
                 <div class="input-box">
                     <label>Size</label>
-                    <select name="size" required>
-                        <option value="" disabled selected>Select Size</option>
-                    </select>
+                    <input type="number" name="size" placeholder="Enter Size" required>
                 </div>
                 <div class="input-box">
                     <label>Brand Name</label>
@@ -168,7 +127,7 @@ $conn->close();
                         <option value="" disabled selected>Select Brand</option>
                         <?php
                         if ($suppliers_result->num_rows > 0) {
-                            while ($row = $suppliers_result->fetch_assoc()) {
+                            while($row = $suppliers_result->fetch_assoc()) {
                                 echo "<option value='" . $row['sup_id'] . "'>" . htmlspecialchars($row['sup_brand']) . "</option>";
                             }
                         }
@@ -177,7 +136,6 @@ $conn->close();
                 </div>
             </div>
             <div class="row3">
-                <input type="hidden" name="status" value="Pending">
                 <div class="input-box">
                     <label>Quantity</label>
                     <input type="number" name="quantity" placeholder="Enter Quantity" required>
@@ -190,6 +148,7 @@ $conn->close();
             <button type="submit">Submit</button>
         </form>
     </div>
+
     <script>
         // Open .dropdown-container by default
         document.querySelector(".dropdown-container").style.display = "block";

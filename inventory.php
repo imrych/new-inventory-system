@@ -75,9 +75,9 @@ $result = $conn->query($sql);
                         echo "<td>₱" . number_format($row["price"], 2) . "</td>";
                         echo "<td>
                             <button onclick=\"window.location.href='editproduct.php?id=" . $row["inventory_id"] . "'\" style=\"margin-right: 0px; padding: 3px 9px; font-weight: bold; border-radius: 4px; background-color: #F59607; color: #ffffff; border: none;\">
-                            <i class=\"fa-regular fa-pen-to-square\" style=\"color: #ffffff;\"></i>
+                            <i class=\"fa-regular fa-pen-to-square\" style=\"color: #ffffff;\"></i></button>
                             <button onclick=\"deleteProduct(" . $row["inventory_id"] .  ")\" style=\"margin-right: 0px; padding: 3px 9px; font-weight: bold; border-radius: 4px; background-color: #DC2626; color: #ffffff; border: none;\">
-                            <i class=\"fa-solid fa-xmark\" style=\"color: #ffffff;\"></i>
+                            <i class=\"fa-solid fa-xmark\" style=\"color: #ffffff;\"></i></button>
                             </td>";
                         echo "</tr>";
                     }
