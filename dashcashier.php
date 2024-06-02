@@ -11,8 +11,8 @@ include 'includes/connection.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/dashboard.css">
     <title>Dashboard</title>
-    
 <body>
+
 <div class="dashboard_content">
         <div class="boxes">
             <div class="card">
@@ -54,38 +54,47 @@ include 'includes/connection.php';
             <div class="card">
                 <i class="fa fa-tags"></i>
                 <div class="first_text_total">No. of sales</div>
-                <div class="text_total">
-                    100 Sales</div>
-            </div>
+                <?php   
+                    $query = "SELECT sales_ID FROM sales "; 
+                    $query_run = mysqli_query($conn,$query);
+
+                    $row = mysqli_num_rows($query_run);  
+                    echo "$row Sales";
+                ?>
         </div>
 </div>
+
     <div class="table_names">
         <div class="first_part_content">
-            <h2>Highest Selling Products</h2>
-            <table class="first_table">
-                <tr>
-                    <th class="border-top-left">Title</th>
-                    <th>Total Sold</th>
-                    <th class="border-top-right">Total Quantity</th>
-                </tr>
-                <tr>
-                    <td>Apple</td>
-                    <td>3</td>
-                    <td>118</td>
+        <h2>Highest Selling Products</h2>
+<table class="first_table">
+    <tr>
+        <th class="border-top-left">Product</th>
+        <th>Total Sold</th>
+        <th class="border-top-right">Total Quantity</th>
+    </tr>
+    <?php 
+    $sql = "SELECT sale_product, SUM(sale_total) AS sale_total, SUM(sold_quantity) AS sold_quantity 
+            FROM sales 
+            GROUP BY sale_product 
+            ORDER BY sale_total DESC 
+            LIMIT 3";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            echo '<tr>';
+            echo '<td>' . htmlspecialchars($row['sale_product']) . '</td>';
+            echo '<td>' . htmlspecialchars($row['sale_total']) . '</td>';
+            echo '<td>' . htmlspecialchars($row['sold_quantity']) . '</td>';
+            echo '</tr>';
+        }
+    } else {
+        echo '<tr><td colspan="3">No records found</td></tr>';
+    }
+    
+    ?>
+</table>
 
-                </tr>
-                <tr>
-                    <td>Banana</td>
-                    <td>1</td>
-                    <td>115</td>
-                </tr>
-                <tr>
-                    <td class="border-bottom-left">Mango</td>
-                    <td>1</td>
-                    <td class="border-bottom-right">111</td>
-
-                </tr>
-            </table>
         </div>
 
         <div class="second_part_content">
@@ -93,28 +102,29 @@ include 'includes/connection.php';
             <table class="second_table">
                 <tr>
                     <th class="border-top-left">#</th>
-                    <th>Product Name</th>
+                    <th>Product</th>
                     <th>Date</th>
                     <th class="border-top-right">Total Sales</th>
                 </tr>
-                <tr>
-                    <td>1</td>
-                    <td>3</td>
-                    <td>118</td>
-                    <td>111</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>1</td>
-                    <td>115</td>
-                    <td>111</td>
-                </tr>
-                <tr>
-                    <td class="border-bottom-left">3</td>
-                    <td>1</td>
-                    <td>111</td>
-                    <td class="border-bottom-right">118</td>
-                </tr>
+                <?php 
+            $sql = "SELECT sale_product, sale_date, sale_total FROM sales ORDER BY sales_id DESC LIMIT 3";
+            $result = $conn->query($sql);
+            if ($result->num_rows > 0) {
+            $counter = 1;
+            while ($row = $result->fetch_assoc()) {
+                echo '<tr>';
+                echo '<td>' . $counter . '</td>';
+                echo '<td>' . htmlspecialchars($row['sale_product']) . '</td>';
+                echo '<td>' . htmlspecialchars($row['sale_date']) . '</td>';
+                echo '<td>' . htmlspecialchars($row['sale_total']) . '</td>';
+                echo '</tr>';
+                $counter++;
+            }
+        } else {
+            echo '<tr><td colspan="4">No records found</td></tr>';
+        }
+        
+                ?>
             </table>
         </div>
         <div class="third_part_content">
@@ -122,7 +132,7 @@ include 'includes/connection.php';
             <table class="third_table">
                 <tr>
                     <th class="border-top-left" class="border-top-right">#</th>
-                    <th>Product Name</th>
+                    <th>Product </th>
                     <th>Category</th>
                 </tr>
 
@@ -144,8 +154,14 @@ include 'includes/connection.php';
         } 
                 ?>
             </table> 
+            
         </div>      
+                
+        
+
     </div>
 </div>
+
 </body>
+
 </html>
