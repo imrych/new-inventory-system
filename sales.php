@@ -55,8 +55,8 @@ $total_sales = 0;
                         echo "<td>" . $row["sale_product"]. "</td>";
                         echo "<td>" . $row["sale_size"] . "</td>";
                         echo "<td>" . $row["sold_quantity"] . "</td>";
-                        echo "<td>" . $row["sale_total"] . "</td>";
-                        echo "<td>" . $row["sale_date"] . "</td>";
+                        echo "<td>₱" . number_format($row["sale_total"], 2) . "</td>";
+                        echo "<td>" . date('M j, Y', strtotime($row['sale_date'])) . "</td>";
                         echo "</tr>";
                     }
                 } else {
