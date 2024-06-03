@@ -35,3 +35,13 @@ h1 {
     text-align: center;
 }
 
+.user-and-date {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    gap: 15px;
+}
+
