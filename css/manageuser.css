@@ -3,6 +3,7 @@
     flex-direction: row;
     gap: 30px;
 }
+
 .group_table {
     height: 100%;
     box-shadow: 1px 0 2px 2px rgba(0, 0, 0, 0.2);
@@ -10,6 +11,7 @@
     overflow: hidden;
     border-collapse: collapse;
 }
+
 h2 {
     font-size: 23px;
     font-weight: 600;
@@ -17,8 +19,10 @@ h2 {
 }
 
 td, th .group_table {
-    padding:8px;
+    padding: 8px;
     text-align: left;
+    padding-right: 90px;
+
 }
 thead {
     background-color: #FFC56D;
@@ -28,10 +32,8 @@ th {
     color: rgb(0, 0, 0);
     font-size: 16px;
     font-weight: 70px;
-    text-align: left;
     padding: 10px;
-    border: 1px solid lightgray;
-    border-collapse: collapse;
+    text-align: left;
 }
 td {
     color: rgb(0, 0, 0);
@@ -41,12 +43,12 @@ td {
 }
 .group_content {
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
     display: flex;
     margin-left: 330px;
 }
 button{
-    margin-top: 5px;
+    margin-top: 20px;
     background-color: #FFC56D;
     display: inline-block;
     appearance: none;
@@ -56,13 +58,13 @@ button{
     cursor: pointer;
     font-size: 14px;
     font-weight: 500;
-    line-height: 15px;
-    padding: 10px 20px;
+    line-height: 20px;
+    padding: 6px 16px;
 }
+
 .title_and_button {
     display: flex;
     flex-direction: row;
-    gap: 738px;
+    gap: 890px;
     margin-top: 40px;
 }
-@media (max-width: 768px) {}
