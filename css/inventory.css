@@ -21,6 +21,7 @@ h2 {
 td, th .group_table {
     padding: 8px;
     text-align: left;
+    padding-right: 90px;
 
 }
 thead {
@@ -64,6 +65,6 @@ button{
 .title_and_button {
     display: flex;
     flex-direction: row;
-    gap: 680px;
+    gap: 830px;
     margin-top: 40px;
 }
