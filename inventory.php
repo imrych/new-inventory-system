@@ -76,27 +76,29 @@ $result = $conn->query($sql);
                         echo "<td>
                             <button onclick=\"window.location.href='editproduct.php?id=" . $row["inventory_id"] . "'\" style=\"margin-right: 0px; padding: 3px 9px; font-weight: bold; border-radius: 4px; background-color: #F59607; color: #ffffff; border: none;\">
                             <i class=\"fa-regular fa-pen-to-square\" style=\"color: #ffffff;\"></i></button>
-                            <button onclick=\"deleteProduct(" . $row["inventory_id"] .  ")\" style=\"margin-right: 0px; padding: 3px 9px; font-weight: bold; border-radius: 4px; background-color: #DC2626; color: #ffffff; border: none;\">
-                            <i class=\"fa-solid fa-xmark\" style=\"color: #ffffff;\"></i></button>
+                            <button onclick=\"deleteProduct(" . $row["inventory_id"] . ")\" style=\"margin-right: 0px; padding: 3px 9px; font-weight: bold; border-radius: 4px; background-color: #DC143C; color: #ffffff; border: none;\">
+                            <i class=\"fa-solid fa-trash\" style=\"color: #ffffff;\"></i></button>
                             </td>";
                         echo "</tr>";
                     }
                 } else {
-                    echo "<tr><td colspan='8'>No records found</td></tr>";
+                    echo "<tr><td colspan='8'>No products found</td></tr>";
                 }
-                $conn->close();
                 ?>
             </tbody>
         </table>
     </div>
 </div>
-
 <script>
 function deleteProduct(id) {
-    if (confirm("Are you sure you want to delete this product?")) {
+    if (confirm('Are you sure you want to delete this product?')) {
         window.location.href = 'inventory.php?action=delete&id=' + id;
     }
 }
 </script>
 </body>
 </html>
+
+<?php
+$conn->close();
+?>
