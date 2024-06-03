@@ -1,10 +1,54 @@
-.table-container {
-    width: 70%;
-    margin-left: 300px;
-    overflow-x: auto;
+.group_names {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
 }
-button {
-    margin-bottom: 20px;
+
+.group_table {
+    height: 100%;
+    box-shadow: 1px 0 2px 2px rgba(0, 0, 0, 0.2);
+    border-radius: 10px 10px 0 0;
+    overflow: hidden;
+    border-collapse: collapse;
+}
+
+h2 {
+    font-size: 23px;
+    font-weight: 600;
+    color: #000000;
+}
+
+td, th .group_table {
+    padding: 8px;
+    text-align: left;
+    padding-right: 90px;
+
+}
+thead {
+    background-color: #FFC56D;
+    box-shadow: 1px 0 2px 2px rgba(0, 0, 0, 0.3);
+}
+th {
+    color: rgb(0, 0, 0);
+    font-size: 16px;
+    font-weight: 70px;
+    padding: 10px;
+    text-align: left;
+}
+td {
+    color: rgb(0, 0, 0);
+    font-size: 13px;
+    border-collapse: collapse;
+    border: 1px solid lightgray;
+}
+.group_content {
+    flex-direction: column;
+    gap: 15px;
+    display: flex;
+    margin-left: 330px;
+}
+button{
+    margin-top: 20px;
     background-color: #FFC56D;
     display: inline-block;
     appearance: none;
@@ -15,63 +59,12 @@ button {
     font-size: 14px;
     font-weight: 500;
     line-height: 20px;
-    list-style: none;
-    padding: 9px 15px;
- }
- h2 {
-    font-size: 23px;
-    font-weight: 600;
-    color: #000000;
-}
-
-.table-container {
-    width: 70%;
-    margin-left: 330px;
-}
-table {
-    width: 100%;
-    border-spacing: 0;
-    overflow: hidden;
-    border-collapse: collapse;
-    border-radius: 10px 10px 0 0;
-}
-thead {
-    height: 100%;
-    box-shadow: 1px 0 2px 2px rgba(0, 0, 0, 0.2);
-    overflow: hidden;
-    border-collapse: collapse;
-    background-color: #FFC56D;
- }
-th, td {
-    padding: 10px;
-    text-align: left;
-}
-td {
-    color: rgb(0, 0, 0);
-    font-size: 13px;
-    border-collapse: collapse;
-    border: 1px solid lightgray;
-}
-/* Header Styles */
-th {
-    color: rgb(0, 0, 0);
-    font-size: 16px;
-    font-weight: 70px;
-    padding: 10px;
-    text-align: left;
-    border-collapse: collapse;
-}
-
-/* Row Hover Effect */
-tbody:hover {
-    background-color: #f2f2f2;
+    padding: 6px 16px;
 }
 
 .title_and_button {
     display: flex;
     flex-direction: row;
-    gap: 74%;
+    gap: 970px;
     margin-top: 40px;
-
 }
-@media (max-width: 768px) {}
