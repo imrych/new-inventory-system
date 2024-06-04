@@ -3,39 +3,72 @@ include 'includes/connection.php';
 include 'nav.php';
 include 'topnav.php';
 
-
-
 if (isset($_POST['submit'])) {
     $customer_name = $_POST['customer_name'];
     $product = $_POST['product'];
     $brand = $_POST['brand_name'];
+    $category = $_POST['category']; // Added category variable
     $quantity = $_POST['quantity'];
     $size = $_POST['size'];
     $order_date = $_POST['order_date'];
     $staff = $_SESSION['name'];
 
-    
     if ($conn) {
-        // Prepare SQL statement
-        $insert_sql = "INSERT INTO `customers` (customer_name, product, brand, size, quantity, order_date, staff) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        // Start a transaction
+        $conn->begin_transaction();
+
+        // Prepare SQL statement to insert into customers table
+        $insert_sql = "INSERT INTO customers (customer_name, product, brand, category, size, quantity, order_date, staff, price) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($insert_sql);
-        
-        // Check if the statement was prepared successfully
+
         if ($stmt) {
-            // Bind parameters
-            $stmt->bind_param("sssisss", $customer_name, $product, $brand, $size, $quantity, $order_date, $staff );
-            
-            // Execute the statement
-            if ($stmt->execute()) {
-                echo "<script>alert('Order successfully added');</script>";
-                echo "<script>
-                        setTimeout(function() {
-                            window.location.href = 'customers.php';
-                        }, 1000); // 1000 milliseconds delay
-                      </script>";
-                exit();
+            // Fetch the price of the selected product from the inventory
+            $price_sql = "SELECT price FROM inventory WHERE product_name = ?";
+            $price_stmt = $conn->prepare($price_sql);
+            if ($price_stmt) {
+                $price_stmt->bind_param("s", $product);
+                $price_stmt->execute();
+                $price_result = $price_stmt->get_result();
+                $row = $price_result->fetch_assoc();
+                $price = $row['price'];
+
+                // Calculate total price
+                $total_price = $price * $quantity;
+
+                // Bind parameters and execute insert statement
+                $stmt->bind_param("ssssissss", $customer_name, $product, $brand, $category, $size, $quantity, $order_date, $staff, $total_price);
+                if ($stmt->execute()) {
+                    // Update the inventory quantity
+                    $update_sql = "UPDATE inventory SET order_quantity = order_quantity - ? WHERE product_name = ?";
+                    $update_stmt = $conn->prepare($update_sql);
+                    if ($update_stmt) {
+                        $update_stmt->bind_param("is", $quantity, $product);
+                        if ($update_stmt->execute()) {
+                            $conn->commit(); // Commit the transaction
+                            echo "<script>alert('Order successfully added. Total Price: $total_price');</script>";
+                            echo "<script>
+                                    setTimeout(function() {
+                                        window.location.href = 'customers.php';
+                                    }, 1000); // 1000 milliseconds delay
+                                  </script>";
+                            exit();
+                        } else {
+                            $conn->rollback(); // Rollback the transaction if update fails
+                            echo "Error updating inventory quantity: " . $update_stmt->error;
+                        }
+                        $update_stmt->close();
+                    } else {
+                        $conn->rollback(); // Rollback the transaction if update statement preparation fails
+                        echo "Error preparing update statement: " . $conn->error;
+                    }
+                } else {
+                    $conn->rollback(); // Rollback the transaction if customer insertion fails
+                    echo "Error adding customer order: " . $stmt->error;
+                }
+                $price_stmt->close();
             } else {
-                echo "Error: " . $stmt->error;
+                $conn->rollback(); // Rollback the transaction if price statement preparation fails
+                echo "Error preparing price statement: " . $conn->error;
             }
             $stmt->close();
         } else {
@@ -53,6 +86,10 @@ $inventory_result = $conn->query($inventory_sql);
 // Fetch brand names from the database
 $brands_sql = "SELECT sup_id, sup_brand FROM suppliers";
 $brands_result = $conn->query($brands_sql);
+
+// Fetch categories from the database
+$categories_sql = "SELECT DISTINCT category FROM inventory";
+$categories_result = $conn->query($categories_sql);
 
 $conn->close();
 ?>
@@ -101,7 +138,7 @@ $conn->close();
                         <?php
                         if ($inventory_result->num_rows > 0) {
                             while($row = $inventory_result->fetch_assoc()) {
-                                echo "<option value='" . $row['inventory_id'] . "'>" . htmlspecialchars($row['product_name']) . "</option>";
+                                echo "<option value='" . $row['product_name'] . "'>" . htmlspecialchars($row['product_name']) . "</option>";
                             }
                         }
                         ?>
@@ -115,6 +152,19 @@ $conn->close();
                         if ($brands_result->num_rows > 0) {
                             while($row = $brands_result->fetch_assoc()) {
                                 echo "<option value='" . $row['sup_brand'] . "'>" . htmlspecialchars($row['sup_brand']) . "</option>";
+                            }
+                        }
+                        ?>
+                    </select>
+                </div>
+                <div class="input-box">
+                    <label>Category</label>
+                    <select name="category" required>
+                        <option value=""disabled selected>Select Category</option>
+                        <?php
+                        if ($categories_result->num_rows > 0) {
+                            while($row = $categories_result->fetch_assoc()) {
+                                echo "<option value='" . htmlspecialchars($row['category']) . "'>" . htmlspecialchars($row['category']) . "</option>";
                             }
                         }
                         ?>
@@ -142,3 +192,4 @@ $conn->close();
     </div>
 </body>
 </html>
+

@@ -1,5 +1,5 @@
 <?php
-include 'connection.php'; 
+include 'connection.php';
 
 // Check if all required data is received
 if (isset($_POST['order_id'], $_POST['status'], $_POST['product'], $_POST['brand'], $_POST['category'], $_POST['size'], $_POST['quantity'], $_POST['price'])) {
@@ -38,7 +38,7 @@ if (isset($_POST['order_id'], $_POST['status'], $_POST['product'], $_POST['brand
             if ($result->num_rows > 0) {
                 // Product exists, update the quantity and price
                 $row = $result->fetch_assoc();
-                $new_quantity = $row['order_quantity'] + $quantity;
+                $new_quantity = $row['order_quantity'] + $quantity; // Adjusted column name for quantity
                 $update_inventory_sql = "UPDATE inventory SET order_quantity = ?, price = ? WHERE inventory_id = ?";
                 $stmt_update_inventory = $conn->prepare($update_inventory_sql);
                 if (!$stmt_update_inventory) {
@@ -59,7 +59,7 @@ if (isset($_POST['order_id'], $_POST['status'], $_POST['product'], $_POST['brand
                     echo 'error preparing insert inventory statement: ' . $conn->error;
                     exit();
                 }
-                $stmt_insert_inventory->bind_param("ssssii", $product, $brand, $category, $size, $quantity, $price);
+                $stmt_insert_inventory->bind_param("sssidi", $product, $brand, $category, $size, $quantity, $price);
                 if ($stmt_insert_inventory->execute()) {
                     echo 'success';
                 } else {

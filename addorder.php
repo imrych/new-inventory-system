@@ -36,13 +36,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $product_id = $_POST['product_id'];
     $cat_id = $_POST['cat_id'];
     $size = $_POST['size'];
+    $price = $_POST['price']; // Price directly from user input
     $brand_name = $_POST['brand_name'];
     $quantity = $_POST['quantity'];
     $order_date = $_POST['order_date'];
     $staff = $_SESSION['name'];
 
-    $insert_sql = "INSERT INTO `order` (product, brand, category, size, quantity, staff, order_date) 
-                   VALUES ('$product_id', '$brand_name', '$cat_id', '$size', '$quantity', '$staff', '$order_date')";
+    $insert_sql = "INSERT INTO `order` (product, brand, category, size, price, quantity, staff, order_date) 
+                   VALUES ('$product_id', '$brand_name', '$cat_id', '$size', '$price', '$quantity', '$staff', '$order_date')";
 
     if ($conn->query($insert_sql) === TRUE) {
         echo "<script>alert('Order successfully added');</script>";
@@ -71,9 +72,14 @@ $conn->close();
     <script>
         function validateForm() {
             var size = document.forms["orderForm"]["size"].value;
+            var price = document.forms["orderForm"]["price"].value;
             var quantity = document.forms["orderForm"]["quantity"].value;
             if (isNaN(size) || size <= 0) {
                 alert("Size must be a positive number.");
+                return false;
+            }
+            if (isNaN(price) || price <= 0) {
+                alert("Price must be a positive number.");
                 return false;
             }
             if (isNaN(quantity) || quantity <= 0) {
@@ -138,7 +144,12 @@ $conn->close();
                     </select>
                 </div>
             </div>
+            
             <div class="row3">
+                <div class="input-box">
+                    <label>Price</label>
+                    <input type="number" name="price" placeholder="Enter Price" required>
+                </div>
                 <div class="input-box">
                     <label>Quantity</label>
                     <input type="number" name="quantity" placeholder="Enter Quantity" required>
@@ -158,3 +169,5 @@ $conn->close();
     </script>
 </body>
 </html>
+
+ 

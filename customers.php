@@ -43,10 +43,11 @@ if (!$result) {
                     <th>Customer</th>
                     <th>Product</th>
                     <th>Brand</th>
+                    <th>Category</th>
                     <th>Size</th>
                     <th>Quantity</th>
+                    <th>Total</th>
                     <th>Order Date</th>
-                    <th>Status</th>
                     <th>Staff</th>
                     <th>Action</th>
                 </tr>
@@ -61,15 +62,14 @@ if (!$result) {
                         // Update the column names to match your actual table structure
                         echo "<td>". $row["product"]. "</td>";
                         echo "<td>". $row["brand"]. "</td>";
+                        echo "<td>". $row["category"]. "</td>"; //category
                         echo "<td>". $row["size"]. "</td>";
                         echo "<td>". $row["quantity"]. "</td>";
+                        echo "<td>". $row["price"]. "</td>";
                         echo "<td>". $row["order_date"]. "</td>";
-                        echo "<td>". $row["status"]. "</td>";
                         echo "<td>". $row["staff"]. "</td>";
                         echo "<td>
-                                <button onclick=\"window.location.href='editcustomer.php?id=". $row["customer_id"]. "'\" style=\"margin-right: 0px; padding: 3px 9px; font-weight: bold; border-radius: 4px; background-color: #F59607; color: #ffffff; border: none;\">
-                                    <i class=\"fa-regular fa-pen-to-square\" style=\"color: #ffffff;\"></i>
-                                </button>
+                               
                                 <button onclick=\"deleteCustomer(". $row["customer_id"]. ")\" style=\"margin-right: 0px; padding: 3px 9px; font-weight: bold; border-radius: 4px; background-color: #DC2626; color: #ffffff; border: none;\">
                                     <i class=\"fa-solid fa-xmark\" style=\"color: #ffffff;\"></i>
                                 </button>

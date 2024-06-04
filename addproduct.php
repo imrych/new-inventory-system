@@ -32,12 +32,10 @@ $categories_result = $conn->query($categories_sql);
         var productName = document.forms["productForm"]["product_name"].value.trim();
         var size = document.forms["productForm"]["size"].value.trim();
         var quantity = document.forms["productForm"]["quantity"].value.trim();
-        var price = document.forms["productForm"]["price"].value.trim();
 
         var productNameRegex = /^[a-zA-Z0-9\s]+$/;
         var sizeRegex = /^\d{1,3}$/;
         var quantityRegex = /^\d{1,3}$/;
-        var priceRegex = /^\₱?\d{1,6}$/;
 
         if (!productNameRegex.test(productName)) {
             alert("Product Name can only contain letters and numbers.");
@@ -51,22 +49,8 @@ $categories_result = $conn->query($categories_sql);
             alert("Quantity must be an integer with a maximum of 3 digits.");
             return false;
         }
-        if (!priceRegex.test(price)) {
-            alert("Price must be a number with a maximum of 6 digits, including a pesos sign.");
-            return false;
-        }
 
         return true;
-    }
-
-    function formatPriceInput(event) {
-        var input = event.target;
-        var value = input.value.replace(/[^0-9]/g, '');
-        if (value) {
-            input.value = '₱' + value;
-        } else {
-            input.value = '';
-        }
     }
 </script>
 </head>
@@ -114,10 +98,6 @@ $categories_result = $conn->query($categories_sql);
             </div>
         </div>
         <div class="row3">
-            <div class="input-box">
-                <label for="price">Price</label>
-                <input type="text" id="price" name="price" placeholder=" ₱ Enter Price" required oninput="formatPriceInput(event)">
-            </div>
             <div class="input-box">
                 <label for="brand_name">Brand Name</label>
                 <div class="column">
