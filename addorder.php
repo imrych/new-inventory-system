@@ -39,11 +39,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $price = $_POST['price']; // Price directly from user input
     $brand_name = $_POST['brand_name'];
     $quantity = $_POST['quantity'];
+    $price= $_POST['price'];
     $order_date = $_POST['order_date'];
     $staff = $_SESSION['name'];
 
-    $insert_sql = "INSERT INTO `order` (product, brand, category, size, price, quantity, staff, order_date) 
-                   VALUES ('$product_id', '$brand_name', '$cat_id', '$size', '$price', '$quantity', '$staff', '$order_date')";
+    $insert_sql = "INSERT INTO `order` (product, brand, category, size, quantity, staff, order_date) 
+                   VALUES ('$product_id', '$brand_name', '$cat_id', '$size', '$quantity', '$staff', '$order_date')";
 
     if ($conn->query($insert_sql) === TRUE) {
         echo "<script>alert('Order successfully added');</script>";
@@ -154,6 +155,9 @@ $conn->close();
                     <label>Quantity</label>
                     <input type="number" name="quantity" placeholder="Enter Quantity" required>
                 </div>
+                <div class="input-box">
+                    <label>Price</label>
+                    <input type="number" name="price" placeholder="Enter Price" step="0.01" required>
                 <div class="input-box">
                     <label>Order Date</label>
                     <input type="date" name="order_date" required>

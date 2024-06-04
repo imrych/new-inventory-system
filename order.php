@@ -40,19 +40,15 @@ $result = $conn->query($sql);
             xhr.send("order_id=" + order_id + "&status=" + status + "&product=" + encodeURIComponent(product) + "&brand=" + encodeURIComponent(brand) + "&category=" + encodeURIComponent(category) + "&size=" + encodeURIComponent(size) + "&quantity=" + quantity + "&price=" + price);
         }
 
-        function editOrder(order_id, status) {
-            if (status !== 'delivered') {
-                window.location.href = "editorder.php?id=" + order_id;
-            } else {
-                alert("Cannot edit a delivered order.");
-            }
+        function editOrder(order_id) {
+            window.location.href = "editorder.php?id=" + order_id;
         }
 
         function deleteOrder(order_id) {
             if (confirm("Are you sure you want to delete this order?")) {
                 window.location.href = "deleteorder.php?id=" + order_id;
             }
-        }
+        }}
     </script>
 </head>
 
@@ -101,23 +97,17 @@ $result = $conn->query($sql);
                             echo "<td>" . $row["staff"] . "</td>";  
                             echo "<td>" . date("d M Y", strtotime($row["order_date"])) . "</td>";
                             echo "<td>
-        <select onchange=\"updateStatus(" . $order_id . ", this.value, '" . $product . "', '" . $brand . "', '" . $category . "', '" . $size . "', " . $quantity . ", " . $row["price"] . ")\">";
-if ($status == 'pending') {
-    echo "<option value='pending' selected>Pending</option>";
-    echo "<option value='delivered'>Delivered</option>";
-} else if ($status == 'delivered') {
-    echo "<option value='delivered' selected>Delivered</option>";
-}
-echo "</select>
-      </td>";
-
-                            echo "<td>";
-                            if ($status !== 'delivered') {
-                                echo "<button onclick=\"editOrder(" . $order_id . ", '" . $status . "')\" style=\"margin-right: 0px; padding: 3px 9px; font-weight: bold; border-radius: 4px; background-color: #F59607; color: #ffffff; border: none;\">
+                                    <select onchange=\"updateStatus(" . $order_id . ", this.value, '" . $product . "', '" . $brand . "', '" . $category . "', '" . $size . "', " . $quantity . ", " . $row["price"] . ")\">
+                                        <option value='pending'" . ($row['status'] == 'pending' ? ' selected' : '') . ">Pending</option>
+                                        <option value='delivered'" . ($row['status'] == 'delivered' ? ' selected' : '') . ">Delivered</option>
+                                    </select>
+                                  </td>";
+                            
+                            echo "<td>
+                                    <button onclick=\"editOrder(" . $order_id . ")\" style=\"margin-right: 0px; padding: 3px 9px; font-weight: bold; border-radius: 4px; background-color: #F59607; color: #ffffff; border: none;\">
                                         <i class=\"fa-regular fa-pen-to-square\" style=\"color: #ffffff;\"></i>
-                                    </button>";  
-                            }              
-                            echo "<button onclick=\"deleteOrder(" . $order_id . ")\" style=\"margin-right: 0px; padding: 3px 9px; font-weight: bold; border-radius: 4px; background-color: #DC2626; color: #ffffff; border: none;\">
+                                    </button>
+                                    <button onclick=\"deleteOrder(" . $order_id . ")\" style=\"margin-right: 0px; padding: 3px 9px; font-weight: bold; border-radius: 4px; background-color: #DC2626; color: #ffffff; border: none;\">
                                         <i class=\"fa-solid fa-xmark\" style=\"color: #ffffff;\"></i> 
                                     </button>                          
                                  </td>";

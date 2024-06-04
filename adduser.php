@@ -89,7 +89,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             </div>
         </div>
-        <button type="submit" name="submit">Submit</button>
+        <button type="submit" style=" width: 20%;
+    padding: 5px;
+    background: #f2af4a;
+    border: none;
+    outline: none;
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 10px;
+    margin-left: 80%;">Submit</button>
     </form>
 </div>
 <script>

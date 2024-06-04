@@ -58,10 +58,25 @@ $categories_result = $conn->query($categories_sql);
 <body>
 <div class="container">
     <form name="productForm" action="addproduct.php" method="post" onsubmit="return validateForm()">
+    <div class="button_title">
     <h4>Add New Product</h4>
-    <button type="button" class="custom-close-btn" onclick="window.location.href='manageuser.php'">
+    <button type="button" class="custom-close-btn" style=" width: 40px;
+    height: 40px;
+    background: #f2af4a;
+    border: none;
+    outline: none;
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;" onclick="window.location.href='manageuser.php'">
         <i class="fa-solid fa-xmark"></i>
     </button>
+</div>
         <div class="row1">
             <div class="input-box">
                 <label for="product_name">Product Name</label>
@@ -118,7 +133,17 @@ $categories_result = $conn->query($categories_sql);
                 </div>
             </div>
         </div>
-        <button type="submit">Submit</button>
+        <button type="submit" style=" width: 20%;
+    padding: 5px;
+    background: #f2af4a;
+    border: none;
+    outline: none;
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 10px;
+    margin-left: 80%;">Submit</button>
     </form>
 </div>
 </body>

@@ -13,42 +13,73 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT * FROM sales";
+$sql = "SELECT * FROM sales ORDER BY sale_date"; // Ensure sales data is sorted by date
 $result = $conn->query($sql);
 $total_sales = 0;
+$grand_total = 0;
 $sales_data = '';
+$current_month = null; // Track current month
+$sub_total = 0; // Track subtotal for each month
 
 if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
+        $sale_month = date('F Y', strtotime($row["sale_date"]));
+        if ($current_month != $sale_month) {
+            // If month changes, start a new table
+            if ($current_month !== null) {
+                // Close previous table and add subtotal
+                $sales_data .= "<tr class='subtotal-row'>
+                                    <td colspan='5' class='subtotal-label'><strong>Subtotal</strong></td>
+                                    <td>" . number_format($sub_total, 2) . "</td>
+                                </tr></tbody></table>"; 
+                $grand_total += $sub_total; // Add subtotal to grand total
+                $sub_total = 0; // Reset subtotal
+            }
+            $current_month = $sale_month;
+            $sales_data .= "<div class='sub-header'>Sales for $current_month</div>";
+            $sales_data .= "<table>
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Product</th>
+                                        <th>Size</th>
+                                        <th>Quantity</th>
+                                        <th>Total Sale</th>
+                                        <th>Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>";
+        }
+
+        $sub_total += $row["sale_total"];
         $total_sales += $row["sale_total"];
         $sales_data .= "<tr>
-            <td>{$row['sales_id']}</td>
-            <td>{$row['sale_product']}</td>
-            <td>{$row['sale_size']}</td>
-            <td>{$row['sold_quantity']}</td>
-            <td>&#8369;" . number_format($row['sale_total'], 2) . "</td>
-            <td>" . date('M j, Y', strtotime($row['sale_date'])) . "</td>
-        </tr>";
+                            <td>{$row['sales_id']}</td>
+                            <td>{$row['sale_product']}</td>
+                            <td>{$row['sale_size']}</td>
+                            <td>{$row['sold_quantity']}</td>
+                            <td>" . number_format($row['sale_total'], 2) . "</td>
+                            <td>" . date('d-m-Y', strtotime($row['sale_date'])) . "</td>
+                        </tr>";
     }
+    $grand_total += $sub_total; // Add last month's subtotal to grand total
+    $sales_data .= "<tr class='subtotal-row'>
+                        <td colspan='5' class='subtotal-label'><strong>Subtotal</strong></td>
+                        <td>" . number_format($sub_total, 2) . "</td>
+                    </tr></tbody></table>"; // Close the last table and add subtotal
 } else {
-    $sales_data .= "<tr><td colspan='6'>No records found</td></tr>";
-}
-
-// Fetching month and year from sales table
-$sql_month_year = "SELECT DISTINCT MONTH(sale_date) AS month, YEAR(sale_date) AS year FROM sales";
-$result_month_year = $conn->query($sql_month_year);
-if ($result_month_year->num_rows > 0) {
-    $row_month_year = $result_month_year->fetch_assoc();
-    $month = date("F", mktime(0, 0, 0, $row_month_year["month"], 1));
-    $year = $row_month_year["year"];
-    $sub_header = "<div class='sub-header'>For <strong>$month $year</strong></div>";
-} else {
-    $sub_header = "<div class='sub-header'>For Month Year</div>";
+    $sales_data .= "<tr><td colspan='5'>No records found</td></tr>";
 }
 
 $conn->close();
 
-$total_sales_formatted = "&#8369;" . number_format($total_sales, 2);
+$total_sales_formatted = number_format($total_sales, 2);
+$grand_total_formatted = number_format($grand_total, 2);
+
+// Convert image to Base64
+$image_path = 'C:/xampp/htdocs/new-inventory-system/ping logo.png';
+$image_data = base64_encode(file_get_contents($image_path));
+$src = 'data:image/png;base64,' . $image_data;
 
 // DOMPDF Configuration
 $options = new Options();
@@ -57,7 +88,6 @@ $options->set('isRemoteEnabled', true);
 
 $dompdf = new Dompdf($options);
 
-// HTML Content
 $html = "
 <!DOCTYPE html>
 <html lang='en'>
@@ -78,7 +108,19 @@ $html = "
         height: 95%;
         margin: auto;
         padding: 20px;
-        border: 1px solid black; /* Add border around the entire A4 page */
+        border: 1px solid black;
+        position: relative;
+    }
+
+    .watermark {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: -1;
+        opacity: 0.1;
+        width: 800px; /* Adjust width */
+        height: auto; /* Maintain aspect ratio */
     }
     
     /* Header styles */
@@ -98,23 +140,22 @@ $html = "
         font-weight: bold;
     }
     
-    .address {
-        text-align: left;
+    .info {
+        display: flex;
+        justify-content: space-between;
         margin-top: 10px;
+        margin-bottom:25px;
         line-height: 1.2;
     }
     
-    .address p {
+    .address p, .contact p {
         margin: 2px 0;
     }
     
-    .date {
-        text-align: right;
-        margin-top: 10px;
-    }
-    
-    .date p {
-        margin: 2px 0;
+    .contact {
+        text-align: left;
+        margin-left: 455px;
+        margin-top: -100px;
     }
     
     /* Table styles */
@@ -122,6 +163,7 @@ $html = "
         width: 100%;
         border-collapse: collapse;
         margin-top: 20px;
+        margin-bottom: 50px;
         border: 1px solid #000;
         font-family: 'Poppins', Arial, sans-serif; /* Use Poppins font */
     }
@@ -138,74 +180,46 @@ $html = "
         font-weight: bold;
     }
     
-    td:nth-child(odd) {
-        background-color: #F9F9F9;
-    }
-    
     .total-row {
-        font-weight: bold;
-        background-color: #F9F9F9;
+        border: 1px solid #000;
+        width: -50px;
     }
     
     .total-label {
         text-align: right;
+        font-weight: bold;
     }
     
-    /* Additional styles */
-    .footer {
-        margin-top: 20px;
-        text-align: left;
+    .underline {
+        text-decoration: underline;
+        font-weight: bold;
     }
-    
-    .footer p {
-        margin: 2px 0;
-    }
-    
-    .watermark {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 400px;
-        opacity: 0.1;
-        z-index: -1;
-    }
-</style>    
+
+    </style>
 </head>
 <body>
-    <div class='watermark'>
-        <img src='ping logo.png' alt='Ping Ping Fruit Dealer' width='500'> <!-- Adjusted image path -->
-    </div>
     <div class='container'>
+        <img src='$src' class='watermark' />
         <div class='header'>
-            <strong>SALES REPORT</strong>
+            <strong>MONTHLY SALES REPORT</strong>
         </div>
-        $sub_header
-        <div class='address'>
-            <p><strong>Ping Ping Fruit Dealer</strong><br>639 Aljo Crista Street, San Nicolas, Manila, Philippines<br>+112-334-665-2233</p>
+        <div class='info'>
+            <div class='address'>
+                <p><strong>Ping Ping Fruit Dealer</strong></p>
+                <p>103 Dona Pecita Bldg</p>
+                <p>639 Sto. Cristo St, San Nicolas,</p>
+                <p>Barangay 281, Manila, Philippines</p>
+            </div>
+            <div class='contact'>
+                <p><strong>Tel No.</strong> #245-6728 
+                <br><strong>Cell No.</strong> #0922-87104289</p>
+                <p><strong>REG TIN:</strong> 410-451-934-000</p>
+            </div>
         </div>
-        <div class='date'>
-            <p><strong>Date:</strong> " . date('F j - ', strtotime('first day of this month')) . date('F j', strtotime('last day of this month')) . "</p>
+        $sales_data
+        <div class='total-row'>
+            <p class='total-label'><strong>Grand Total</strong>: <span class='underline'>$grand_total_formatted</span></p>
         </div>
-        <table>
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Product</th>
-                    <th>Size</th>
-                    <th>Quantity</th>
-                    <th>Total Sale</th>
-                    <th>Date</th>
-                </tr>
-            </thead>
-            <tbody>
-                $sales_data
-                <tr class='total-row'>
-                    <td colspan='5' class='total-label'>Grand Total</td>
-                    <td>$total_sales_formatted</td>
-                </tr>
-            </tbody>
-        </table>
     </div>
 </body>
 </html>";

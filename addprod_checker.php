@@ -2,7 +2,7 @@
 include 'topnav.php';
 include 'checker_nav.php';
 include_once 'includes/config.php';
-include_once 'includes/addprodprocess_checker.php';
+include_once 'includes/process_addproduct.php';
 
 $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
@@ -10,6 +10,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+// Fetch supplier brands and default categories
 $suppliers_sql = "SELECT sup_brand FROM suppliers";
 $suppliers_result = $conn->query($suppliers_sql);
 
@@ -36,14 +37,10 @@ $categories_result = $conn->query($categories_sql);
         var productNameRegex = /^[a-zA-Z0-9\s]+$/;
         var sizeRegex = /^\d{1,3}$/;
         var quantityRegex = /^\d{1,3}$/;
-        var priceRegex = /^\₱?\d{1,6}(\.\d{1,2})?$/;
+        var priceRegex = /^\₱?\d{1,6}$/;
 
         if (!productNameRegex.test(productName)) {
             alert("Product Name can only contain letters and numbers.");
-            return false;
-        }
-        if (!brandNameRegex.test(brandName)) {
-            alert("Brand Name can only contain letters and numbers.");
             return false;
         }
         if (!sizeRegex.test(size)) {
@@ -55,7 +52,7 @@ $categories_result = $conn->query($categories_sql);
             return false;
         }
         if (!priceRegex.test(price)) {
-            alert("Price must be a number with a maximum of 6 digits and up to 2 decimal places, including a pesos sign.");
+            alert("Price must be a number with a maximum of 6 digits, including a pesos sign.");
             return false;
         }
 
@@ -64,9 +61,9 @@ $categories_result = $conn->query($categories_sql);
 
     function formatPriceInput(event) {
         var input = event.target;
-        var value = input.value.replace(/[^0-9.]/g, '');
+        var value = input.value.replace(/[^0-9]/g, '');
         if (value) {
-            input.value = '₱' + parseFloat(value).toFixed(2);
+            input.value = '₱' + value;
         } else {
             input.value = '';
         }
@@ -76,9 +73,26 @@ $categories_result = $conn->query($categories_sql);
 
 <body>
 <div class="container">
-    <form name="productForm" action="addprod_checker.php" method="post" onsubmit="return validateForm()">
-    <button class="close-btn" onclick="window.location.href='invcheck.php'">&times;</button>
+    <form name="productForm" action="addproduct.php" method="post" onsubmit="return validateForm()">
+    <div class="button_title">
     <h4>Add New Product</h4>
+    <button type="button" class="custom-close-btn" style=" width: 40px;
+    height: 40px;
+    background: #f2af4a;
+    border: none;
+    outline: none;
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;" onclick="window.location.href='manageuser.php'">
+        <i class="fa-solid fa-xmark"></i>
+    </button>
+</div>
         <div class="row1">
             <div class="input-box">
                 <label for="product_name">Product Name</label>
@@ -117,7 +131,7 @@ $categories_result = $conn->query($categories_sql);
         <div class="row3">
             <div class="input-box">
                 <label for="price">Price</label>
-                <input type="text" id="price" name="price" placeholder="Enter Price" required oninput="formatPriceInput(event)">
+                <input type="text" id="price" name="price" placeholder=" ₱ Enter Price" required oninput="formatPriceInput(event)">
             </div>
             <div class="input-box">
                 <label for="brand_name">Brand Name</label>
@@ -139,7 +153,17 @@ $categories_result = $conn->query($categories_sql);
                 </div>
             </div>
         </div>
-        <button type="submit">Submit</button>
+        <button type="submit" style=" width: 20%;
+    padding: 5px;
+    background: #f2af4a;
+    border: none;
+    outline: none;
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 10px;
+    margin-left: 80%;">Submit</button>
     </form>
 </div>
 </body>

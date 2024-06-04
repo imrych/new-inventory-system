@@ -4,33 +4,32 @@
     height: 80px;
     margin-left: 260px;
     display: flex;
-    gap: 61.7%;
+    gap: 67%;
     align-items: center;
     flex-direction: row;
 }
 
 h1 {
-    font-size: 28px;
-    font-weight: 400;
+    font-size: 32px;
+    font-weight: 500;
     color: #FAFAFA;
     margin-bottom: 20px;
     margin-top: 20px;
-    margin-left: 15px;
+    margin-left: 20px;
     padding: 15px;
 }
 
 .date {
-    font-size: 12px;
-    font-weight: 450;
-    color: #FAFAFA;
+    font-size: 13px;
+    color: #ffffff;
     margin-bottom: 15px;
     text-align: center;
 }
 
 .username {
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 450;
-    color: #FAFAFA;
+    color: #000000;
     margin-bottom: 15px;
     text-align: center;
 }
@@ -44,4 +43,3 @@ h1 {
     margin-right: 10px;
     gap: 15px;
 }
-

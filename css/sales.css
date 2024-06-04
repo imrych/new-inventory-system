@@ -34,7 +34,6 @@ th {
     font-weight: 70px;
     text-align: left;
     padding: 10px;
-    border: 1px solid lightgray;
     border-collapse: collapse;
 }
 td {
@@ -65,7 +64,7 @@ button{
 .title_and_button {
     display: flex;
     flex-direction: row;
-    gap: 830px;
+    gap: 995px;
     margin-top: 40px;
 
 }
