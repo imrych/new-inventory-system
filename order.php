@@ -4,7 +4,7 @@ include 'topnav.php';
 include 'includes/connection.php';
 
 // Fetch data from 'order' table
-$sql = "SELECT o.order_id, i.product_name AS product, s.sup_brand AS brand, o.category, o.size, o.quantity, i.price AS price, o.staff, o.order_date, o.status 
+$sql = "SELECT o.order_id, i.product_name AS product, s.sup_brand AS brand, o.category, o.size, o.quantity, o.price AS price, o.staff, o.order_date, o.status 
         FROM `order` o
         LEFT JOIN inventory i ON o.product = i.inventory_id
         LEFT JOIN suppliers s ON o.brand = s.sup_id";
@@ -41,14 +41,14 @@ function updateStatus(order_id, status, product, brand, category, size, quantity
     xhr.send("order_id=" + order_id + "&status=" + status + "&product=" + encodeURIComponent(product) + "&brand=" + encodeURIComponent(brand) + "&category=" + encodeURIComponent(category) + "&size=" + encodeURIComponent(size) + "&quantity=" + quantity + "&price=" + price);
 
         function editOrder(order_id) {
-            window.location.href = "editorder.php?id=" + order_id;
+            window.location.href = "editorder.php?=" + order_id;
         }
-
-        function deleteOrder(order_id) {
-            if (confirm("Are you sure you want to delete this order?")) {
-                window.location.href = "deleteorder.php?id=" + order_id;
-            }
-        }}
+    function deleteOrder(order_id) {
+        if (confirm("Are you sure you want to delete this order?")) {
+            window.location.href = "deleteorder?.php =" + order_id;
+        }
+    }}
+</script>
     </script>
 </head>
 
@@ -104,14 +104,13 @@ function updateStatus(order_id, status, product, brand, category, size, quantity
                                     </select>
                                   </td>";
                             
-                            echo "<td>
-                                    <button onclick=\"editOrder(" . $order_id . ")\" style=\"margin-right: 0px; padding: 3px 9px; font-weight: bold; border-radius: 4px; background-color: #F59607; color: #ffffff; border: none;\">
-                                        <i class=\"fa-regular fa-pen-to-square\" style=\"color: #ffffff;\"></i>
-                                    </button>
-                                    <button onclick=\"deleteOrder(" . $order_id . ")\" style=\"margin-right: 0px; padding: 3px 9px; font-weight: bold; border-radius: 4px; background-color: #DC2626; color: #ffffff; border: none;\">
-                                        <i class=\"fa-solid fa-xmark\" style=\"color: #ffffff;\"></i> 
-                                    </button>                          
-                                 </td>";
+                                  echo "<td>
+                                  <button onclick=\"editOrder(" . $order_id . ")\" style=\"margin-right: 0px; padding: 3px 9px; font-weight: bold; border-radius: 4px; background-color: #F59607; color: #ffffff; border: none;\">";
+                          if ($row['status'] != 'delivered') {
+                              echo "<i class=\"fa-regular fa-pen-to-square\" style=\"color: #ffffff;\"></i>";
+                          }
+                          echo "</button>
+                                </td>";
                             echo "</tr>";
                         }
                     } else {
