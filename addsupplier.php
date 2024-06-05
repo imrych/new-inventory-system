@@ -35,9 +35,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $insert_stmt->bind_param("ssss", $sup_name, $sup_country, $sup_num, $sup_brand);
 
         if ($insert_stmt->execute()) {
-            $message = "Supplier successfully added to the database!";
-            header("Location: supplier.php?message=$message");
-            exit();
+            echo "<script>
+            alert('Supplier successfully added to the database!');
+            window.location.href = 'addsupplier.php?message=exists';
+          </script>";
+            
         } else {
             $message = "Error adding supplier: " . $conn->error;
             // Log the error instead of echoing it
@@ -81,7 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 10px;" onclick="window.location.href='manageuser.php'">
+    margin-left: 10px;" onclick="window.location.href='supplier.php'">
         <i class="fa-solid fa-xmark"></i>
     </button>
 </div>

@@ -1,5 +1,5 @@
 <?php
-include 'checker_nav.php';
+include 'checker_nav.php'; 
 include 'topnav.php';
 include 'includes/config.php';
 
@@ -35,9 +35,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $insert_stmt->bind_param("ssss", $sup_name, $sup_country, $sup_num, $sup_brand);
 
         if ($insert_stmt->execute()) {
-            $message = "Supplier successfully added to the database!";
-            header("Location: supplier.php?message=$message");
-            exit();
+            echo "<script>
+            alert('Supplier successfully added to the database!');
+            window.location.href = 'suppcheck.php?message=exists';
+          </script>";
+            
         } else {
             $message = "Error adding supplier: " . $conn->error;
             // Log the error instead of echoing it
@@ -65,7 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body>
 <div class="container">
-    <form name="addSupplierForm" class="form" method="POST" onsubmit="return validateForm()" action="addsupplier.php">
+    <form name="addSupplierForm" class="form" method="POST" onsubmit="return validateForm()" action="addsup_check.php">
     <div class="button_title">
     <h4>Add New Supplier</h4>
     <button type="button" class="custom-close-btn" style=" width: 40px;

@@ -65,6 +65,6 @@ button{
 .title_and_button {
     display: flex;
     flex-direction: row;
-    gap: 830px;
+    gap: 900px;
     margin-top: 40px;
 }

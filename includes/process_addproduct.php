@@ -13,30 +13,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $category = ucwords(strtolower(trim($_POST['category'])));
     $size = intval(trim($_POST['size']));
     $quantity = intval(trim($_POST['quantity']));
-    $price = $_POST['price'];
-
+    
     $errors = [];
 
-    if (empty($product_name) || empty($brand_name) || empty($category) || empty($size) || empty($quantity) || empty($price)) {
+    if (empty($product_name) || empty($brand_name) || empty($category) || empty($size) || empty($quantity)) {
         $errors[] = "All fields are required.";
     }
 
-    // Validate price format
-    $price_regex = "/^\₱?\d{1,6}(\.\d{1,2})?$/";
-    if (!preg_match($price_regex, $price)) {
-        $errors[] = "Price must be a number with a maximum of 6 digits and up to 2 decimal places, including a pesos sign.";
-    }
-
     if (empty($errors)) {
-        // Format price to two decimal places
-        $formatted_price = (float) preg_replace("/[^0-9.]/", "", $price);
-
         // Insert into database
-        $sql = "INSERT INTO inventory (product_name, brand_name, category, size, order_quantity, price) 
-                VALUES (?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO inventory (product_name, brand_name, category, size, order_quantity) 
+                VALUES (?, ?, ?, ?, ?)";
 
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("sssidd", $product_name, $brand_name, $category, $size, $quantity, $formatted_price);
+        $stmt->bind_param("sssii", $product_name, $brand_name, $category, $size, $quantity);
 
         if ($stmt->execute()) {
             // Success message to display on inventory.php

@@ -65,11 +65,10 @@ if (!$result) {
                         echo "<td>". $row["category"]. "</td>"; //category
                         echo "<td>". $row["size"]. "</td>";
                         echo "<td>". $row["quantity"]. "</td>";
-                        echo "<td>". $row["price"]. "</td>";
+                        echo "<td>₱" . $row["price"]. "</td>";
                         echo "<td>". $row["order_date"]. "</td>";
                         echo "<td>". $row["staff"]. "</td>";
                         echo "<td>
-                               
                                 <button onclick=\"deleteCustomer(". $row["customer_id"]. ")\" style=\"margin-right: 0px; padding: 3px 9px; font-weight: bold; border-radius: 4px; background-color: #DC2626; color: #ffffff; border: none;\">
                                     <i class=\"fa-solid fa-xmark\" style=\"color: #ffffff;\"></i>
                                 </button>
@@ -77,9 +76,9 @@ if (!$result) {
                         echo "</tr>";
                     }
                 } else {
-                    echo "<tr><td colspan='10'>No records found</td></tr>";
+                    echo "<tr><td colspan='11'>No records found</td></tr>";
                 }
-               ?>
+                ?>
             </tbody>
         </table>
     </div>

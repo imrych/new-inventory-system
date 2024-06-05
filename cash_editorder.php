@@ -3,7 +3,7 @@ ob_start(); // Start output buffering
 
 include 'includes/config.php';
 include 'topnav.php';
-include 'nav.php';
+include 'cashier_nav.php';
 
 $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
@@ -100,7 +100,7 @@ ob_end_flush(); // Send the buffer contents to the browser
 </head>
 <body>
 <div class="container">
-    <form name="orderForm" action="editorder.php?id=<?php echo $order_id; ?>" method="post" class="form" onsubmit="return validateForm()">
+    <form name="orderForm" action="cas_editorder.php?id=<?php echo $order_id; ?>" method="post" class="form" onsubmit="return validateForm()">
         <div class="button_title">
     <h4>Edit Order</h4>
     <button type="button" class="custom-close-btn" style=" width: 40px;
@@ -116,7 +116,7 @@ ob_end_flush(); // Send the buffer contents to the browser
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 10px;" onclick="window.location.href='order.php'">
+    margin-left: 10px;" onclick="window.location.href='cashier_order.php'">
         <i class="fa-solid fa-xmark"></i>
     </button>
 </div>

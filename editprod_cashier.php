@@ -1,5 +1,5 @@
 <?php
-include 'cashier/cashier_nav.php'; 
+include 'cashier_nav.php'; 
 include 'topnav.php';
 include 'includes/config.php';
 
@@ -63,6 +63,25 @@ if (!$result_brands) {
 <div class="container">
     <form name="productForm" action="cashier/editprod_cashier.php?id=<?php echo $product['inventory_id']; ?>" method="post" class="form" onsubmit="return validateForm()">
         <input type="hidden" name="id" value="<?php echo $product['inventory_id']; ?>">
+        <div class="button_title">
+    <h4>Edit Product </h4>
+    <button type="button" class="custom-close-btn" style=" width: 40px;
+    height: 40px;
+    background: #f2af4a;
+    border: none;
+    outline: none;
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;" onclick="window.location.href='cashier_inventory.php'">
+        <i class="fa-solid fa-xmark"></i>
+    </button>
+</div>
         <div class="row1">
             <div class="input-box">
                 <label>Product Name</label>
@@ -106,7 +125,17 @@ if (!$result_brands) {
                 <input type="text" name="price" placeholder="Enter Price" value="<?php echo '₱' . number_format($product['price'], 2); ?>" required oninput="formatPriceInput(event)">
             </div>
         </div>
-        <button type="submit">Submit</button>
+        <button type="submit" style=" width: 20%;
+    padding: 5px;
+    background: #f2af4a;
+    border: none;
+    outline: none;
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 10px;
+    margin-left: 80%;">Update</button>
     </form>
 </div>
 

@@ -2,8 +2,8 @@
 ob_start(); // Start output buffering
 
 include 'includes/config.php';
+include 'checker_nav.php';
 include 'topnav.php';
-include 'nav.php';
 
 $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
@@ -64,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->bind_param("iisdiss", $product_id, $brand_name, $cat_id, $size, $quantity, $status, $order_id);
 
     if ($stmt->execute()) {
-        echo "<script>alert('Order updated successfully'); window.location.href='order.php';</script>";
+        echo "<script>alert('Order updated successfully'); window.location.href='ordcheck.php';</script>";
         exit();
     } else {
         echo "Error: " . $update_sql . "<br>" . $conn->error;
@@ -100,7 +100,7 @@ ob_end_flush(); // Send the buffer contents to the browser
 </head>
 <body>
 <div class="container">
-    <form name="orderForm" action="editorder.php?id=<?php echo $order_id; ?>" method="post" class="form" onsubmit="return validateForm()">
+    <form name="orderForm" action="editorder_check.php?id=<?php echo $order_id; ?>" method="post" class="form" onsubmit="return validateForm()">
         <div class="button_title">
     <h4>Edit Order</h4>
     <button type="button" class="custom-close-btn" style=" width: 40px;
@@ -116,7 +116,7 @@ ob_end_flush(); // Send the buffer contents to the browser
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 10px;" onclick="window.location.href='order.php'">
+    margin-left: 10px;" onclick="window.location.href='ordcheck.php'">
         <i class="fa-solid fa-xmark"></i>
     </button>
 </div>

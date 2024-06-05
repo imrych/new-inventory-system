@@ -39,12 +39,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $price = $_POST['price']; // Price directly from user input
     $brand_name = $_POST['brand_name'];
     $quantity = $_POST['quantity'];
-    $price= $_POST['price'];
     $order_date = $_POST['order_date'];
     $staff = $_SESSION['name'];
 
-    $insert_sql = "INSERT INTO `order` (product, brand, category, size, quantity, staff, order_date) 
-                   VALUES ('$product_id', '$brand_name', '$cat_id', '$size', '$quantity', '$staff', '$order_date')";
+    $insert_sql = "INSERT INTO `order` (product, brand, category, size, price, quantity, staff, order_date) 
+                   VALUES ('$product_id', '$brand_name', '$cat_id', '$size', '$price', '$quantity', '$staff', '$order_date')";
 
     if ($conn->query($insert_sql) === TRUE) {
         echo "<script>alert('Order successfully added');</script>";
@@ -69,7 +68,7 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/dashboard.css">
     <link rel="stylesheet" href="css/addorder.css">
-    <title>Add New Order</title>
+    <title>Add New Stock-Order</title>
     <script>
         function validateForm() {
             var size = document.forms["orderForm"]["size"].value;
@@ -94,13 +93,30 @@ $conn->close();
 <body>
     <div class="container">
         <form name="orderForm" action="addorder.php" method="post" class="form" onsubmit="return validateForm()">
-            <h4>Add New Order</h4>
-            <button type="button" class="custom-close-btn" onclick="window.location.href='manageuser.php'">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
+        <div class="button_title">
+    <h4>New Stock Order</h4>
+    <button type="button" class="custom-close-btn" style=" width: 40px;
+    height: 40px;
+    background: #f2af4a;
+    border: none;
+    outline: none;
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;" onclick="window.location.href='order.php'">
+        <i class="fa-solid fa-xmark"></i>
+    </button>
+    </div>
             <div class="row1">
                 <div class="input-box">
-                    <label>Product ID</label>
+                    <label>Product</label>
+                    <div class="column">
+                    <div class="select-box">
                     <select name="product_id" required>
                         <option value="" disabled selected>Select Product</option>
                         <?php
@@ -112,8 +128,12 @@ $conn->close();
                         ?>
                     </select>
                 </div>
+                </div>
+                </div>
                 <div class="input-box">
                     <label>Category</label>
+                    <div class="column">
+                    <div class="select-box">
                     <select name="cat_id" required>
                         <option value="" disabled selected>Select Category</option>
                         <?php
@@ -126,6 +146,8 @@ $conn->close();
                     </select>
                 </div>
             </div>
+            </div>
+            </div>
             <div class="row2">
                 <div class="input-box">
                     <label>Size</label>
@@ -133,6 +155,8 @@ $conn->close();
                 </div>
                 <div class="input-box">
                     <label>Brand Name</label>
+                    <div class="column">
+                    <div class="select-box">
                     <select name="brand_name" required>
                         <option value="" disabled selected>Select Brand</option>
                         <?php
@@ -145,7 +169,8 @@ $conn->close();
                     </select>
                 </div>
             </div>
-            
+            </div>
+            </div>
             <div class="row3">
                 <div class="input-box">
                     <label>Price</label>
@@ -155,15 +180,22 @@ $conn->close();
                     <label>Quantity</label>
                     <input type="number" name="quantity" placeholder="Enter Quantity" required>
                 </div>
-                <div class="input-box">
-                    <label>Price</label>
-                    <input type="number" name="price" placeholder="Enter Price" step="0.01" required>
-                <div class="input-box">
+                 <div class="input-box">
                     <label>Order Date</label>
                     <input type="date" name="order_date" required>
                 </div>
             </div>
-            <button type="submit">Submit</button>
+            <button type="submit" style=" width: 20%;
+    padding: 5px;
+    background: #f2af4a;
+    border: none;
+    outline: none;
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 10px;
+    margin-left: 80%;">Submit</button>
         </form>
     </div>
 

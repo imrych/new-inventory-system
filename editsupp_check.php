@@ -1,6 +1,6 @@
 <?php
 include 'topnav.php';
-include 'nav.php';
+include 'checker_nav.php';
 include 'includes/config.php';
 
 $message = '';
@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $message = "Supplier details updated successfully!";
         echo "<script>
             alert('Supplier details updated successfully!');
-            window.location.href='supplier.php';
+            window.location.href='suppcheck.php';
         </script>";
         exit();
     } else {
@@ -83,7 +83,11 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['id'])) {
     width: 80%;
     margin-left: 260px;
 }
-
+.button_title {
+    gap: 210px;
+    display: flex;
+    flex-direction: row;
+}
 .form {
     gap: 20px;
     padding: 20px;
@@ -93,12 +97,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['id'])) {
     border-radius: 10px;
     display: flex;
     flex-direction: column;
-}
-
-.button_title {
-    gap: 210px;
-    display: flex;
-    flex-direction: row;
 }
 .input-box {
     display: flex;
@@ -165,7 +163,7 @@ body {
 </style>
 <body>
 <div class="container">
-    <form name="editSupplierForm" class="form" method="POST" action="editsupplier.php?id=<?php echo $sup_id; ?>" onsubmit="return validateForm()">
+    <form name="editSupplierForm" class="form" method="POST" action="editsupp_check.php?id=<?php echo $sup_id; ?>" onsubmit="return validateForm()">
         <input type="hidden" name="sup_id" value="<?php echo $sup_id; ?>">
         <div class="button_title">
             <h4>Edit Supplier </h4>
@@ -182,12 +180,11 @@ body {
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-left: 10px;" onclick="window.location.href='supplier.php'">
+            margin-left: 10px;" onclick="window.location.href='suppcheck.php'">
             <i class="fa-solid fa-xmark"></i>
         </button>
 </div>
 
-        <!-- Form fields for editing supplier details -->
         <div class="input-box">
             <label>Supplier Name</label>
             <input type="text" name="sup_name" value="<?php echo $sup_name; ?>" placeholder="Enter supplier name" required>

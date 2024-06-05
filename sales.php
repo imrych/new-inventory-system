@@ -9,6 +9,32 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+// Fetch data from customers table
+$fetch_customers_sql = "SELECT * FROM customers";
+$customers_result = $conn->query($fetch_customers_sql);
+
+if ($customers_result->num_rows > 0) {
+    while($customer_row = $customers_result->fetch_assoc()) {
+        $product = $customer_row['product'];
+        $brand = $customer_row['brand'];
+        $size = $customer_row['size'];
+        $quantity = $customer_row['quantity'];
+        $order_date = $customer_row['order_date'];
+        $price = $customer_row['price'];
+
+        // Check if the record already exists in the sales table
+        $check_sales_sql = "SELECT * FROM sales WHERE sale_product = '$product' AND sales_brand = '$brand' AND sale_size = '$size' AND sold_quantity = '$quantity' AND sale_date = '$order_date'";
+        $check_sales_result = $conn->query($check_sales_sql);
+
+        if ($check_sales_result->num_rows == 0) {
+            // Insert into sales table
+            $insert_sales_sql = "INSERT INTO sales (sale_product, sales_brand, sale_size, sold_quantity, sale_date, sale_total)
+                                 VALUES ('$product', '$brand', '$size', '$quantity', '$order_date', '$price')";
+            $conn->query($insert_sales_sql);
+        }
+    }
+}
+
 $sql = "SELECT * FROM sales";
 $result = $conn->query($sql);
 $total_sales = 0;
@@ -39,6 +65,7 @@ $total_sales = 0;
                 <tr>
                     <th>#</th>
                     <th>Product</th>
+                    <th>Brand</th>
                     <th>Size</th>
                     <th>Quantity</th>
                     <th>Total Sale</th>
@@ -53,6 +80,7 @@ $total_sales = 0;
                         echo "<tr>";
                         echo "<td>" . $row["sales_id"] . "</td>";
                         echo "<td>" . $row["sale_product"]. "</td>";
+                        echo "<td>" . $row["sales_brand"] . "</td>";
                         echo "<td>" . $row["sale_size"] . "</td>";
                         echo "<td>" . $row["sold_quantity"] . "</td>";
                         echo "<td>₱" . number_format($row["sale_total"], 2) . "</td>";
@@ -60,7 +88,7 @@ $total_sales = 0;
                         echo "</tr>";
                     }
                 } else {
-                    echo "<tr><td colspan='6'>No records found</td></tr>";
+                    echo "<tr><td colspan='7'>No records found</td></tr>";
                 }
                 ?>
             </tbody>

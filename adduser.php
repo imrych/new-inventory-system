@@ -17,18 +17,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt_executed = $stmt->execute();
 
     if ($stmt_executed) {
-        // Return success message
-        $response = [
-            'success' => true,
-            'message' => 'User added successfully!'
-        ];
+        // Redirect to manageuser.php after successful user addition
+        header("Location: manageuser.php");
+        exit();
     } else {
         // Return error message
-        $response = [
-            'success' => false,
-            'message' => 'Error adding user: ' . $stmt->error
-        ];
-        http_response_code(500); // Internal Server Error
+        echo "Error adding user: " . $stmt->error;
     }
 
     // Close statement
@@ -36,11 +30,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Close database connection
     $conn->close();
-
-    // Output JSON response
-    header('Content-Type: application/json');
-    echo json_encode($response);
-    exit();
 }
 ?>
 
@@ -102,31 +91,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     margin-left: 80%;">Submit</button>
     </form>
 </div>
-<script>
-$(document).ready(function() {
-    $('#addUserForm').submit(function(event) {
-        event.preventDefault(); // Prevent default form submission
 
-        $.ajax({
-            type: 'POST',
-            url: 'adduser.php',
-            data: $(this).serialize(), // Serialize form data
-            dataType: 'json',
-            success: function(response) {
-                alert(response.message); // Show success or error message
-                if (response.success) {
-                    window.location.href = 'manageuser.php'; // Redirect to manageuser.php on success
-                } else {
-                    // Handle specific error scenario if needed
+<script>
+    $(document).ready(function(){
+        $('#addUserForm').submit(function(e){
+            e.preventDefault(); // Prevent form submission
+            
+            // Submit the form using Ajax
+            $.ajax({
+                type: 'POST',
+                url: $(this).attr('action'),
+                data: $(this).serialize(),
+                success: function(response){
+                    alert("Successfully Added New User");
+                    window.location.href = "manageuser.php";
+                },
+                error: function(xhr, status, error){
+                    alert("Error adding user: " + error);
+                    location.reload();
                 }
-            },
-            error: function(xhr, status, error) {
-                alert('Error adding user. Please try again.'); // Show generic error message
-                console.error('Error: ' + error);
-            }
+            });
         });
     });
-});
 </script>
+
 </body>
 </html>

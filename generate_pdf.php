@@ -29,7 +29,7 @@ if ($result->num_rows > 0) {
             if ($current_month !== null) {
                 // Close previous table and add subtotal
                 $sales_data .= "<tr class='subtotal-row'>
-                                    <td colspan='5' class='subtotal-label'><strong>Subtotal</strong></td>
+                                    <td colspan='6' class='subtotal-label'><strong>Subtotal</strong></td>
                                     <td>" . number_format($sub_total, 2) . "</td>
                                 </tr></tbody></table>"; 
                 $grand_total += $sub_total; // Add subtotal to grand total
@@ -43,6 +43,7 @@ if ($result->num_rows > 0) {
                                         <th>#</th>
                                         <th>Product</th>
                                         <th>Size</th>
+                                        <th>Brand</th>
                                         <th>Quantity</th>
                                         <th>Total Sale</th>
                                         <th>Date</th>
@@ -58,17 +59,18 @@ if ($result->num_rows > 0) {
                             <td>{$row['sale_product']}</td>
                             <td>{$row['sale_size']}</td>
                             <td>{$row['sold_quantity']}</td>
+                            <td>{$row['sales_brand']}</td>
                             <td>" . number_format($row['sale_total'], 2) . "</td>
                             <td>" . date('d-m-Y', strtotime($row['sale_date'])) . "</td>
                         </tr>";
     }
     $grand_total += $sub_total; // Add last month's subtotal to grand total
     $sales_data .= "<tr class='subtotal-row'>
-                        <td colspan='5' class='subtotal-label'><strong>Subtotal</strong></td>
+                        <td colspan='6' class='subtotal-label'><strong>Subtotal</strong></td>
                         <td>" . number_format($sub_total, 2) . "</td>
                     </tr></tbody></table>"; // Close the last table and add subtotal
 } else {
-    $sales_data .= "<tr><td colspan='5'>No records found</td></tr>";
+    $sales_data .= "<tr><td colspan='6'>No records found</td></tr>";
 }
 
 $conn->close();
@@ -119,7 +121,7 @@ $html = "
         transform: translate(-50%, -50%);
         z-index: -1;
         opacity: 0.1;
-        width: 800px; /* Adjust width */
+        width: 950px; /* Adjust width */
         height: auto; /* Maintain aspect ratio */
     }
     
@@ -181,7 +183,6 @@ $html = "
     }
     
     .total-row {
-        border: 1px solid #000;
         width: -50px;
     }
     

@@ -45,7 +45,25 @@ include 'includes/connection.php';
 <body>
 <div class="container">
     <form action="" method = "post" class="form">
+    <div class="button_title">
     <h4>Edit User</h4>
+    <button type="button" class="custom-close-btn" style=" width: 40px;
+    height: 40px;
+    background: #f2af4a;
+    border: none;
+    outline: none;
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;" onclick="window.location.href='manageuser.php'">
+        <i class="fa-solid fa-xmark"></i>
+    </button>
+    </div>
         <div class="input-box">
             <label>Name</label>
             <input type="text" name= "name" value="<?php echo $row['Name']; ?>">
@@ -75,10 +93,17 @@ include 'includes/connection.php';
             </div>
         </div>
         
-    <button type="submit" name="edit">
-     Update
-    </button>
-
+    <button type="submit" name="edit" style=" width: 20%;
+    padding: 5px;
+    background: #f2af4a;
+    border: none;
+    outline: none;
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 10px;
+    margin-left: 80%;">Update</button>
 </form>
 </div>
 </body>

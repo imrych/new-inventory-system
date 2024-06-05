@@ -59,7 +59,7 @@ $categories_result = $conn->query($categories_sql);
 <div class="container">
     <form name="productForm" action="addproduct.php" method="post" onsubmit="return validateForm()">
     <div class="button_title">
-    <h4>Add New Product</h4>
+    <h4>Add Product</h4>
     <button type="button" class="custom-close-btn" style=" width: 40px;
     height: 40px;
     background: #f2af4a;
@@ -73,7 +73,7 @@ $categories_result = $conn->query($categories_sql);
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 10px;" onclick="window.location.href='manageuser.php'">
+    margin-left: 10px;" onclick="window.location.href='inventory.php'">
         <i class="fa-solid fa-xmark"></i>
     </button>
 </div>

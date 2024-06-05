@@ -62,7 +62,11 @@ label {
     justify-content: space-between;
     align-items: center;
 }
-
+.button_title {
+    gap:350px;
+    display: flex;
+    flex-direction: row;
+}
 .select-box {
     width: 100%;
     height: 50px;
